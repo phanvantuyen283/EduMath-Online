@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cổng Thi Trực Tuyến Lớp 4A Trường Tiểu học Châu Lộc title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Nunito', sans-serif; }
+        .btn-mon { transition: all 0.3s; }
+        .btn-mon:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-100 to-purple-100 min-h-screen flex items-center justify-center p-4">
+
+    <div class="max-w-4xl w-full bg-white rounded-2xl shadow-2xl overflow-hidden">
+        <div class="bg-blue-600 p-8 text-center text-white relative overflow-hidden">
+            <div class="relative z-10">
+                <h1 class="text-3xl md:text-5xl font-extrabold mb-2">EDUMATH ONLINE</h1>
+                <p class="text-xl opacity-90">Hệ Thống Thi Trực Tuyến - Lớp 4</p>
+            </div>
+            <div class="absolute top-0 left-0 w-32 h-32 bg-white opacity-10 rounded-full -translate-x-10 -translate-y-10"></div>
+            <div class="absolute bottom-0 right-0 w-40 h-40 bg-white opacity-10 rounded-full translate-x-10 translate-y-10"></div>
+        </div>
+
+        <div class="p-8">
+            <h2 class="text-2xl font-bold text-gray-800 text-center mb-8">Hôm nay con muốn thi môn gì?</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-blue-50 border-l-8 border-blue-500 p-6 rounded-r-lg btn-mon group cursor-pointer hover:bg-blue-100">
+                    <h3 class="text-2xl font-bold text-blue-700 mb-2">📐 Môn Toán</h3>
+                    <p class="text-gray-600 mb-4 text-sm">Các bài kiểm tra tính toán, hình học...</p>
+                    <div class="space-y-2">
+                        <a href="toan/de1.html" class="block w-full text-center bg-blue-600 text-white py-2 rounded hover:bg-blue-700 font-bold">
+                            Làm Đề Số 1
+                        </a>
+                        <button class="block w-full text-center bg-gray-300 text-gray-500 py-2 rounded cursor-not-allowed">
+                            Đề Số 2 (Sắp có)
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-red-50 border-l-8 border-red-500 p-6 rounded-r-lg btn-mon group hover:bg-red-100">
+                    <h3 class="text-2xl font-bold text-red-700 mb-2">📚 Tiếng Việt</h3>
+                    <p class="text-gray-600 mb-4 text-sm">Đọc hiểu, chính tả, làm văn...</p>
+                    <div class="space-y-2">
+                        <button onclick="alert('Cô đang soạn đề, con quay lại sau nhé!')" class="block w-full text-center bg-red-500 text-white py-2 rounded hover:bg-red-600 font-bold">
+                            Danh sách đề thi
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-green-50 border-l-8 border-green-500 p-6 rounded-r-lg btn-mon group hover:bg-green-100">
+                    <h3 class="text-2xl font-bold text-green-700 mb-2">🌱 Khoa Học</h3>
+                    <p class="text-gray-600 mb-4 text-sm">Khám phá tự nhiên và cuộc sống.</p>
+                     <button onclick="alert('Sắp ra mắt!')" class="block w-full text-center bg-green-600 text-white py-2 rounded hover:bg-green-700 font-bold">
+                        Vào thi ngay
+                    </button>
+                </div>
+
+                <div class="bg-yellow-50 border-l-8 border-yellow-500 p-6 rounded-r-lg btn-mon group hover:bg-yellow-100">
+                    <h3 class="text-2xl font-bold text-yellow-700 mb-2">🌏 Lịch Sử & Địa Lí</h3>
+                    <p class="text-gray-600 mb-4 text-sm">Tìm hiểu đất nước và con người.</p>
+                    <button onclick="alert('Sắp ra mắt!')" class="block w-full text-center bg-yellow-600 text-white py-2 rounded hover:bg-yellow-700 font-bold">
+                        Vào thi ngay
+                    </button>
+                </div>
+              <div class="bg-purple-50 border-l-8 border-purple-500 p-6 rounded-r-lg btn-mon group hover:bg-purple-100">
+    <h3 class="text-2xl font-bold text-purple-700 mb-2">💻 Công Nghệ</h3>
+    <p class="text-gray-600 mb-4 text-sm">Tin học, Kỹ thuật và Đời sống.</p>
+    <div class="space-y-2">
+        <a href="cong_nghe/de1.html" class="block w-full text-center bg-purple-600 text-white py-2 rounded hover:bg-purple-700 font-bold">
+            Làm Đề Số 1
+        </a>
+        <button class="block w-full text-center bg-gray-300 text-gray-500 py-2 rounded cursor-not-allowed">
+            Đề Số 2 (Sắp có)
+        </button>
+    </div>
+</div>
+
+        </div>
+        </div>
+
+        <div class="bg-gray-100 p-4 text-center text-gray-500 text-sm">
+            © 2025 Hệ thống thi EduMath - Giáo viên: [Phan Văn Tuyến]
+        </div>
+    </div>
+
+</body>
+</html>

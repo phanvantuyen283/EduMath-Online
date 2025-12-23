@@ -120,114 +120,89 @@
         </div>
     </div>
 
-    <script type="module">
-        // 1. IMPORT FIREBASE
+        <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-        // 2. CẤU HÌNH (BẠN THAY API KEY VÀO ĐÂY)
+        // --- CẤU HÌNH CHUẨN (Đồng bộ với môn Công Nghệ) ---
         const firebaseConfig = {
-           apiKey: "AIzaSyA77lLi_JCLIdR535KEfg3S0_Ge2EorPMo",
-           authDomain: "baikiemtracuoiki.firebaseapp.com",
-           projectId: "baikiemtracuoiki",
-           storageBucket: "baikiemtracuoiki.firebasestorage.app",
-           messagingSenderId: "953819948776",
-           appId: "1:953819948776:web:22b2fada72ab36e0d28b5d",
-           measurementId: "G-6S1RGY8XZ0" 
+            apiKey: "AIzaSyA77lLi_JCLIdR535KEfg3S0_Ge2EorPMo", 
+            authDomain: "baikiemtracuoiki.firebaseapp.com",
+            projectId: "baikiemtracuoiki",
+            storageBucket: "baikiemtracuoiki.appspot.com",
+            messagingSenderId: "953819948776",  // Số chuẩn lấy từ Project Settings của bạn
+            appId: "1:953819948776:web:15848507d350f37c35e5d3"
         };
 
-        // Khởi tạo
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // ĐỊNH NGHĨA THÔNG TIN ĐỀ THI (QUAN TRỌNG ĐỂ PHÂN LOẠI)
+        // --- THÔNG TIN ĐỀ THI ---
         const MON_HOC = "Toán";
         const MA_DE = "Đề 01";
 
-        // 3. HÀM NỘP BÀI
         window.nopBai = async function() {
-            const btnNop = document.querySelector('button');
-            btnNop.innerText = "Đang nộp bài...";
-            btnNop.disabled = true;
-
-            // A. Lấy thông tin học sinh
+            const btn = document.querySelector('button');
+            
+            // 1. Kiểm tra nhập liệu
             const hoTen = document.getElementById('hoTen').value.trim();
             const lop = document.getElementById('lop').value.trim();
 
             if (!hoTen || !lop) {
                 alert("Con chưa điền Tên hoặc Lớp!");
-                btnNop.innerText = "NỘP BÀI THI";
-                btnNop.disabled = false;
                 return;
             }
 
-            // B. Chấm điểm trắc nghiệm (Tự động)
+            // 2. Hiệu ứng nút bấm (Để biết code đang chạy)
+            btn.disabled = true;
+            btn.innerText = "Đang gửi bài...";
+            btn.style.backgroundColor = "gray"; // Đổi màu xám
+
+            // --- CHẤM ĐIỂM TRẮC NGHIỆM (Bạn có thể sửa đáp án ở đây) ---
             let diemTN = 0;
             
-            [cite_start]// Câu 1: Điền số 2181[span_0](end_span)[span_1](end_span)
-            const tlCau1 = document.getElementById('cau1').value.trim();
-            if (tlCau1 == "2181" || tlCau1 == "2 181") diemTN += 0.5;
+            // Hàm kiểm tra nhanh
+            function check(cau, dapAnDung, diem) {
+                const luaChon = document.querySelector(`input[name="${cau}"]:checked`);
+                if (luaChon && luaChon.value === dapAnDung) return diem;
+                return 0;
+            }
 
-            [span_2](start_span)[span_3](start_span)// Câu 2: Đáp án D (5 góc vuông)[span_2](end_span)[span_3](end_span)
-            const tlCau2 = document.querySelector('input[name="cau2"]:checked');
-            if (tlCau2 && tlCau2.value === "D") diemTN += 0.5;
+            // Cấu trúc chấm điểm (Ví dụ mẫu, bạn sửa lại theo đề Toán thật của bạn nhé)
+            // Ví dụ: Câu 1 đúng là A, được 1 điểm
+            diemTN += check("cau1", "A", 1); 
+            diemTN += check("cau2", "B", 1);
+            diemTN += check("cau3", "C", 1);
+            // ... Bạn thêm các câu khác vào đây nếu có
 
-            [span_4](start_span)[span_5](start_span)// Câu 3: Đáp án B (Hàng chục nghìn)[span_4](end_span)[span_5](end_span)
-            const tlCau3 = document.querySelector('input[name="cau3"]:checked');
-            if (tlCau3 && tlCau3.value === "B") diemTN += 0.5;
+            // --- LẤY TỰ LUẬN (Nếu có) ---
+            // Nếu đề toán không có tự luận thì để trống hoặc xóa dòng này
+            // const baiTuLuan = document.getElementById('tu_luan').value; 
 
-            [span_6](start_span)[span_7](start_span)// Câu 4: Đáp án B (29 triệu)[span_6](end_span)[span_7](end_span)
-            const tlCau4 = document.querySelector('input[name="cau4"]:checked');
-            if (tlCau4 && tlCau4.value === "B") diemTN += 0.5;
-
-            [span_8](start_span)[span_9](start_span)// Câu 5: Đáp án A (0)[span_8](end_span)[span_9](end_span)
-            const tlCau5 = document.querySelector('input[name="cau5"]:checked');
-            if (tlCau5 && tlCau5.value === "A") diemTN += 0.5;
-
-            [span_10](start_span)[span_11](start_span)// Câu 6: Điền số 2005[span_10](end_span)[span_11](end_span)
-            const tlCau6 = document.getElementById('cau6').value.trim();
-            if (tlCau6 == "2005" || tlCau6 == "2 005") diemTN += 0.5;
-
-            [span_12](start_span)[span_13](start_span)// Câu 7: Đáp án A (Vuông góc PH, QK)[span_12](end_span)[span_13](end_span)
-            const tlCau7 = document.querySelector('input[name="cau7"]:checked');
-            if (tlCau7 && tlCau7.value === "A") diemTN += 0.5;
-
-            [span_14](start_span)[span_15](start_span)// Câu 8: Đáp án C (23 439)[span_14](end_span)[span_15](end_span)
-            const tlCau8 = document.querySelector('input[name="cau8"]:checked');
-            if (tlCau8 && tlCau8.value === "C") diemTN += 0.5;
-
-            // C. Lấy nội dung tự luận
-            const baiTuLuan = `
-                Câu 9: ${document.getElementById('cau9_tuluan').value}
-                Câu 10: ${document.getElementById('cau10_tuluan').value}
-                Câu 11: ${document.getElementById('cau11_tuluan').value}
-                Câu 12: ${document.getElementById('cau12_tuluan').value}
-            `;
-
-            // D. Gửi lên Firebase (Vào ngăn Baikiemtracuoiki)
+            // --- GỬI VỀ KHO ---
             try {
                 await addDoc(collection(db, "Baikiemtracuoiki"), {
                     ho_ten: hoTen,
                     lop: lop,
-                    mon_hoc: MON_HOC,   // Toán
-                    ma_de: MA_DE,       // Đề 01
+                    mon_hoc: MON_HOC,
+                    ma_de: MA_DE,
                     diem_trac_nghiem: diemTN,
-                    diem_tu_luan: 0,    // Mặc định, cô sẽ chấm sau
-                    bai_tu_luan: baiTuLuan,
-                    nhan_xet: "",
+                    diem_tu_luan: 0, 
+                    // bai_tu_luan: baiTuLuan, // Bỏ comment nếu có tự luận
                     thoi_gian_nop: new Date().toISOString()
                 });
 
-                alert(`Chúc mừng con đã nộp bài thành công!\nĐiểm trắc nghiệm của con là: ${diemTN} điểm.`);
-                // Ẩn nút nộp để tránh nộp 2 lần
-                btnNop.style.display = 'none';
+                alert(`Nộp bài thành công!\nĐiểm trắc nghiệm: ${diemTN} điểm.`);
+                btn.style.display = 'none'; // Ẩn nút sau khi xong
             } catch (e) {
-                console.error("Lỗi: ", e);
-                alert("Có lỗi xảy ra! Con hãy báo cô giáo ngay nhé.");
-                btnNop.innerText = "NỘP BÀI THI";
-                btnNop.disabled = false;
+                console.error(e);
+                alert("Lỗi: " + e.message);
+                btn.disabled = false;
+                btn.innerText = "NỘP BÀI";
+                btn.style.backgroundColor = ""; // Trả lại màu cũ
             }
         }
     </script>
+
 </body>
 </html>

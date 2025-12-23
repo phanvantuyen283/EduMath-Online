@@ -14,8 +14,10 @@
     </style>
 </head>
 <body class="bg-blue-50 py-10">
-
-    <div class="max-w-4xl mx-auto bg-white shadow-xl rounded-lg overflow-hidden">
+        <div class="fixed top-4 right-4 bg-red-600 text-white font-bold py-2 px-4 rounded-full shadow-lg z-50 animate-pulse border-2 border-white">
+        ⏳ Thời gian: <span id="dongHo">35:00</span>
+    </div>
+  <div class="max-w-4xl mx-auto bg-white shadow-xl rounded-lg overflow-hidden">
         <div class="bg-blue-600 p-6 text-white text-center">
             <h1 class="text-2xl font-bold uppercase">Bài Kiểm Tra Định Kỳ Cuối Học Kỳ I</h1>
             <p class="text-lg mt-2">Môn thi: TOÁN – Lớp 4 (Đề 1)</p>
@@ -127,64 +129,95 @@
         </div>
     </div>
 
-        <script type="module">
+            <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-        // --- CẤU HÌNH CHUẨN (Đồng bộ với môn Công Nghệ) ---
+        // --- CẤU HÌNH (Đã điền sẵn số chuẩn của bạn) ---
         const firebaseConfig = {
             apiKey: "AIzaSyA77lLi_JCLIdR535KEfg3S0_Ge2EorPMo", 
             authDomain: "baikiemtracuoiki.firebaseapp.com",
             projectId: "baikiemtracuoiki",
             storageBucket: "baikiemtracuoiki.appspot.com",
-            messagingSenderId: "953819948776",  // Số chuẩn lấy từ Project Settings của bạn
+            messagingSenderId: "953819948776",
             appId: "1:953819948776:web:15848507d350f37c35e5d3"
         };
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-
-        // --- THÔNG TIN ĐỀ THI ---
+        
         const MON_HOC = "Toán";
         const MA_DE = "Đề 01";
+        const THOI_GIAN_LAM_BAI = 35; // Phút
 
-        window.nopBai = async function() {
+        // --- CHỨC NĂNG ĐẾM NGƯỢC ---
+        let thoiGian = THOI_GIAN_LAM_BAI * 60; // Đổi sang giây
+        const dongHoDisplay = document.getElementById('dongHo');
+        let daNopBai = false; // Cờ kiểm tra để tránh nộp 2 lần
+
+        const demNguoc = setInterval(() => {
+            if (daNopBai) { clearInterval(demNguoc); return; } // Nếu đã nộp thì dừng đếm
+
+            let phut = Math.floor(thoiGian / 60);
+            let giay = thoiGian % 60;
+
+            // Thêm số 0 đằng trước cho đẹp (05:09)
+            phut = phut < 10 ? "0" + phut : phut;
+            giay = giay < 10 ? "0" + giay : giay;
+
+            dongHoDisplay.innerText = `${phut}:${giay}`;
+
+            thoiGian--;
+
+            // KHI HẾT GIỜ (Time < 0)
+            if (thoiGian < 0) {
+                clearInterval(demNguoc);
+                alert("⏰ ĐÃ HẾT GIỜ LÀM BÀI!\nHệ thống sẽ tự động nộp bài của con.");
+                
+                // Tự động điền thông tin nếu trống (để không bị lỗi)
+                const hoTenInput = document.getElementById('hoTen');
+                const lopInput = document.getElementById('lop');
+                if (!hoTenInput.value) hoTenInput.value = "Hết Giờ (Quên Tên)";
+                if (!lopInput.value) lopInput.value = "KĐ";
+
+                // Gọi hàm nộp bài
+                window.nopBai(true); // true nghĩa là nộp tự động
+            }
+        }, 1000);
+
+
+        // --- CHỨC NĂNG NỘP BÀI ---
+        window.nopBai = async function(isAuto = false) {
+            if (daNopBai) return; // Chặn bấm nhiều lần
+
             const btn = document.querySelector('button');
-            
-            // 1. Kiểm tra nhập liệu
             const hoTen = document.getElementById('hoTen').value.trim();
             const lop = document.getElementById('lop').value.trim();
 
-            if (!hoTen || !lop) {
+            // Kiểm tra nhập liệu (Chỉ kiểm tra nếu Tự bấm nút)
+            if (!isAuto && (!hoTen || !lop)) {
                 alert("Con chưa điền Tên hoặc Lớp!");
                 return;
             }
 
-            // 2. Hiệu ứng nút bấm (Để biết code đang chạy)
+            daNopBai = true; // Đánh dấu đã nộp
             btn.disabled = true;
-            btn.innerText = "Đang gửi bài...";
-            btn.style.backgroundColor = "gray"; // Đổi màu xám
+            btn.innerText = "Đang chấm điểm...";
+            btn.style.backgroundColor = "gray";
 
-            // --- CHẤM ĐIỂM TRẮC NGHIỆM (Bạn có thể sửa đáp án ở đây) ---
+            // --- CHẤM ĐIỂM (Bạn sửa đáp án đúng tại đây) ---
             let diemTN = 0;
-            
-            // Hàm kiểm tra nhanh
             function check(cau, dapAnDung, diem) {
                 const luaChon = document.querySelector(`input[name="${cau}"]:checked`);
                 if (luaChon && luaChon.value === dapAnDung) return diem;
                 return 0;
             }
 
-            // Cấu trúc chấm điểm (Ví dụ mẫu, bạn sửa lại theo đề Toán thật của bạn nhé)
-            // Ví dụ: Câu 1 đúng là A, được 1 điểm
+            // Ví dụ đáp án Toán (Bạn nhớ sửa lại cho khớp đề Toán của bạn)
             diemTN += check("cau1", "A", 1); 
-            diemTN += check("cau2", "B", 1);
+            diemTN += check("cau2", "B", 1); 
             diemTN += check("cau3", "C", 1);
-            // ... Bạn thêm các câu khác vào đây nếu có
-
-            // --- LẤY TỰ LUẬN (Nếu có) ---
-            // Nếu đề toán không có tự luận thì để trống hoặc xóa dòng này
-            // const baiTuLuan = document.getElementById('tu_luan').value; 
+            // ... thêm các câu khác ...
 
             // --- GỬI VỀ KHO ---
             try {
@@ -195,21 +228,22 @@
                     ma_de: MA_DE,
                     diem_trac_nghiem: diemTN,
                     diem_tu_luan: 0, 
-                    // bai_tu_luan: baiTuLuan, // Bỏ comment nếu có tự luận
-                    thoi_gian_nop: new Date().toISOString()
+                    thoi_gian_nop: new Date().toISOString(),
+                    nop_tu_dong: isAuto ? "Có (Hết giờ)" : "Không"
                 });
 
                 alert(`Nộp bài thành công!\nĐiểm trắc nghiệm: ${diemTN} điểm.`);
-                btn.style.display = 'none'; // Ẩn nút sau khi xong
+                btn.style.display = 'none'; // Ẩn nút nộp
+                dongHoDisplay.parentElement.style.display = 'none'; // Ẩn đồng hồ
             } catch (e) {
                 console.error(e);
-                alert("Lỗi: " + e.message);
+                alert("Lỗi nộp bài: " + e.message);
                 btn.disabled = false;
-                btn.innerText = "NỘP BÀI";
-                btn.style.backgroundColor = ""; // Trả lại màu cũ
+                daNopBai = false; // Cho phép nộp lại nếu lỗi
             }
         }
     </script>
+
 
 </body>
 </html>

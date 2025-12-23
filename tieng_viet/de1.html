@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thi Tiếng Việt - Lớp 4</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Nunito', sans-serif; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+        .hidden-section { display: none; }
+    </style>
+</head>
+<body class="bg-blue-50 h-screen flex flex-col overflow-hidden">
+
+    <header class="bg-blue-600 text-white p-3 flex justify-between items-center shadow-md shrink-0">
+        <div class="flex items-center gap-4">
+            <h1 class="font-bold text-xl uppercase">Tiếng Việt Lớp 4 - Đề 1</h1>
+            <input type="text" id="hoTen" placeholder="Nhập Họ Tên..." class="text-black px-3 py-1 rounded w-64 border-2 border-yellow-400 focus:outline-none font-bold">
+            <input type="text" id="lop" placeholder="Lớp" class="text-black px-3 py-1 rounded w-20 border-2 border-yellow-400 focus:outline-none font-bold text-center">
+        </div>
+        <div class="bg-red-600 px-4 py-2 rounded-full font-black text-lg border-2 border-white shadow animate-pulse">
+            ⏱️ <span id="dongHo">20:00</span>
+        </div>
+    </header>
+
+    <div id="phan1" class="flex-1 flex flex-col md:flex-row overflow-hidden">
+        
+        <div class="md:w-1/2 p-6 overflow-y-auto bg-white border-r-4 border-blue-200">
+            <div class="bg-orange-100 p-4 rounded-lg mb-4 border-l-4 border-orange-500">
+                <h2 class="text-2xl font-bold text-orange-800 text-center mb-2">LỜI THÌ THẦM CỦA KHU VƯỜN</h2>
+                <div class="text-gray-800 text-lg leading-relaxed text-justify">
+                    <p class="mb-2">Nhà tôi có một khu vườn rất rộng, trồng nhiều hoa. Những buổi chiều, tôi hay nhắm mắt sờ những bông hoa và tập đoán. Không bao lâu, tôi đã đoán được hết vườn hoa.</p>
+                    <p class="mb-2">Từ trong nhà ra ngoài vườn, tôi có thể chạm vào bất cứ loại cây nào và nói đúng tên của nó. Bố nghĩ ra trò chơi, thay vì chạm vào hoa, tôi chỉ được ngửi rồi gọi tên nó. Bố đưa bông hoa ra trước mũi tôi rồi hỏi: “Hoa gì?”. Trò chơi cứ diễn ra liên tục cho đến hồi tôi nhận diện được tất cả các mùi hương của các loài hoa.</p>
+                    <p class="mb-2">Bạn hãy tưởng tượng, một buổi sáng mờ sương, bạn vừa nhắm mắt vừa mở cửa sổ, và bạn chợt hiểu khu vườn nói gì. Bạn hiểu bây giờ là mùa gì và bông hoa nào đang nở, tên gì.</p>
+                    <p class="mb-2">Bạn hãy thử đi rồi sẽ thấy, khu vườn sẽ lớn lên rất nhiều. Những bông hoa thơm hơn và khi nhắm mắt, bạn vẫn nhìn thấy chúng. Không chỉ vậy, bạn còn thấy nguyên cả khu vườn. Bạn có thể nhìn thấy bông hồng ngay trong đêm tối. Đêm bạn nằm, đắp chăn kín người nhưng bạn vẫn có thể đi dạo.</p>
+                    <p class="mb-2">Bạn sẽ không bao giờ lạc trong bất cứ một khu vườn nào, bởi vì, những bông hoa sẽ chỉ lối cho bạn, một lối đi an toàn và thơm ngát.</p>
+                    <p class="text-right italic font-bold">(Theo Nguyễn Ngọc Thuần)</p>
+                </div>
+            </div>
+            
+            <div class="mt-8 bg-blue-100 p-4 rounded-xl border-2 border-blue-400 text-center">
+                <p class="text-gray-600 text-sm uppercase font-bold">🎁 Hé lộ đề thi Phần 2:</p>
+                <p class="text-blue-800 font-bold text-xl mt-1">Bài đọc thành tiếng của con là:</p>
+                <h3 id="tenBaiDocRandom" class="text-red-600 text-2xl font-black uppercase my-2">...</h3>
+            </div>
+        </div>
+
+        <div class="md:w-1/2 p-6 overflow-y-auto bg-gray-50">
+            <h3 class="text-xl font-bold text-blue-700 mb-4 sticky top-0 bg-gray-50 py-2 border-b">📝 Trả lời câu hỏi</h3>
+            
+            <div class="space-y-6">
+                <div class="bg-white p-4 rounded shadow">
+                    <p class="font-bold">Câu 1: Bạn nhỏ đã khám phá khu vườn nhà mình bằng cách nào?</p>
+                    <div class="mt-2 space-y-2">
+                        <label class="block"><input type="radio" name="cau1" value="A"> A. Chăm sóc cây trong vườn.</label>
+                        <label class="block"><input type="radio" name="cau1" value="B"> B. Nhìn các loài hoa trong vườn.</label>
+                        <label class="block"><input type="radio" name="cau1" value="C"> C. Tập cảm nhận các loài hoa bằng xúc giác và khứu giác.</label>
+                        <label class="block"><input type="radio" name="cau1" value="D"> D. Vừa nhắm mắt vừa mở cửa sổ để hít thở.</label>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded shadow">
+                    <p class="font-bold">Câu 2: Người bố đã nghĩ ra trò chơi gì để tăng độ khó?</p>
+                    <div class="mt-2 space-y-2">
+                        <label class="block"><input type="radio" name="cau2" value="A"> A. Vẽ lại hình dáng các bông hoa.</label>
+                        <label class="block"><input type="radio" name="cau2" value="B"> B. Thay vì chạm vào hoa, chỉ được ngửi rồi gọi tên nó.</label>
+                        <label class="block"><input type="radio" name="cau2" value="C"> C. Trồng thêm nhiều loài hoa lạ.</label>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded shadow">
+                    <p class="font-bold">Câu 3: Theo tác giả, khi nhắm mắt và cảm nhận, điều kì diệu nào xảy ra?</p>
+                    <div class="mt-2 space-y-2">
+                        <label class="block"><input type="radio" name="cau3" value="A"> A. Những bông hoa sẽ nhanh tàn hơn.</label>
+                        <label class="block"><input type="radio" name="cau3" value="B"> B. Bạn sẽ không còn nhìn thấy gì nữa.</label>
+                        <label class="block"><input type="radio" name="cau3" value="C"> C. Khu vườn sẽ lớn lên rất nhiều và những bông hoa thơm hơn.</label>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded shadow">
+                    <p class="font-bold">Câu 4: Tìm động từ trong câu: “Đêm bạn nằm, đắp chăn kín người nhưng bạn vẫn có thể đi dạo”:</p>
+                    <input type="text" id="cau4_tuluan" class="w-full border p-2 mt-2 rounded" placeholder="Nhập câu trả lời...">
+                </div>
+
+                <div class="bg-white p-4 rounded shadow">
+                    <p class="font-bold">Câu 5: Tại sao tác giả khẳng định: “Bạn sẽ không bao giờ lạc trong bất cứ một khu vườn nào”?</p>
+                    <div class="mt-2 space-y-2">
+                        <label class="block"><input type="radio" name="cau5" value="A"> A. Vì các khu vườn đều có thiết kế giống nhau.</label>
+                        <label class="block"><input type="radio" name="cau5" value="B"> B. Vì những bông hoa sẽ chỉ cho bạn một lối đi an toàn.</label>
+                        <label class="block"><input type="radio" name="cau5" value="C"> C. Vì những khu vườn rất nhỏ.</label>
+                    </div>
+                </div>
+
+                 <div class="bg-white p-4 rounded shadow">
+                    <p class="font-bold">Câu 6: Thông điệp chính mà bài văn muốn gửi gắm là gì?</p>
+                    <div class="mt-2 space-y-2">
+                        <label class="block"><input type="radio" name="cau6" value="A"> A. Hãy trồng thật nhiều hoa.</label>
+                        <label class="block"><input type="radio" name="cau6" value="B"> B. Hãy yêu mến thiên nhiên và cảm nhận thế giới bằng cả tâm hồn.</label>
+                        <label class="block"><input type="radio" name="cau6" value="C"> C. Cần học thuộc tên các loài cây.</label>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded shadow">
+                    <p class="font-bold">Câu 7: Hãy viết 5 danh từ chỉ đồ dùng học tập của em:</p>
+                    <input type="text" id="cau7_tuluan" class="w-full border p-2 mt-2 rounded" placeholder="Ví dụ: bút, thước...">
+                </div>
+
+                <div class="bg-white p-4 rounded shadow">
+                    <p class="font-bold">Câu 8: Phương án nào sau đây KHÔNG phải công dụng của dấu gạch ngang?</p>
+                    <div class="mt-2 space-y-2">
+                        <label class="block"><input type="radio" name="cau8" value="A"> A. Nối các thành phần trong một liên danh.</label>
+                        <label class="block"><input type="radio" name="cau8" value="B"> B. Đánh dấu tên một tác phẩm.</label>
+                        <label class="block"><input type="radio" name="cau8" value="C"> C. Đánh dấu lời nói trực tiếp của nhân vật.</label>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded shadow">
+                    <p class="font-bold">Câu 9: Sử dụng biện pháp so sánh để đặt câu nói về vẻ đẹp của một bông hoa:</p>
+                    <input type="text" id="cau9_tuluan" class="w-full border p-2 mt-2 rounded" placeholder="Nhập câu trả lời...">
+                </div>
+
+            </div>
+
+            <button onclick="nopPhan1()" class="w-full bg-blue-600 text-white font-bold py-4 mt-6 rounded-xl text-xl shadow-lg hover:bg-blue-700 transition">
+                NỘP PHẦN 1 ➜ SANG PHẦN 2
+            </button>
+        </div>
+    </div>
+
+
+    <div id="phan2" class="hidden-section flex-1 flex flex-col items-center justify-center p-8 bg-indigo-50 text-center h-full">
+        <div class="bg-white max-w-3xl w-full p-8 rounded-2xl shadow-2xl border-t-8 border-indigo-600">
+            <h2 class="text-3xl font-bold text-indigo-800 mb-4">🎤 PHẦN 2: ĐỌC THÀNH TIẾNG</h2>
+            
+            <div class="bg-indigo-100 p-6 rounded-xl mb-6">
+                <p class="text-gray-700 text-lg mb-2">Con hãy mở Sách Giáo Khoa Tiếng Việt 4 và đọc to bài:</p>
+                <h3 id="hienThiBaiDoc" class="text-4xl font-extrabold text-red-600 uppercase mb-4">...</h3>
+                <p class="text-indigo-600 font-bold bg-white inline-block px-4 py-2 rounded-full shadow">
+                    📱 Nhờ bố mẹ quay video và gửi Zalo cho Thầy nhé!
+                </p>
+            </div>
+            <button onclick="nopPhan2()" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full text-xl shadow-lg transition animate-bounce">
+                ✅ Con đã gửi Video qua Zalo
+            </button>
+        </div>
+    </div>
+
+
+    <div id="phan3" class="hidden-section flex-1 p-4 md:p-8 overflow-y-auto">
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-yellow-100 border-l-8 border-yellow-500 p-6 rounded-r-lg mb-6 shadow">
+                <h2 class="text-2xl font-bold text-yellow-800 mb-2">✍️ PHẦN 3: TẬP LÀM VĂN</h2>
+                <p class="text-xl font-bold text-gray-800">Đề bài: <span class="text-red-600">Miêu tả một con vật mà em đã chăm sóc và gắn bó.</span></p>
+            </div>
+
+            <div class="bg-white border-2 border-green-200 rounded-xl p-6 shadow-lg mb-6">
+                <h3 class="text-lg font-bold text-green-700 mb-3">💡 GỢI Ý LÀM BÀI:</h3>
+                <div class="space-y-2 text-gray-700">
+                    <p><span class="font-bold bg-green-100 px-2 rounded">1. Mở bài:</span> Giới thiệu con vật (Đó là con gì? Tên là gì? Em nuôi từ bao giờ?).</p>
+                    <p><span class="font-bold bg-green-100 px-2 rounded">2. Thân bài:</span></p>
+                    <ul class="list-disc ml-8 text-sm">
+                        <li><b>Tả hình dáng:</b> Bộ lông màu gì? Đôi mắt, cái tai, cái đuôi... có gì đặc biệt?</li>
+                        <li><b>Tả hoạt động:</b> Khi ăn, khi ngủ, khi chơi đùa với em...</li>
+                        <li><b>Kỷ niệm:</b> Một kỉ niệm đáng nhớ giữa em và con vật đó.</li>
+                    </ul>
+                    <p><span class="font-bold bg-green-100 px-2 rounded">3. Kết bài:</span> Tình cảm của em (Em yêu quý và chăm sóc nó như thế nào?).</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-8 p-6 bg-gray-100 rounded-xl">
+                <p class="text-gray-700 font-bold mb-4 text-lg">Con hãy viết bài ra giấy thi, chụp ảnh và gửi Zalo cho Thầy.</p>
+                <button onclick="nopPhan3()" class="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-12 rounded-full text-2xl shadow-xl transition transform hover:scale-105">
+                    🚀 NỘP BÀI VĂN (HOÀN THÀNH)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, updateDoc, doc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // CẤU HÌNH FIREBASE (Dùng SenderID chuẩn 9538...)
+        const firebaseConfig = {
+            apiKey: "AIzaSyA77lLi_JCLIdR535KEfg3S0_Ge2EorPMo", 
+            authDomain: "baikiemtracuoiki.firebaseapp.com",
+            projectId: "baikiemtracuoiki",
+            storageBucket: "baikiemtracuoiki.appspot.com",
+            messagingSenderId: "953819948776",
+            appId: "1:953819948776:web:15848507d350f37c35e5d3"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // --- CẤU HÌNH ĐỀ THI ---
+        const LIST_BAI_DOC = ["Dế Mèn bênh vực kẻ yếu", "Truyện cổ nước mình", "Tre Việt Nam", "Người ăn xin", "Về thăm bà"];
+        let TIME_P1 = 20; 
+        let TIME_P2 = 10;
+        let TIME_P3 = 35;
+        
+        // Biến toàn cục
+        let baiDocDuocChon = "";
+        let docId = null;
+        let timerInterval;
+
+        window.onload = function() {
+            // Random bài đọc
+            baiDocDuocChon = LIST_BAI_DOC[Math.floor(Math.random() * LIST_BAI_DOC.length)];
+            document.getElementById('tenBaiDocRandom').innerText = baiDocDuocChon;
+            document.getElementById('hienThiBaiDoc').innerText = baiDocDuocChon;
+
+            // Bắt đầu đếm ngược Phần 1
+            startTimer(TIME_P1, function() {
+                alert("⏰ Hết giờ Phần 1! Hệ thống tự chuyển sang Phần 2.");
+                nopPhan1();
+            });
+        };
+
+        function startTimer(minutes, callback) {
+            clearInterval(timerInterval);
+            let time = minutes * 60;
+            const display = document.getElementById('dongHo');
+            
+            timerInterval = setInterval(() => {
+                let m = Math.floor(time / 60);
+                let s = time % 60;
+                display.innerText = `${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s}`;
+                time--;
+                if (time < 0) {
+                    clearInterval(timerInterval);
+                    callback();
+                }
+            }, 1000);
+        }
+
+        // HÀM CHẤM ĐIỂM TRẮC NGHIỆM
+        function check(cau, dapAnDung, diem) {
+            const luaChon = document.querySelector(`input[name="${cau}"]:checked`);
+            if (luaChon && luaChon.value === dapAnDung) return diem;
+            return 0;
+        }
+
+        window.nopPhan1 = async function() {
+            const hoTen = document.getElementById('hoTen').value.trim() || "Quên tên";
+            const lop = document.getElementById('lop').value.trim() || "KĐ";
+
+            // CHẤM ĐIỂM TỰ ĐỘNG (Dựa trên đáp án đã chốt)
+            let diem = 0;
+            diem += check("cau1", "C", 0.5); // C. Xúc giác, khứu giác
+            diem += check("cau2", "B", 0.5); // B. Ngửi gọi tên
+            diem += check("cau3", "C", 0.5); // C. Vườn lớn lên
+            diem += check("cau5", "B", 0.5); // B. Hoa chỉ lối
+            diem += check("cau6", "B", 0.5); // B. Yêu thiên nhiên
+            diem += check("cau8", "B", 1.0); // B. Tên tác phẩm (Sai công dụng gạch ngang)
+
+            // Lấy nội dung Tự luận để Thầy chấm sau
+            const tuLuan = `
+                Câu 4: ${document.getElementById('cau4_tuluan').value}
+                Câu 7: ${document.getElementById('cau7_tuluan').value}
+                Câu 9: ${document.getElementById('cau9_tuluan').value}
+            `;
+
+            // Chuyển giao diện
+            document.getElementById('phan1').classList.add('hidden-section');
+            document.getElementById('phan2').classList.remove('hidden-section');
+            
+            try {
+                const docRef = await addDoc(collection(db, "Baikiemtracuoiki"), {
+                    ho_ten: hoTen, lop: lop, mon_hoc: "Tiếng Việt",
+                    diem_trac_nghiem: diem, // Máy chấm sơ bộ
+                    diem_tu_luan: 0, // Thầy chấm sau
+                    bai_tu_luan: tuLuan,
+                    bai_doc_thanh_tieng: baiDocDuocChon,
+                    trang_thai_doc: "Đang chờ nộp Zalo",
+                    trang_thai_viet: "Chưa làm",
+                    thoi_gian_nop_p1: new Date().toISOString()
+                });
+                docId = docRef.id;
+            } catch (e) { console.error(e); }
+
+            startTimer(TIME_P2, function() {
+                alert("⏰ Hết giờ nộp Video! Chuyển sang phần Tập làm văn.");
+                nopPhan2(true);
+            });
+        }
+
+        window.nopPhan2 = async function(auto = false) {
+            document.getElementById('phan2').classList.add('hidden-section');
+            document.getElementById('phan3').classList.remove('hidden-section');
+
+            if (docId) {
+                await updateDoc(doc(db, "Baikiemtracuoiki", docId), {
+                    trang_thai_doc: auto ? "Hết giờ (Chưa bấm nộp)" : "Đã nộp Zalo"
+                });
+            }
+            startTimer(TIME_P3, function() {
+                alert("⏰ Hết giờ làm bài! Hệ thống tự động thu bài.");
+                nopPhan3(true);
+            });
+        }
+
+        window.nopPhan3 = async function(auto = false) {
+            const btn = document.querySelector('#phan3 button');
+            btn.disabled = true;
+            btn.innerText = "Đang hoàn tất...";
+
+            if (docId) {
+                await updateDoc(doc(db, "Baikiemtracuoiki", docId), {
+                    trang_thai_viet: auto ? "Hết giờ (Chưa bấm nộp)" : "Đã nộp Zalo",
+                    thoi_gian_nop_cuoi: new Date().toISOString()
+                });
+            }
+            
+            alert("🎉 CHÚC MỪNG CON ĐÃ HOÀN THÀNH BÀI THI TIẾNG VIỆT!\nThầy sẽ chấm điểm Tập làm văn và Đọc thành tiếng trên Zalo nhé.");
+            location.href = "../index.html";
+        }
+    </script>
+</body>
+</html>

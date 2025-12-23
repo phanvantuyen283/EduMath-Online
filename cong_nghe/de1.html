@@ -122,20 +122,18 @@
         </div>
     </div>
 
-    <script type="module">
+        <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-        // --- CẤU HÌNH FIREBASE ---
-        // Bạn hãy dán API Key của bạn vào đây (giống như bên môn Toán)
+        // --- CẤU HÌNH FIREBASE CHUẨN ---
         const firebaseConfig = {
-           apiKey: "AIzaSyA77lLi_JCLIdR535KEfg3S0_Ge2EorPMo",
-           authDomain: "baikiemtracuoiki.firebaseapp.com",
-           projectId: "baikiemtracuoiki",
-           storageBucket: "baikiemtracuoiki.firebasestorage.app",
-           messagingSenderId: "953819948776",
-           appId: "1:953819948776:web:22b2fada72ab36e0d28b5d",
-           measurementId: "G-6S1RGY8XZ0" 
+            apiKey: "AIzaSyA77lLi_JCLIdR535KEfg3S0_Ge2EorPMo", 
+            authDomain: "baikiemtracuoiki.firebaseapp.com",
+            projectId: "baikiemtracuoiki",
+            storageBucket: "baikiemtracuoiki.appspot.com",
+            messagingSenderId: "389270373406", 
+            appId: "1:389270373406:web:15848507d350f37c35e5d3"
         };
 
         const app = initializeApp(firebaseConfig);
@@ -143,57 +141,54 @@
 
         // --- THÔNG TIN ĐỀ THI ---
         const MON_HOC = "Công Nghệ";
-        const MA_DE = "Đề 01"; // Giữ là Đề 1 vì đây là file đầu tiên của môn này
+        const MA_DE = "Đề 01";
 
         window.nopBai = async function() {
             const btn = document.querySelector('button');
-            btn.disabled = true;
-            btn.innerText = "Đang nộp...";
-
+            
+            // 1. Kiểm tra nhập liệu
             const hoTen = document.getElementById('hoTen').value.trim();
             const lop = document.getElementById('lop').value.trim();
 
             if (!hoTen || !lop) {
                 alert("Con chưa điền Tên hoặc Lớp!");
-                btn.disabled = false;
-                btn.innerText = "NỘP BÀI THI";
                 return;
             }
 
-            // --- CHẤM ĐIỂM TRẮC NGHIỆM TỰ ĐỘNG ---
+            // 2. Đổi trạng thái nút bấm (Để biết code đang chạy)
+            btn.disabled = true;
+            btn.innerText = "Đang nộp bài...";
+            btn.classList.remove("bg-purple-600");
+            btn.classList.add("bg-gray-500");
+
+            // --- CHẤM ĐIỂM TRẮC NGHIỆM ---
             let diemTN = 0;
-
-            // Câu 1: C. Hoa đào (1đ)
-            if(document.querySelector('input[name="cau1"]:checked')?.value === "C") diemTN += 1;
             
-            // Câu 2: B. Nhẹ, mềm... (1đ)
-            if(document.querySelector('input[name="cau2"]:checked')?.value === "B") diemTN += 1;
+            // Hàm kiểm tra đáp án cho gọn
+            function check(cau, dapAnDung, diem) {
+                const luaChon = document.querySelector(`input[name="${cau}"]:checked`);
+                if (luaChon && luaChon.value === dapAnDung) {
+                    return diem;
+                }
+                return 0;
+            }
 
-            // Câu 3: D. Bình tưới vòi sen (1đ)
-            if(document.querySelector('input[name="cau3"]:checked')?.value === "D") diemTN += 1;
+            diemTN += check("cau1", "C", 1);   // Hoa đào
+            diemTN += check("cau2", "B", 1);   // Chậu nhựa nhẹ
+            diemTN += check("cau3", "D", 1);   // Bình tưới
+            diemTN += check("cau4", "B", 1);   // Thoát nước
+            diemTN += check("cau5", "B", 1);   // Đất, xơ dừa
+            diemTN += check("cau6", "B", 1);   // Không ánh sáng (Sai)
+            diemTN += check("cau7", "C", 0.5); // Cây cảnh
+            diemTN += check("cau8", "C", 0.5); // Mang ra sáng
 
-            // Câu 4: B. Giúp thoát nước (1đ)
-            if(document.querySelector('input[name="cau4"]:checked')?.value === "B") diemTN += 1;
-
-            // Câu 5: B. Đất, xơ dừa... (1đ)
-            if(document.querySelector('input[name="cau5"]:checked')?.value === "B") diemTN += 1;
-
-            // Câu 6: B. Đặt nơi không có ánh sáng (1đ)
-            if(document.querySelector('input[name="cau6"]:checked')?.value === "B") diemTN += 1;
-
-            // Câu 7: C. Nhóm cây cảnh (0.5đ)
-            if(document.querySelector('input[name="cau7"]:checked')?.value === "C") diemTN += 0.5;
-
-            // Câu 8: C. Mang cây ra sáng (0.5đ - Giả định điểm vì đề không ghi)
-            if(document.querySelector('input[name="cau8"]:checked')?.value === "C") diemTN += 0.5;
-
-            // --- LẤY NỘI DUNG TỰ LUẬN ---
+            // --- LẤY TỰ LUẬN ---
             const baiTuLuan = `
                 Câu 9: ${document.getElementById('cau9_tuluan').value}
                 Câu 10: ${document.getElementById('cau10_tuluan').value}
             `;
 
-            // --- GỬI LÊN FIREBASE ---
+            // --- GỬI FIREBASE ---
             try {
                 await addDoc(collection(db, "Baikiemtracuoiki"), {
                     ho_ten: hoTen,
@@ -201,20 +196,22 @@
                     mon_hoc: MON_HOC,
                     ma_de: MA_DE,
                     diem_trac_nghiem: diemTN,
-                    diem_tu_luan: 0, // Giáo viên chấm sau
+                    diem_tu_luan: 0,
                     bai_tu_luan: baiTuLuan,
                     thoi_gian_nop: new Date().toISOString()
                 });
 
-                alert(`Nộp bài thành công!\nĐiểm trắc nghiệm tạm tính: ${diemTN} điểm.`);
-                btn.style.display = 'none'; // Ẩn nút nộp
+                alert(`Nộp bài thành công!\nĐiểm trắc nghiệm: ${diemTN} điểm.`);
+                btn.style.display = 'none'; // Ẩn nút sau khi nộp xong
             } catch (e) {
                 console.error(e);
-                alert("Lỗi đường truyền! Con hãy báo ngay cho cô giáo.");
+                alert("Lỗi: " + e.message); // Hiện lỗi cụ thể nếu có
                 btn.disabled = false;
-                btn.innerText = "NỘP BÀI THI";
+                btn.innerText = "NỘP BÀI THI (Làm lại)";
+                btn.classList.add("bg-purple-600");
             }
         }
     </script>
+
 </body>
 </html>

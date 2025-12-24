@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thi Tiếng Việt - Thông Tin Cố Định</title>
+    <title>Thi Tiếng Việt - Đề 1 (Mobile Split)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Nunito', sans-serif; }
+        /* Tăng kích thước nút radio */
         input[type="radio"] { width: 1.2rem; height: 1.2rem; margin-top: 0.15rem; flex-shrink: 0; }
+        /* Thanh cuộn gọn đẹp */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
@@ -38,9 +40,10 @@
 
     <div class="flex-1 flex flex-col min-h-0 relative">
 
-        <div class="h-[55%] bg-white border-b-4 border-blue-300 overflow-y-auto p-4 shadow-sm relative">
+        <div class="h-[55%] bg-white border-b-4 border-blue-300 overflow-y-auto p-4 shadow-sm relative scroll-smooth">
             <div class="sticky top-0 bg-white/95 backdrop-blur py-1 border-b mb-2 z-10 flex justify-between items-center">
                 <span class="text-[10px] font-bold bg-blue-100 text-blue-800 px-2 py-0.5 rounded">📖 VĂN BẢN ĐỌC</span>
+                <span class="text-[10px] text-gray-400 italic">Vuốt để đọc ⬇️</span>
             </div>
             
             <h2 class="text-xl font-black text-blue-800 text-center mb-3 uppercase">LỜI THÌ THẦM CỦA KHU VƯỜN</h2>
@@ -54,7 +57,7 @@
             </div>
         </div>
 
-        <div class="flex-1 bg-gray-50 overflow-y-auto p-4" id="bottom-pane">
+        <div class="flex-1 bg-gray-50 overflow-y-auto p-4 scroll-smooth" id="bottom-pane">
             
             <div id="quiz-part" class="space-y-4 pb-8">
                 <h3 class="font-black text-sm text-red-600 bg-red-100 px-3 py-2 rounded flex justify-between items-center sticky top-0 z-20 shadow-sm border border-red-200">
@@ -116,4 +119,171 @@
                 </div>
 
                 <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
-                    <p class="font-bold text-gray-800 text-sm mb-2">Câu 8: Đâu KHÔNG phải công dụng dấu g
+                    <p class="font-bold text-gray-800 text-sm mb-2">Câu 8: Đâu KHÔNG phải công dụng dấu gạch ngang?</p>
+                    <div class="space-y-2 text-sm">
+                        <label class="flex items-start gap-2"><input type="radio" name="cau8" value="A"> <span>A. Nối thành phần liên danh.</span></label>
+                        <label class="flex items-start gap-2"><input type="radio" name="cau8" value="B"> <span>B. Đánh dấu tên tác phẩm.</span></label>
+                        <label class="flex items-start gap-2"><input type="radio" name="cau8" value="C"> <span>C. Đánh dấu lời nhân vật.</span></label>
+                    </div>
+                </div>
+
+                <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+                    <p class="font-bold text-gray-800 text-sm mb-2">Câu 9: Đặt câu so sánh về vẻ đẹp của một bông hoa:</p>
+                    <input type="text" id="cau9_tuluan" class="w-full border-2 border-blue-50 p-2 rounded text-sm" placeholder="...">
+                </div>
+
+                <div class="mt-4">
+                    <button onclick="nopPhan1()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-4 rounded-xl text-lg shadow-xl transition transform active:scale-95 border-b-4 border-blue-800">
+                        NỘP BÀI PHẦN 1
+                    </button>
+                    <p class="text-center text-gray-500 text-xs mt-2 italic pb-4">Nộp xong sẽ hiện đề Phần 2 & 3</p>
+                </div>
+            </div>
+
+            <div id="result-screen" class="hidden pb-10">
+                <div class="bg-green-100 border-l-4 border-green-500 p-3 mb-6 rounded shadow">
+                    <h2 class="font-bold text-green-800">🎉 ĐÃ NỘP PHẦN 1 THÀNH CÔNG!</h2>
+                    <p class="text-green-700 text-sm">Điểm trắc nghiệm đã được lưu.</p>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl shadow-xl border-t-8 border-indigo-600">
+                    <h3 class="font-black text-indigo-800 mb-4 uppercase border-b pb-2 text-center">👇 NHIỆM VỤ TIẾP THEO (GỬI ZALO) 👇</h3>
+                    
+                    <div class="mb-4 bg-indigo-50 p-3 rounded-lg">
+                        <p class="font-bold text-gray-700">🎤 PHẦN 2: ĐỌC THÀNH TIẾNG (3đ)</p>
+                        <p class="text-sm text-gray-600 mb-1">Quay video đọc bài:</p>
+                        <p id="baiDocRandom" class="text-xl font-black text-red-600 uppercase my-2">...</p>
+                    </div>
+
+                    <div class="mb-4 bg-yellow-50 p-3 rounded-lg border border-yellow-200">
+                        <p class="font-bold text-gray-700">✍️ PHẦN 3: TẬP LÀM VĂN (10đ)</p>
+                        <p class="text-red-700 font-bold text-sm mt-1">Đề bài: Miêu tả một con vật mà em đã chăm sóc và gắn bó.</p>
+                        
+                        <div class="mt-2 text-sm text-gray-700 bg-white p-2 rounded">
+                            <p class="font-bold text-green-700 text-xs mb-1">💡 Gợi ý dàn bài:</p>
+                            <ul class="list-disc ml-4 space-y-1 text-xs">
+                                <li><strong>Mở bài:</strong> Giới thiệu con vật.</li>
+                                <li><strong>Thân bài:</strong> Hình dáng, hoạt động, kỷ niệm.</li>
+                                <li><strong>Kết bài:</strong> Tình cảm của em.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <a href="https://zalo.me" target="_blank" class="block w-full bg-blue-600 text-white font-bold py-3 rounded-full shadow-lg transform active:scale-95">
+                            Mở Zalo nộp bài ngay ➜
+                        </a>
+                        <p class="text-xs text-gray-400 mt-2">(Con có thể thoát trang này)</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA77lLi_JCLIdR535KEfg3S0_Ge2EorPMo", 
+            authDomain: "baikiemtracuoiki.firebaseapp.com",
+            projectId: "baikiemtracuoiki",
+            storageBucket: "baikiemtracuoiki.appspot.com",
+            messagingSenderId: "953819948776",
+            appId: "1:953819948776:web:15848507d350f37c35e5d3"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // --- 👇 DANH SÁCH BÀI ĐỌC NẰM Ở ĐÂY (THẦY SỬA Ở ĐÂY) 👇 ---
+        const LIST_BAI_DOC = [
+            "Dế Mèn bênh vực kẻ yếu",
+            "Truyện cổ nước mình",
+            "Tre Việt Nam",
+            "Người ăn xin",
+            "Về thăm bà"
+        ];
+        // -------------------------------------------------------------
+
+        let baiDocDuocChon = "";
+
+        window.onload = function() {
+            // Random bài đọc
+            baiDocDuocChon = LIST_BAI_DOC[Math.floor(Math.random() * LIST_BAI_DOC.length)];
+            document.getElementById('baiDocRandom').innerText = baiDocDuocChon;
+
+            // Đếm ngược
+            let time = 20 * 60;
+            const display = document.getElementById('dongHo');
+            const timer = setInterval(() => {
+                let m = Math.floor(time / 60); let s = time % 60;
+                display.innerText = `${m<10?'0'+m:m}:${s<10?'0'+s:s}`;
+                time--;
+                if (time < 0) {
+                    clearInterval(timer);
+                    alert("⏰ Đã hết giờ làm Phần 1!");
+                    nopPhan1();
+                }
+            }, 1000);
+        };
+
+        function check(cau, dapAnDung, diem) {
+            const luaChon = document.querySelector(`input[name="${cau}"]:checked`);
+            return (luaChon && luaChon.value === dapAnDung) ? diem : 0;
+        }
+
+        window.nopPhan1 = async function() {
+            const hoTen = document.getElementById('hoTen').value.trim();
+            const lop = document.getElementById('lop').value.trim();
+
+            if (!hoTen || !lop) { alert("Con chưa điền Tên hoặc Lớp!"); return; }
+
+            const btn = document.querySelector('button');
+            btn.innerText = "Đang nộp..."; btn.disabled = true;
+
+            let diem = 0;
+            diem += check("cau1", "C", 0.5); 
+            diem += check("cau2", "B", 0.5); 
+            diem += check("cau3", "C", 0.5);
+            diem += check("cau5", "B", 0.5);
+            diem += check("cau6", "B", 0.5);
+            diem += check("cau8", "B", 1.0);
+
+            const tuLuan = `
+                Câu 4: ${document.getElementById('cau4_tuluan').value}
+                Câu 7: ${document.getElementById('cau7_tuluan').value}
+                Câu 9: ${document.getElementById('cau9_tuluan').value}
+            `;
+
+            try {
+                await addDoc(collection(db, "Baikiemtracuoiki"), {
+                    ho_ten: hoTen, lop: lop, mon_hoc: "Tiếng Việt",
+                    diem_trac_nghiem: diem,
+                    diem_doc_thanh_tieng: 0, 
+                    diem_viet: 0, 
+                    diem_tu_luan: 0, 
+                    bai_tu_luan: tuLuan,
+                    bai_doc_random: baiDocDuocChon,
+                    thoi_gian_nop: new Date().toISOString()
+                });
+
+                // Ẩn thanh nhập tên cố định
+                document.querySelector('.bg-yellow-100').style.display = 'none';
+                
+                // Ẩn khung câu hỏi, hiện kết quả
+                document.getElementById('quiz-part').style.display = 'none';
+                document.getElementById('result-screen').classList.remove('hidden');
+                
+                // Cuộn xuống
+                document.getElementById('bottom-pane').scrollTop = 0;
+
+            } catch (e) {
+                alert("Lỗi nộp bài: " + e.message);
+                btn.disabled = false; btn.innerText = "NỘP BÀI PHẦN 1";
+            }
+        }
+    </script>
+</body>
+</html>

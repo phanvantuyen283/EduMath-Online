@@ -3,283 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thi Tiếng Việt - Lớp 4 (Mobile)</title>
+    <title>Thi Tiếng Việt - Chia Đôi Màn Hình</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Nunito', sans-serif; }
-        /* Tăng kích thước nút chọn để dễ bấm trên điện thoại */
-        input[type="radio"] { width: 1.2rem; height: 1.2rem; margin-top: 0.2rem; flex-shrink: 0; }
-        /* Thanh cuộn mềm mại */
-        .scroll-smooth::-webkit-scrollbar { width: 6px; }
-        .scroll-smooth::-webkit-scrollbar-track { background: #f1f1f1; }
-        .scroll-smooth::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        input[type="radio"] { width: 1.2rem; height: 1.2rem; margin-top: 0.15rem; flex-shrink: 0; }
+        /* Tùy chỉnh thanh cuộn cho gọn */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
     </style>
 </head>
-<body class="bg-blue-50 min-h-screen pb-10">
+<body class="bg-gray-100 h-screen flex flex-col overflow-hidden">
 
-    <header class="fixed top-0 left-0 right-0 bg-blue-600 text-white p-3 z-50 shadow-md">
-        <div class="flex justify-between items-center max-w-3xl mx-auto">
-            <h1 class="font-bold text-lg uppercase truncate">Tiếng Việt 4 - Đề 1</h1>
-            <div class="bg-white text-red-600 px-3 py-1 rounded-full font-black text-lg border-2 border-yellow-400 shadow">
-                ⏱️ <span id="dongHo">20:00</span>
-            </div>
+    <header class="flex-none bg-blue-600 text-white p-2 px-4 shadow-md z-50 flex justify-between items-center">
+        <h1 class="font-bold text-lg uppercase truncate">Tiếng Việt 4 - Đề 1</h1>
+        <div class="bg-white text-red-600 px-3 py-1 rounded-full font-black text-lg border-2 border-yellow-400 shadow">
+            ⏱️ <span id="dongHo">20:00</span>
         </div>
     </header>
 
-    <div class="h-20"></div> <div class="max-w-3xl mx-auto p-4 space-y-5">
+    <div class="flex-1 flex flex-col min-h-0">
 
-        <div id="info-box" class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-yellow-400">
-            <div class="grid grid-cols-3 gap-3">
-                <div class="col-span-2">
-                    <label class="block text-gray-700 font-bold text-sm mb-1">Họ tên con:</label>
-                    <input type="text" id="hoTen" class="w-full border-2 border-gray-300 p-2 rounded focus:border-blue-500 font-bold" placeholder="Nhập tên...">
-                </div>
-                <div>
-                    <label class="block text-gray-700 font-bold text-sm mb-1">Lớp:</label>
-                    <input type="text" id="lop" class="w-full border-2 border-gray-300 p-2 rounded focus:border-blue-500 font-bold text-center" placeholder="4A">
-                </div>
+        <div class="h-[55%] bg-white border-b-4 border-blue-300 overflow-y-auto p-4 shadow-sm relative">
+            <div class="sticky top-0 bg-white/95 backdrop-blur py-2 border-b mb-2 z-10 flex justify-between items-center">
+                <span class="text-xs font-bold bg-blue-100 text-blue-800 px-2 py-1 rounded">📖 VĂN BẢN ĐỌC</span>
+                <span class="text-[10px] text-gray-400 italic">Vuốt để đọc tiếp ⬇️</span>
             </div>
-        </div>
-
-        <div id="quiz-part">
             
-            <div class="bg-white p-4 rounded-xl shadow-lg border-t-4 border-blue-500 relative">
-                <h2 class="text-xl font-black text-blue-800 text-center mb-3 uppercase">LỜI THÌ THẦM CỦA KHU VƯỜN</h2>
-                
-                <div class="max-h-80 overflow-y-auto pr-2 text-gray-800 text-base leading-relaxed text-justify space-y-3 scroll-smooth border-b pb-4">
-                    <p>Nhà tôi có một khu vườn rất rộng, trồng nhiều hoa. Những buổi chiều, tôi hay nhắm mắt sờ những bông hoa và tập đoán. Không bao lâu, tôi đã đoán được hết vườn hoa.</p>
-                    <p>Từ trong nhà ra ngoài vườn, tôi có thể chạm vào bất cứ loại cây nào và nói đúng tên của nó. Bố nghĩ ra trò chơi, thay vì chạm vào hoa, tôi chỉ được ngửi rồi gọi tên nó. Bố đưa bông hoa ra trước mũi tôi rồi hỏi: “Hoa gì?”. Trò chơi cứ diễn ra liên tục cho đến hồi tôi nhận diện được tất cả các mùi hương của các loài hoa.</p>
-                    <p>Bạn hãy tưởng tượng, một buổi sáng mờ sương, bạn vừa nhắm mắt vừa mở cửa sổ, và bạn chợt hiểu khu vườn nói gì. Bạn hiểu bây giờ là mùa gì và bông hoa nào đang nở, tên gì.</p>
-                    <p>Bạn hãy thử đi rồi sẽ thấy, khu vườn sẽ lớn lên rất nhiều. Những bông hoa thơm hơn và khi nhắm mắt, bạn vẫn nhìn thấy chúng. Không chỉ vậy, bạn còn thấy nguyên cả khu vườn. Bạn có thể nhìn thấy bông hồng ngay trong đêm tối. Đêm bạn nằm, đắp chăn kín người nhưng bạn vẫn có thể đi dạo.</p>
-                    <p>Bạn sẽ không bao giờ lạc trong bất cứ một khu vườn nào, bởi vì, những bông hoa sẽ chỉ lối cho bạn, một lối đi an toàn và thơm ngát.</p>
-                    <p class="text-right italic font-bold text-sm">(Theo Nguyễn Ngọc Thuần)</p>
-                </div>
-                <p class="text-center text-xs text-blue-400 mt-2 italic animate-bounce">⬇️ Vuốt trong khung để đọc tiếp ⬇️</p>
-            </div>
-
-            <div class="space-y-4 mt-6">
-                <h3 class="font-black text-lg text-red-600 bg-red-100 p-2 rounded border border-red-200">I. TRẢ LỜI CÂU HỎI</h3>
-
-                <div class="bg-white p-4 rounded-lg shadow">
-                    <p class="font-bold text-gray-800 mb-2">Câu 1: Bạn nhỏ khám phá khu vườn bằng cách nào?</p>
-                    <div class="space-y-3">
-                        <label class="flex items-start gap-3"><input type="radio" name="cau1" value="A"> <span>A. Chăm sóc cây trong vườn.</span></label>
-                        <label class="flex items-start gap-3"><input type="radio" name="cau1" value="B"> <span>B. Nhìn các loài hoa.</span></label>
-                        <label class="flex items-start gap-3"><input type="radio" name="cau1" value="C"> <span>C. Cảm nhận bằng xúc giác và khứu giác.</span></label>
-                        <label class="flex items-start gap-3"><input type="radio" name="cau1" value="D"> <span>D. Vừa nhắm mắt vừa mở cửa sổ.</span></label>
-                    </div>
-                </div>
-
-                <div class="bg-white p-4 rounded-lg shadow">
-                    <p class="font-bold text-gray-800 mb-2">Câu 2: Trò chơi bố nghĩ ra là gì?</p>
-                    <div class="space-y-3">
-                        <label class="flex items-start gap-3"><input type="radio" name="cau2" value="A"> <span>A. Vẽ lại hình dáng hoa.</span></label>
-                        <label class="flex items-start gap-3"><input type="radio" name="cau2" value="B"> <span>B. Chỉ được ngửi rồi gọi tên hoa.</span></label>
-                        <label class="flex items-start gap-3"><input type="radio" name="cau2" value="C"> <span>C. Trồng thêm hoa lạ.</span></label>
-                    </div>
-                </div>
-
-                <div class="bg-white p-4 rounded-lg shadow">
-                    <p class="font-bold text-gray-800 mb-2">Câu 3: Theo tác giả, điều kì diệu khi nhắm mắt là gì?</p>
-                    <div class="space-y-3">
-                        <label class="flex items-start gap-3"><input type="radio" name="cau3" value="A"> <span>A. Hoa nhanh tàn hơn.</span></label>
-                        <label class="flex items-start gap-3"><input type="radio" name="cau3" value="B"> <span>B. Không còn nhìn thấy gì.</span></label>
-                        <label class="flex items-start gap-3"><input type="radio" name="cau3" value="C"> <span>C. Khu vườn lớn lên và hoa thơm hơn.</span></label>
-                    </div>
-                </div>
-
-                <div class="bg-white p-4 rounded-lg shadow">
-                    <p class="font-bold text-gray-800 mb-2">Câu 4: Tìm động từ trong câu: “Đêm bạn nằm, đắp chăn kín người nhưng bạn vẫn có thể đi dạo”:</p>
-                    <input type="text" id="cau4_tuluan" class="w-full border-2 border-blue-100 p-2 rounded" placeholder="Nhập câu trả lời...">
-                </div>
-
-                <div class="bg-white p-4 rounded-lg shadow">
-                    <p class="font-bold text-gray-800 mb-2">Câu 5: Tại sao bạn sẽ không bao giờ bị lạc?</p>
-                    <div class="space-y-3">
-                        <label class="flex items-start gap-3"><input type="radio" name="cau5" value="A"> <span>A. Vì vườn giống nhau.</span></label>
-                        <label class="flex items-start gap-3"><input type="radio" name="cau5" value="B"> <span>B. Vì hoa chỉ lối an toàn và thơm ngát.</span></label>
-                        <label class="flex items-start gap-3"><input type="radio" name="cau5" value="C"> <span>C. Vì vườn rất nhỏ.</span></label>
-                    </div>
-                </div>
-
-                <div class="bg-white p-4 rounded-lg shadow">
-                    <p class="font-bold text-gray-800 mb-2">Câu 6: Thông điệp bài văn là gì?</p>
-                    <div class="space-y-3">
-                        <label class="flex items-start gap-3"><input type="radio" name="cau6" value="A"> <span>A. Hãy trồng thật nhiều hoa.</span></label>
-                        <label class="flex items-start gap-3"><input type="radio" name="cau6" value="B"> <span>B. Hãy yêu mến và cảm nhận thiên nhiên bằng tâm hồn.</span></label>
-                        <label class="flex items-start gap-3"><input type="radio" name="cau6" value="C"> <span>C. Học thuộc tên loài cây.</span></label>
-                    </div>
-                </div>
-
-                <div class="bg-white p-4 rounded-lg shadow">
-                    <p class="font-bold text-gray-800 mb-2">Câu 7: Viết 5 danh từ chỉ đồ dùng học tập:</p>
-                    <input type="text" id="cau7_tuluan" class="w-full border-2 border-blue-100 p-2 rounded" placeholder="...">
-                </div>
-
-                <div class="bg-white p-4 rounded-lg shadow">
-                    <p class="font-bold text-gray-800 mb-2">Câu 8: Đâu KHÔNG phải công dụng dấu gạch ngang?</p>
-                    <div class="space-y-3">
-                        <label class="flex items-start gap-3"><input type="radio" name="cau8" value="A"> <span>A. Nối các thành phần liên danh.</span></label>
-                        <label class="flex items-start gap-3"><input type="radio" name="cau8" value="B"> <span>B. Đánh dấu tên tác phẩm.</span></label>
-                        <label class="flex items-start gap-3"><input type="radio" name="cau8" value="C"> <span>C. Đánh dấu lời nói nhân vật.</span></label>
-                    </div>
-                </div>
-
-                <div class="bg-white p-4 rounded-lg shadow">
-                    <p class="font-bold text-gray-800 mb-2">Câu 9: Đặt câu so sánh về vẻ đẹp của một bông hoa:</p>
-                    <input type="text" id="cau9_tuluan" class="w-full border-2 border-blue-100 p-2 rounded" placeholder="...">
-                </div>
-
-                <div class="pt-2 pb-8">
-                    <button onclick="nopPhan1()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-4 rounded-xl text-xl shadow-xl transition transform active:scale-95 border-b-4 border-blue-800">
-                        NỘP BÀI PHẦN 1
-                    </button>
-                    <p class="text-center text-gray-500 text-xs mt-2 italic">Nộp xong sẽ hiện đề Phần 2 & 3 để gửi Zalo</p>
-                </div>
+            <h2 class="text-xl font-black text-blue-800 text-center mb-3 uppercase">LỜI THÌ THẦM CỦA KHU VƯỜN</h2>
+            <div class="text-gray-800 text-base leading-relaxed text-justify space-y-3 pb-4">
+                <p>Nhà tôi có một khu vườn rất rộng, trồng nhiều hoa. Những buổi chiều, tôi hay nhắm mắt sờ những bông hoa và tập đoán. Không bao lâu, tôi đã đoán được hết vườn hoa.</p>
+                <p>Từ trong nhà ra ngoài vườn, tôi có thể chạm vào bất cứ loại cây nào và nói đúng tên của nó. Bố nghĩ ra trò chơi, thay vì chạm vào hoa, tôi chỉ được ngửi rồi gọi tên nó. Bố đưa bông hoa ra trước mũi tôi rồi hỏi: “Hoa gì?”. Trò chơi cứ diễn ra liên tục cho đến hồi tôi nhận diện được tất cả các mùi hương của các loài hoa.</p>
+                <p>Bạn hãy tưởng tượng, một buổi sáng mờ sương, bạn vừa nhắm mắt vừa mở cửa sổ, và bạn chợt hiểu khu vườn nói gì. Bạn hiểu bây giờ là mùa gì và bông hoa nào đang nở, tên gì.</p>
+                <p>Bạn hãy thử đi rồi sẽ thấy, khu vườn sẽ lớn lên rất nhiều. Những bông hoa thơm hơn và khi nhắm mắt, bạn vẫn nhìn thấy chúng. Không chỉ vậy, bạn còn thấy nguyên cả khu vườn. Bạn có thể nhìn thấy bông hồng ngay trong đêm tối. Đêm bạn nằm, đắp chăn kín người nhưng bạn vẫn có thể đi dạo.</p>
+                <p>Bạn sẽ không bao giờ lạc trong bất cứ một khu vườn nào, bởi vì, những bông hoa sẽ chỉ lối cho bạn, một lối đi an toàn và thơm ngát.</p>
+                <p class="text-right italic font-bold text-sm">(Theo Nguyễn Ngọc Thuần)</p>
             </div>
         </div>
 
-        <div id="result-screen" class="hidden">
-            <div class="bg-green-100 border-l-4 border-green-500 p-4 mb-6 rounded shadow animate-bounce">
-                <h2 class="text-xl font-bold text-green-800">🎉 ĐÃ NỘP PHẦN 1 THÀNH CÔNG!</h2>
-                <p class="text-green-700 text-sm">Điểm trắc nghiệm của con đã được lưu lại.</p>
+        <div class="flex-1 bg-gray-50 overflow-y-auto p-4 relative" id="bottom-pane">
+            
+            <div id="info-box" class="bg-white p-3 rounded-xl shadow border-l-4 border-yellow-400 mb-6">
+                <div class="grid grid-cols-3 gap-2">
+                    <div class="col-span-2">
+                        <label class="block text-gray-700 font-bold text-xs mb-1">Họ tên con:</label>
+                        <input type="text" id="hoTen" class="w-full border border-gray-300 p-1.5 rounded focus:border-blue-500 font-bold text-sm" placeholder="Nhập tên...">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-bold text-xs mb-1">Lớp:</label>
+                        <input type="text" id="lop" class="w-full border border-gray-300 p-1.5 rounded focus:border-blue-500 font-bold text-center text-sm" placeholder="4A">
+                    </div>
+                </div>
             </div>
 
-            <div class="bg-white p-5 rounded-xl shadow-xl border-t-8 border-indigo-600 mb-6">
-                <h3 class="text-lg font-black text-indigo-800 mb-4 uppercase border-b pb-2">👇 NHIỆM VỤ TIẾP THEO (GỬI ZALO) 👇</h3>
-                
-                <div class="mb-6 bg-indigo-50 p-4 rounded-lg">
-                    <p class="font-bold text-gray-700 text-lg">🎤 PHẦN 2: ĐỌC THÀNH TIẾNG (3đ)</p>
-                    <p class="text-sm text-gray-600 mb-1">Con hãy quay video đọc bài:</p>
-                    <p id="baiDocRandom" class="text-2xl font-black text-red-600 uppercase my-2">...</p>
-                    <p class="text-xs italic text-gray-500">(Bài được chọn ngẫu nhiên)</p>
-                </div>
+            <div id="quiz-part" class="space-y-4 pb-8">
+                <h3 class="font-black text-sm text-red-600 bg-red-100 px-3 py-2 rounded flex justify-between items-center sticky top-0 z-20 shadow-sm">
+                    <span>📝 CÂU HỎI & BÀI LÀM</span>
+                    <span class="text-[10px] font-normal text-gray-500">Vuốt để xem thêm ⬇️</span>
+                </h3>
 
-                <div class="mb-6 bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                    <p class="font-bold text-gray-700 text-lg">✍️ PHẦN 3: TẬP LÀM VĂN (10đ)</p>
-                    <div class="mt-2">
-                        <p class="text-red-700 font-bold mb-2">Đề bài: Miêu tả một con vật mà em đã chăm sóc và gắn bó.</p>
-                        
-                        <div class="text-sm text-gray-700 bg-white p-3 rounded">
-                            <p class="font-bold text-green-700 mb-1">💡 Gợi ý dàn bài:</p>
-                            <ul class="list-disc ml-4 space-y-1">
-                                <li><strong>Mở bài:</strong> Giới thiệu con vật (Tên, loài, nuôi từ bao giờ?).</li>
-                                <li><strong>Thân bài:</strong>
-                                    <ul class="list-circle ml-4 text-xs text-gray-600">
-                                        <li>Tả hình dáng (lông, mắt, đuôi).</li>
-                                        <li>Tả hoạt động (ăn, ngủ, chơi).</li>
-                                        <li>Kỷ niệm đáng nhớ.</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Kết bài:</strong> Tình cảm của em.</li>
-                            </ul>
-                        </div>
+                <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+                    <p class="font-bold text-gray-800 text-sm mb-2">Câu 1: Bạn nhỏ khám phá khu vườn bằng cách nào?</p>
+                    <div class="space-y-2 text-sm">
+                        <label class="flex items-start gap-2"><input type="radio" name="cau1" value="A"> <span>A. Chăm sóc cây.</span></label>
+                        <label class="flex items-start gap-2"><input type="radio" name="cau1" value="B"> <span>B. Nhìn các loài hoa.</span></label>
+                        <label class="flex items-start gap-2"><input type="radio" name="cau1" value="C"> <span>C. Cảm nhận bằng xúc giác và khứu giác.</span></label>
                     </div>
                 </div>
 
-                <div class="text-center pb-8">
-                    <a href="https://zalo.me" target="_blank" class="inline-block bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transform active:scale-95">
-                        Mở Zalo nộp bài cho Thầy ➜
-                    </a>
-                    <p class="text-xs text-gray-400 mt-3">(Con có thể thoát trang này được rồi)</p>
+                <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+                    <p class="font-bold text-gray-800 text-sm mb-2">Câu 2: Trò chơi bố nghĩ ra là gì?</p>
+                    <div class="space-y-2 text-sm">
+                        <label class="flex items-start gap-2"><input type="radio" name="cau2" value="A"> <span>A. Vẽ lại hình dáng.</span></label>
+                        <label class="flex items-start gap-2"><input type="radio" name="cau2" value="B"> <span>B. Chỉ ngửi rồi gọi tên.</span></label>
+                        <label class="flex items-start gap-2"><input type="radio" name="cau2" value="C"> <span>C. Trồng hoa lạ.</span></label>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-    </div>
+                <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+                    <p class="font-bold text-gray-800 text-sm mb-2">Câu 3: Điều kì diệu khi nhắm mắt cảm nhận?</p>
+                    <div class="space-y-2 text-sm">
+                        <label class="flex items-start gap-2"><input type="radio" name="cau3" value="A"> <span>A. Hoa nhanh tàn.</span></label>
+                        <label class="flex items-start gap-2"><input type="radio" name="cau3" value="B"> <span>B. Không thấy gì nữa.</span></label>
+                        <label class="flex items-start gap-2"><input type="radio" name="cau3" value="C"> <span>C. Khu vườn lớn lên, hoa thơm hơn.</span></label>
+                    </div>
+                </div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+                <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+                    <p class="font-bold text-gray-800 text-sm mb-2">Câu 4: Tìm động từ trong câu cuối bài:</p>
+                    <input type="text" id="cau4_tuluan" class="w-full border-2 border-blue-50 p-2 rounded text-sm" placeholder="Nhập câu trả lời...">
+                </div>
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyA77lLi_JCLIdR535KEfg3S0_Ge2EorPMo", 
-            authDomain: "baikiemtracuoiki.firebaseapp.com",
-            projectId: "baikiemtracuoiki",
-            storageBucket: "baikiemtracuoiki.appspot.com",
-            messagingSenderId: "953819948776",
-            appId: "1:953819948776:web:15848507d350f37c35e5d3"
-        };
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
+                <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+                    <p class="font-bold text-gray-800 text-sm mb-2">Câu 5: Tại sao bạn sẽ không bao giờ bị lạc?</p>
+                    <div class="space-y-2 text-sm">
+                        <label class="flex items-start gap-2"><input type="radio" name="cau5" value="A"> <span>A. Vì vườn giống nhau.</span></label>
+                        <label class="flex items-start gap-2"><input type="radio" name="cau5" value="B"> <span>B. Vì hoa chỉ lối an toàn.</span></label>
+                    </div>
+                </div>
 
-        const LIST_BAI_DOC = ["Dế Mèn bênh vực kẻ yếu", "Truyện cổ nước mình", "Tre Việt Nam", "Người ăn xin", "Về thăm bà"];
-        let baiDocDuocChon = "";
-
-        window.onload = function() {
-            // Random bài đọc
-            baiDocDuocChon = LIST_BAI_DOC[Math.floor(Math.random() * LIST_BAI_DOC.length)];
-            document.getElementById('baiDocRandom').innerText = baiDocDuocChon;
-
-            // Đếm ngược 20 phút
-            let time = 20 * 60;
-            const display = document.getElementById('dongHo');
-            const timer = setInterval(() => {
-                let m = Math.floor(time / 60); let s = time % 60;
-                display.innerText = `${m<10?'0'+m:m}:${s<10?'0'+s:s}`;
-                time--;
-                if (time < 0) {
-                    clearInterval(timer);
-                    alert("⏰ Đã hết giờ làm Phần 1! Hệ thống sẽ tự nộp.");
-                    nopPhan1();
-                }
-            }, 1000);
-        };
-
-        function check(cau, dapAnDung, diem) {
-            const luaChon = document.querySelector(`input[name="${cau}"]:checked`);
-            return (luaChon && luaChon.value === dapAnDung) ? diem : 0;
-        }
-
-        window.nopPhan1 = async function() {
-            const hoTen = document.getElementById('hoTen').value.trim();
-            const lop = document.getElementById('lop').value.trim();
-
-            if (!hoTen || !lop) { alert("Con chưa điền Tên hoặc Lớp!"); return; }
-
-            const btn = document.querySelector('button');
-            btn.innerText = "Đang nộp bài..."; btn.disabled = true;
-
-            // Chấm điểm trắc nghiệm (Max 7đ: 6 câu TN + 3 câu tự luận ngắn thầy chấm sau)
-            // Ở đây code tạm tính 6 câu trắc nghiệm máy chấm được
-            let diem = 0;
-            diem += check("cau1", "C", 0.5); 
-            diem += check("cau2", "B", 0.5); 
-            diem += check("cau3", "C", 0.5);
-            diem += check("cau5", "B", 0.5);
-            diem += check("cau6", "B", 0.5);
-            diem += check("cau8", "B", 1.0); // Câu này 1 điểm
-
-            const tuLuan = `
-                Câu 4: ${document.getElementById('cau4_tuluan').value}
-                Câu 7: ${document.getElementById('cau7_tuluan').value}
-                Câu 9: ${document.getElementById('cau9_tuluan').value}
-            `;
-
-            try {
-                await addDoc(collection(db, "Baikiemtracuoiki"), {
-                    ho_ten: hoTen, lop: lop, mon_hoc: "Tiếng Việt",
-                    diem_trac_nghiem: diem,
-                    diem_doc_thanh_tieng: 0, 
-                    diem_viet: 0, 
-                    diem_tu_luan: 0, 
-                    bai_tu_luan: tuLuan,
-                    bai_doc_random: baiDocDuocChon,
-                    thoi_gian_nop: new Date().toISOString()
-                });
-
-                // Chuyển màn hình
-                document.getElementById('info-box').style.display = 'none';
-                document.getElementById('quiz-part').style.display = 'none';
-                document.getElementById('result-screen').classList.remove('hidden');
-                window.scrollTo(0, 0);
-
-            } catch (e) {
-                alert("Lỗi nộp bài: " + e.message);
-                btn.disabled = false; btn.innerText = "NỘP BÀI PHẦN 1";
-            }
-        }
-    </script>
-</body>
-</html>
+                <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+                    <p class="font-bold text-gray-800 text-sm mb-2">Câu 6: Thông điệp bài văn là gì?</p>
+                    <div class="space-y-2

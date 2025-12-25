@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thi Công Nghệ Lớp 4 - Đề 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Nunito', sans-serif; }
+        input[type="radio"] { width: 1.2rem; height: 1.2rem; margin-top: 0.15rem; flex-shrink: 0; }
+    </style>
+</head>
+<body class="bg-purple-50 py-8 min-h-screen">
+
+    <div class="fixed top-4 right-4 bg-red-600 text-white font-bold py-2 px-4 rounded-full shadow-lg z-50 animate-pulse border-2 border-white">
+        ⏳ <span id="dongHo">35:00</span>
+    </div>
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-8 rounded-lg shadow-xl relative z-10">
+        <div class="text-center mb-8 border-b-4 border-purple-500 pb-4">
+            <h1 class="text-2xl md:text-3xl font-black text-purple-700 uppercase">KIỂM TRA CUỐI HỌC KÌ 1</h1>
+            <p class="text-xl text-gray-600 font-bold mt-2">Môn: CÔNG NGHỆ (Đề số 2)</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 bg-purple-50 p-4 rounded-lg border border-purple-200">
+            <div>
+                <label class="block font-bold text-gray-700">Họ và tên học sinh:</label>
+                <input type="text" id="hoTen" class="w-full mt-1 p-2 border rounded focus:border-purple-500 outline-none font-bold" placeholder="Nhập họ tên đầy đủ...">
+            </div>
+            <div>
+                <label class="block font-bold text-gray-700">Lớp:</label>
+                <input type="text" id="lop" class="w-full mt-1 p-2 border rounded focus:border-purple-500 outline-none font-bold text-center" placeholder="Ví dụ: 4A">
+            </div>
+        </div>
+
+        <div class="space-y-6">
+            
+            <div class="bg-purple-100 p-3 rounded font-bold text-purple-800 uppercase">I. Phần Trắc Nghiệm (7 điểm)</div>
+
+            <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-purple-500">
+                <p class="font-bold text-lg text-gray-800">Câu 1 (1đ): Loài hoa nào sau đây thường nở vào dịp Tết Nguyên đán ở miền Bắc nước ta, tượng trưng cho sự may mắn?</p>
+                <div class="mt-3 grid grid-cols-2 gap-3">
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau1" value="A"> <span>A. Hoa phượng.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau1" value="B"> <span>B. Hoa sen.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau1" value="C"> <span>C. Hoa đào.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau1" value="D"> <span>D. Hoa bằng lăng.</span></label>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-purple-500">
+                <p class="font-bold text-lg text-gray-800">Câu 2 (1đ): Đâu là đặc điểm nổi bật của chậu nhựa trồng cây?</p>
+                <div class="mt-3 space-y-2">
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau2" value="A"> <span>A. Nặng, khó di chuyển.</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau2" value="B"> <span>B. Nhẹ, mềm, khó vỡ, nhiều màu sắc.</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau2" value="C"> <span>C. Cứng, dễ vỡ khi va chạm.</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau2" value="D"> <span>D. Thấm nước tốt qua thành chậu.</span></label>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-purple-500">
+                <p class="font-bold text-lg text-gray-800">Câu 3 (1đ): Để tưới nước cho các chậu hoa nhỏ hoặc gieo hạt mà không làm xói đất, em nên dùng dụng cụ nào?</p>
+                <div class="mt-3 grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau3" value="A"> <span>A. Gáo múc nước.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau3" value="B"> <span>B. Vòi phun nước áp lực mạnh.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau3" value="C"> <span>C. Xô nước lớn.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau3" value="D"> <span>D. Bình tưới vòi sen hoặc bình xịt.</span></label>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-purple-500">
+                <p class="font-bold text-lg text-gray-800">Câu 4 (1đ): Khi chuẩn bị chậu trồng cây, vì sao người ta thường rải một lớp sỏi hoặc đá dăm nhỏ ở dưới đáy chậu?</p>
+                <div class="mt-3 space-y-2">
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau4" value="A"> <span>A. Để chậu nặng hơn, không bị gió thổi bay.</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau4" value="B"> <span>B. Giúp thoát nước tốt, ngăn lỗ thoát nước bị tắc.</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau4" value="C"> <span>C. Để tiết kiệm đất trồng.</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau4" value="D"> <span>D. Để làm đẹp cho đáy chậu.</span></label>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-purple-500">
+                <p class="font-bold text-lg text-gray-800">Câu 5 (1đ): Giá thể dùng để trồng hoa, cây cảnh trong chậu thường là hỗn hợp của các thành phần nào?</p>
+                <div class="mt-3 space-y-2">
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau5" value="A"> <span>A. Chỉ có đất sét và nước.</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau5" value="B"> <span>B. Đất, xơ dừa, trấu hun, phân bón.</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau5" value="C"> <span>C. Đá sỏi và cát biển.</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau5" value="D"> <span>D. Cát và nước.</span></label>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-purple-500">
+                <p class="font-bold text-lg text-gray-800">Câu 6 (1đ): Hành động nào sau đây là SAI khi chăm sóc hoa, cây cảnh trong chậu?</p>
+                <div class="mt-3 space-y-2">
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau6" value="A"> <span>A. Thường xuyên nhặt bỏ lá vàng, lá sâu.</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau6" value="B"> <span>B. Đặt chậu cây ở nơi hoàn toàn không có ánh sáng mặt trời trong thời gian dài.</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau6" value="C"> <span>C. Lau bụi trên lá cây (đối với các loại cây lá to, bóng).</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau6" value="D"> <span>D. Tưới nước vừa đủ ẩm cho đất.</span></label>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-purple-500">
+                <p class="font-bold text-lg text-gray-800">Câu 7 (0,5đ): Cây Kim tiền và cây Lưỡi hổ được xếp vào nhóm nào?</p>
+                <div class="mt-3 grid grid-cols-2 gap-3">
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau7" value="A"> <span>A. Nhóm cây lấy gỗ.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau7" value="B"> <span>B. Nhóm cây ăn quả.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau7" value="C"> <span>C. Nhóm cây cảnh (chơi lá/thân).</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau7" value="D"> <span>D. Nhóm cây rau màu.</span></label>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-purple-500">
+                <p class="font-bold text-lg text-gray-800">Câu 8 (0,5đ): Khi thấy chậu cây cảnh đặt trong phòng thiếu ánh sáng bị vàng lá, em nên làm gì?</p>
+                <div class="mt-3 space-y-2">
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau8" value="A"> <span>A. Tưới thật nhiều nước cho cây.</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau8" value="B"> <span>B. Bón thêm nhiều phân đạm.</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau8" value="C"> <span>C. Mang cây ra vị trí có ánh sáng phù hợp và chăm sóc.</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau8" value="D"> <span>D. Cắt bỏ hết lá và để nguyên vị trí cũ.</span></label>
+                </div>
+            </div>
+
+            <div class="bg-yellow-100 p-3 rounded font-bold text-yellow-800 uppercase mt-8">II. Phần Tự Luận (3 điểm)</div>
+
+            <div class="bg-white p-4 rounded-lg border-l-4 border-yellow-500 shadow-sm">
+                <p class="font-bold text-lg text-gray-800">Câu 9 (2đ): Em hãy kể tên 3 loại dụng cụ trồng hoa, cây cảnh mà em biết:</p>
+                <textarea id="tu_luan_9" class="w-full mt-2 p-3 border-2 border-yellow-200 rounded h-24 focus:border-yellow-500 outline-none" placeholder="Ví dụ: xẻng, bình tưới..."></textarea>
+            </div>
+
+            <div class="bg-white p-4 rounded-lg border-l-4 border-yellow-500 shadow-sm">
+                <p class="font-bold text-lg text-gray-800">Câu 10 (2đ): Em hãy viết tên 5 loại hoa được trồng trong trường hoặc ở gần nhà em:</p>
+                <textarea id="tu_luan_10" class="w-full mt-2 p-3 border-2 border-yellow-200 rounded h-24 focus:border-yellow-500 outline-none" placeholder="Ví dụ: hoa hồng, hoa cúc..."></textarea>
+            </div>
+
+        </div>
+
+        <div class="text-center mt-10">
+            <button onclick="nopBai()" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-12 rounded-full shadow-lg text-xl transition transform hover:scale-105 animate-bounce">
+                🚀 NỘP BÀI THI
+            </button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA77lLi_JCLIdR535KEfg3S0_Ge2EorPMo", 
+            authDomain: "baikiemtracuoiki.firebaseapp.com",
+            projectId: "baikiemtracuoiki",
+            storageBucket: "baikiemtracuoiki.appspot.com",
+            messagingSenderId: "953819948776",
+            appId: "1:953819948776:web:15848507d350f37c35e5d3"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const MON_HOC = "Công Nghệ";
+        const MA_DE = "Đề 2";
+        const THOI_GIAN_LAM_BAI = 35; // Phút
+
+        // --- ĐỒNG HỒ ĐẾM NGƯỢC ---
+        let thoiGian = THOI_GIAN_LAM_BAI * 60;
+        const dongHoDisplay = document.getElementById('dongHo');
+        let daNopBai = false;
+
+        const demNguoc = setInterval(() => {
+            if (daNopBai) { clearInterval(demNguoc); return; }
+            let phut = Math.floor(thoiGian / 60);
+            let giay = thoiGian % 60;
+            dongHoDisplay.innerText = `${phut < 10 ? '0'+phut : phut}:${giay < 10 ? '0'+giay : giay}`;
+            thoiGian--;
+
+            if (thoiGian < 0) {
+                clearInterval(demNguoc);
+                alert("⏰ ĐÃ HẾT GIỜ! Hệ thống sẽ tự động nộp bài.");
+                if(!document.getElementById('hoTen').value) document.getElementById('hoTen').value = "Hết Giờ (Quên Tên)";
+                window.nopBai(true);
+            }
+        }, 1000);
+
+        // --- HÀM CHẤM ĐIỂM ---
+        function check(cau, dapAnDung, diem) {
+            const luaChon = document.querySelector(`input[name="${cau}"]:checked`);
+            return (luaChon && luaChon.value === dapAnDung) ? diem : 0;
+        }
+
+        window.nopBai = async function(isAuto = false) {
+            if (daNopBai) return;
+            
+            const hoTen = document.getElementById('hoTen').value.trim();
+            const lop = document.getElementById('lop').value.trim();
+
+            if (!isAuto && (!hoTen || !lop)) { alert("Con chưa điền Tên hoặc Lớp!"); return; }
+
+            daNopBai = true;
+            const btn = document.querySelector('button');
+            btn.innerText = "Đang chấm điểm..."; btn.disabled = true; btn.classList.add("bg-gray-500");
+
+            // --- CHẤM ĐIỂM TRẮC NGHIỆM (7 điểm) ---
+            let diemTN = 0;
+            diemTN += check("cau1", "C", 1.0); // Hoa đào
+            diemTN += check("cau2", "B", 1.0); // Nhẹ, mềm...
+            diemTN += check("cau3", "D", 1.0); // Bình tưới...
+            diemTN += check("cau4", "B", 1.0); // Thoát nước...
+            diemTN += check("cau5", "B", 1.0); // Đất, xơ dừa...
+            diemTN += check("cau6", "B", 1.0); // Đặt nơi tối (Sai)
+            diemTN += check("cau7", "C", 0.5); // Cây cảnh
+            diemTN += check("cau8", "C", 0.5); // Mang ra sáng
+
+            // Lấy nội dung tự luận
+            const baiTuLuan = `
+                [Câu 9]: ${document.getElementById('tu_luan_9').value}
+                [Câu 10]: ${document.getElementById('tu_luan_10').value}
+            `;
+
+            try {
+                await addDoc(collection(db, "Baikiemtracuoiki"), {
+                    ho_ten: hoTen, lop: lop, mon_hoc: MON_HOC, ma_de: MA_DE,
+                    diem_trac_nghiem: diemTN, 
+                    diem_tu_luan: 0, // Thầy sẽ chấm 2 câu tự luận sau
+                    bai_tu_luan: baiTuLuan,
+                    nop_tu_dong: isAuto ? "Có (Hết giờ)" : "Không",
+                    thoi_gian_nop: new Date().toISOString()
+                });
+                alert(`Nộp bài thành công!\nĐiểm trắc nghiệm máy chấm: ${diemTN}/7.0 điểm.\nPhần tự luận Thầy sẽ chấm sau.`);
+                location.href = "../index.html";
+            } catch (e) {
+                alert("Lỗi nộp bài: " + e.message);
+                btn.disabled = false; daNopBai = false;
+            }
+        }
+    </script>
+</body>
+</html>

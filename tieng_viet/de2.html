@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thi Tiếng Việt - Đề 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Nunito', sans-serif; }
+        input[type="radio"] { width: 1.2rem; height: 1.2rem; margin-top: 0.15rem; flex-shrink: 0; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-gray-100 h-screen flex flex-col overflow-hidden">
+
+    <header class="flex-none bg-blue-600 text-white p-2 px-4 shadow z-50 flex justify-between items-center">
+        <h1 class="font-bold text-lg uppercase truncate">Tiếng Việt 4 - Đề 2</h1>
+        <div class="bg-white text-red-600 px-3 py-1 rounded-full font-black text-lg border-2 border-yellow-400 shadow">
+            ⏱️ <span id="dongHo">20:00</span>
+        </div>
+    </header>
+
+    <div class="flex-none bg-yellow-100 p-2 shadow-sm border-b border-yellow-300 z-40">
+        <div class="max-w-4xl mx-auto grid grid-cols-12 gap-2 items-center">
+            <div class="col-span-8 flex items-center gap-2">
+                <label class="text-gray-800 font-bold text-xs whitespace-nowrap">Họ tên:</label>
+                <input type="text" id="hoTen" class="w-full border border-yellow-400 p-1.5 rounded focus:border-blue-500 font-bold text-sm text-blue-800 bg-white" placeholder="Nhập tên con...">
+            </div>
+            <div class="col-span-4 flex items-center gap-2">
+                <label class="text-gray-800 font-bold text-xs whitespace-nowrap">Lớp:</label>
+                <input type="text" id="lop" class="w-full border border-yellow-400 p-1.5 rounded focus:border-blue-500 font-bold text-center text-sm text-blue-800 bg-white" placeholder="4A">
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-1 flex flex-col min-h-0 relative">
+
+        <div class="h-[55%] bg-white border-b-4 border-blue-300 overflow-y-auto p-4 shadow-sm relative scroll-smooth">
+            <div class="sticky top-0 bg-white/95 backdrop-blur py-1 border-b mb-2 z-10 flex justify-between items-center">
+                <span class="text-[10px] font-bold bg-blue-100 text-blue-800 px-2 py-0.5 rounded">📖 VĂN BẢN ĐỌC</span>
+                <span class="text-[10px] text-gray-400 italic">Vuốt để đọc ⬇️</span>
+            </div>
+            
+            <h2 class="text-xl font-black text-blue-800 text-center mb-3 uppercase">TIẾNG HÁT BUỔI SỚM MAI</h2>
+            <div class="text-gray-800 text-base leading-relaxed text-justify space-y-3 pb-4">
+                <p>Bên bìa rừng có một bông hoa lạ, năm cánh mịn như nhung. Bông hoa toả hương thơm ngát. Quanh nó, thấp thoáng những cánh bướm dập dờn.</p>
+                <p>Mặt Trời mỉm cười với hoa. Thế là bông hoa cất tiếng hát. Nó hát mãi, hát mãi. Cuối cùng, nó hỏi gió xem có thích bài hát đó không.</p>
+                <p>Gió ngạc nhiên:<br>- Ơ, chính tôi hát đấy chứ? Tôi đã làm những cánh hoa của bạn đung đưa, tạo thành tiếng lao xao nên bạn cứ tưởng mình hát.</p>
+                <p>Hoa lại hỏi sương. Những hạt sương long lanh trả lời:<br>- Bạn nhầm rồi! Đó chính là tiếng ngân nga thánh thót của chúng tôi.</p>
+                <p>Tranh cãi mãi, chẳng ai chịu ai. Hoa, gió và sương quyết định hỏi bác gác rừng.</p>
+                <p>Bác gác rừng ôn tồn giải thích:<br>- Mỗi buổi sớm mai, khi Mặt Trời bắt đầu sưởi ấm vạn vật, muôn loài đều hân hoan hát ca. Nhưng mỗi loài có tiếng hát của riêng mình. Có biết lắng nghe nhau mới hiểu được tiếng hát của nhau, các cháu ạ.</p>
+                <p class="text-right italic font-bold text-sm">(Theo Quỳnh Anh)</p>
+            </div>
+        </div>
+
+        <div class="flex-1 bg-gray-50 overflow-y-auto p-4 scroll-smooth" id="bottom-pane">
+            
+            <div id="quiz-part" class="space-y-4 pb-8">
+                <h3 class="font-black text-sm text-red-600 bg-red-100 px-3 py-2 rounded flex justify-between items-center sticky top-0 z-20 shadow-sm border border-red-200">
+                    <span>📝 CÂU HỎI & BÀI LÀM</span>
+                    <span class="text-[10px] font-normal text-gray-500">Vuốt xuống ⬇️</span>
+                </h3>
+
+                <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+                    <p class="font-bold text-gray-800 text-sm mb-2">Câu 1: Điều gì đã khiến bông hoa lạ cất tiếng hát vào buổi sáng sớm?</p>
+                    <div class="space-y-2 text-sm">
+                        <label class="flex items-start gap-2"><input type="radio" name="cau1" value="A"> <span>A. Vì những cánh bướm dập dờn quanh nó.</span></label>
+                        <label class="flex items-start gap-2"><input type="radio" name="cau1" value="B"> <span>B. Vì Mặt Trời mỉm cười với hoa.</span></label>
+                        <label class="flex items-start gap-2"><input type="radio" name="cau1" value="C"> <span>C. Vì những hạt sương long lanh đậu trên cánh hoa.</span></label>
+                    </div>
+                </div>
+
+                <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+                    <p class="font-bold text-gray-800 text-sm mb-2">Câu 2: Theo giải thích của gió, âm thanh “lao xao” được tạo ra từ đâu?</p>
+                    <div class="space-y-2 text-sm">
+                        <label class="flex items-start gap-2"><input type="radio" name="cau2" value="A"> <span>A. Từ những hạt sương ngân nga.</span></label>
+                        <label class="flex items-start gap-2"><input type="radio" name="cau2" value="B"> <span>B. Từ tiếng hát của bông hoa.</span></label>
+                        <label class="flex items-start gap-2"><input type="radio" name="cau2" value="C"> <span>C. Từ việc gió làm những cánh hoa rung rinh, đong đưa.</span></label>
+                    </div>
+                </div>
+
+                <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+                    <p class="font-bold text-gray-800 text-sm mb-2">Câu 3: Tại sao ba nhân vật trong câu chuyện lại quyết định đi hỏi bác gác rừng?</p>
+                    <div class="space-y-2 text-sm">
+                        <label class="flex items-start gap-2"><input type="radio" name="cau3" value="A"> <span>A. Vì họ tranh cãi mãi mà chẳng biết ai đúng, ai sai.</span></label>
+                        <label class="flex items-start gap-2"><input type="radio" name="cau3" value="B"> <span>B. Vì bác gác rừng muốn họ giải thích.</span></label>
+                        <label class="flex items-start gap-2"><input type="radio" name="cau3" value="C"> <span>C. Vì họ muốn hát cho bác gác rừng nghe.</span></label>
+                    </div>
+                </div>
+
+                <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+                    <p class="font-bold text-gray-800 text-sm mb-2">Câu 4: Theo lời bác gác rừng, mỗi loài trong thiên nhiên có đặc điểm gì chung vào buổi sớm mai?</p>
+                    <input type="text" id="cau4_tuluan" class="w-full border-2 border-blue-50 p-2 rounded text-sm" placeholder="Nhập câu trả lời...">
+                </div>
+
+                <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+                    <p class="font-bold text-gray-800 text-sm mb-2">Câu 5: Điều quan trọng nhất để hiểu được “tiếng hát” của nhau là gì?</p>
+                    <div class="space-y-2 text-sm">
+                        <label class="flex items-start gap-2"><input type="radio" name="cau5" value="A"> <span>A. Phải hát thật to để tất cả mọi người đều nghe.</span></label>
+                        <label class="flex items-start gap-2"><input type="radio" name="cau5" value="B"> <span>B. Phải tranh luận với nhau.</span></label>
+                        <label class="flex items-start gap-2"><input type="radio" name="cau5" value="C"> <span>C. Phải biết lắng nghe nhau.</span></label>
+                    </div>
+                </div>
+
+                <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+                    <p class="font-bold text-gray-800 text-sm mb-2">Câu 6: Câu chuyện giúp chúng ta hiểu được điều gì?</p>
+                    <div class="space-y-2 text-sm">
+                        <label class="flex items-start gap-2"><input type="radio" name="cau6" value="A"> <span>A. Gió và sương luôn quan trọng hơn hoa.</span></label>
+                        <label class="flex items-start gap-2"><input type="radio" name="cau6" value="B"> <span>B. Cần biết lắng nghe, thấu hiểu và tôn trọng giá trị riêng của người khác.</span></label>
+                        <label class="flex items-start gap-2"><input type="radio" name="cau6" value="C"> <span>C. Cần học nhờ người lớn giải quyết mọi cuộc tranh cãi.</span></label>
+                    </div>
+                </div>
+
+                <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+                    <p class="font-bold text-gray-800 text-sm mb-2">Câu 7: Hãy tìm và viết lại 5 tính từ có trong bài đọc:</p>
+                    <input type="text" id="cau7_tuluan" class="w-full border-2 border-blue-50 p-2 rounded text-sm" placeholder="Ví dụ: mịn, thơm...">
+                </div>
+
+                <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+                    <p class="font-bold text-gray-800 text-sm mb-2">Câu 8: Hãy viết lại tên các cơ quan, tổ chức sau đây cho đúng cách:</p>
+                    <p class="text-xs text-gray-600 italic mb-2">"Trường tiểu học châu lộc, sở y tế thanh hoá, kinh thành thăng long, sông mã."</p>
+                    <textarea id="cau8_tuluan" class="w-full border-2 border-blue-50 p-2 rounded text-sm h-20" placeholder="Viết lại cho đúng..."></textarea>
+                </div>
+
+                <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+                    <p class="font-bold text-gray-800 text-sm mb-2">Câu 9: Việc sử dụng biện pháp nhân hoá trong bài văn trên có tác dụng gì?</p>
+                    <input type="text" id="cau9_tuluan" class="w-full border-2 border-blue-50 p-2 rounded text-sm" placeholder="Nhập câu trả lời...">
+                </div>
+
+                <div class="mt-4">
+                    <button onclick="nopPhan1()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-4 rounded-xl text-lg shadow-xl transition transform active:scale-95 border-b-4 border-blue-800">
+                        NỘP BÀI PHẦN 1
+                    </button>
+                    <p class="text-center text-gray-500 text-xs mt-2 italic pb-4">Nộp xong sẽ hiện đề Phần 2 & 3</p>
+                </div>
+            </div>
+
+            <div id="result-screen" class="hidden pb-10">
+                <div class="bg-green-100 border-l-4 border-green-500 p-3 mb-6 rounded shadow">
+                    <h2 class="font-bold text-green-800">🎉 ĐÃ NỘP PHẦN 1 THÀNH CÔNG!</h2>
+                    <p class="text-green-700 text-sm">Điểm trắc nghiệm đã được lưu.</p>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl shadow-xl border-t-8 border-indigo-600">
+                    <h3 class="font-black text-indigo-800 mb-4 uppercase border-b pb-2 text-center">👇 NHIỆM VỤ TIẾP THEO (GỬI ZALO) 👇</h3>
+                    
+                    <div class="mb-4 bg-indigo-50 p-3 rounded-lg">
+                        <p class="font-bold text-gray-700">🎤 PHẦN 2: ĐỌC THÀNH TIẾNG (3đ)</p>
+                        <p class="text-sm text-gray-600 mb-1">Quay video đọc bài:</p>
+                        <p id="baiDocRandom" class="text-xl font-black text-red-600 uppercase my-2">...</p>
+                    </div>
+
+                    <div class="mb-4 bg-yellow-50 p-3 rounded-lg border border-yellow-200">
+                        <p class="font-bold text-gray-700">✍️ PHẦN 3: TẬP LÀM VĂN (10đ)</p>
+                        <p class="text-red-700 font-bold text-sm mt-1">Đề bài: Miêu tả một con vật mà em yêu thích.</p>
+                        
+                        <div class="mt-2 text-sm text-gray-700 bg-white p-2 rounded">
+                            <p class="font-bold text-green-700 text-xs mb-1">💡 Gợi ý dàn bài:</p>
+                            <ul class="list-disc ml-4 space-y-1 text-xs">
+                                <li><strong>Mở bài:</strong> Giới thiệu con vật (Tên, loài...).</li>
+                                <li><strong>Thân bài:</strong> Hình dáng, hoạt động, kỷ niệm.</li>
+                                <li><strong>Kết bài:</strong> Tình cảm của em.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <a href="../index.html" class="block w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 rounded-full shadow-lg transform active:scale-95 border-b-4 border-gray-800">
+                            ⬅️ QUAY VỀ TRANG CHỦ
+                        </a>
+                        <p class="text-xs text-gray-500 mt-2 italic">Con hãy tự mở Zalo để nộp bài cho Thầy nhé!</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA77lLi_JCLIdR535KEfg3S0_Ge2EorPMo", 
+            authDomain: "baikiemtracuoiki.firebaseapp.com",
+            projectId: "baikiemtracuoiki",
+            storageBucket: "baikiemtracuoiki.appspot.com",
+            messagingSenderId: "953819948776",
+            appId: "1:953819948776:web:15848507d350f37c35e5d3"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // DANH SÁCH BÀI ĐỌC
+        const LIST_BAI_DOC = [
+            "Dế Mèn bênh vực kẻ yếu",
+            "Truyện cổ nước mình",
+            "Tre Việt Nam",
+            "Người ăn xin",
+            "Về thăm bà"
+        ];
+        let baiDocDuocChon = "";
+
+        window.onload = function() {
+            baiDocDuocChon = LIST_BAI_DOC[Math.floor(Math.random() * LIST_BAI_DOC.length)];
+            document.getElementById('baiDocRandom').innerText = baiDocDuocChon;
+
+            // Đếm ngược
+            let time = 20 * 60;
+            const display = document.getElementById('dongHo');
+            const timer = setInterval(() => {
+                let m = Math.floor(time / 60); let s = time % 60;
+                display.innerText = `${m<10?'0'+m:m}:${s<10?'0'+s:s}`;
+                time--;
+                if (time < 0) {
+                    clearInterval(timer);
+                    alert("⏰ Đã hết giờ làm Phần 1!");
+                    nopPhan1();
+                }
+            }, 1000);
+        };
+
+        function check(cau, dapAnDung, diem) {
+            const luaChon = document.querySelector(`input[name="${cau}"]:checked`);
+            return (luaChon && luaChon.value === dapAnDung) ? diem : 0;
+        }
+
+        window.nopPhan1 = async function() {
+            const hoTen = document.getElementById('hoTen').value.trim();
+            const lop = document.getElementById('lop').value.trim();
+
+            if (!hoTen || !lop) { alert("Con chưa điền Tên hoặc Lớp!"); return; }
+
+            const btn = document.querySelector('button');
+            btn.innerText = "Đang nộp..."; btn.disabled = true;
+
+            // CHẤM TRẮC NGHIỆM (2.5 điểm)
+            let diem = 0;
+            diem += check("cau1", "B", 0.5); 
+            diem += check("cau2", "C", 0.5); 
+            diem += check("cau3", "A", 0.5);
+            diem += check("cau5", "C", 0.5);
+            diem += check("cau6", "B", 0.5);
+
+            const tuLuan = `
+                [Câu 4]: ${document.getElementById('cau4_tuluan').value}
+                [Câu 7]: ${document.getElementById('cau7_tuluan').value}
+                [Câu 8]: ${document.getElementById('cau8_tuluan').value}
+                [Câu 9]: ${document.getElementById('cau9_tuluan').value}
+            `;
+
+            try {
+                await addDoc(collection(db, "Baikiemtracuoiki"), {
+                    ho_ten: hoTen, lop: lop, mon_hoc: "Tiếng Việt",
+                    ma_de: "Đề 2",
+                    diem_trac_nghiem: diem,
+                    diem_doc_thanh_tieng: 0, 
+                    diem_viet: 0, 
+                    diem_tu_luan: 0, 
+                    bai_tu_luan: tuLuan,
+                    bai_doc_random: baiDocDuocChon,
+                    thoi_gian_nop: new Date().toISOString()
+                });
+
+                document.querySelector('.bg-yellow-100').style.display = 'none';
+                document.getElementById('quiz-part').style.display = 'none';
+                document.getElementById('result-screen').classList.remove('hidden');
+                document.getElementById('bottom-pane').scrollTop = 0;
+
+            } catch (e) {
+                alert("Lỗi nộp bài: " + e.message);
+                btn.disabled = false; btn.innerText = "NỘP BÀI PHẦN 1";
+            }
+        }
+    </script>
+</body>
+</html>

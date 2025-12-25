@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thi Sử - Địa Lớp 4 - Đề 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Nunito', sans-serif; }
+        input[type="radio"] { width: 1.2rem; height: 1.2rem; margin-top: 0.15rem; flex-shrink: 0; }
+    </style>
+</head>
+<body class="bg-yellow-50 py-8 min-h-screen">
+
+    <div class="fixed top-4 right-4 bg-red-600 text-white font-bold py-2 px-4 rounded-full shadow-lg z-50 animate-pulse border-2 border-white">
+        ⏳ <span id="dongHo">35:00</span>
+    </div>
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-8 rounded-lg shadow-xl relative z-10">
+        <div class="text-center mb-8 border-b-4 border-yellow-500 pb-4">
+            <h1 class="text-2xl md:text-3xl font-black text-yellow-700 uppercase">KIỂM TRA CUỐI HỌC KÌ 1</h1>
+            <p class="text-xl text-gray-600 font-bold mt-2">Môn: LỊCH SỬ & ĐỊA LÍ (Đề số 2)</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+            <div>
+                <label class="block font-bold text-gray-700">Họ và tên học sinh:</label>
+                <input type="text" id="hoTen" class="w-full mt-1 p-2 border rounded focus:border-yellow-500 outline-none font-bold" placeholder="Nhập họ tên đầy đủ...">
+            </div>
+            <div>
+                <label class="block font-bold text-gray-700">Lớp:</label>
+                <input type="text" id="lop" class="w-full mt-1 p-2 border rounded focus:border-yellow-500 outline-none font-bold text-center" placeholder="Ví dụ: 4A">
+            </div>
+        </div>
+
+        <div class="space-y-6">
+            
+            <div class="bg-yellow-100 p-3 rounded font-bold text-yellow-800 uppercase">I. Phần Trắc Nghiệm (7 điểm)</div>
+
+            <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-yellow-500">
+                <p class="font-bold text-lg text-gray-800">Câu 1 (1đ): Địa danh nào sau đây là bãi biển nổi tiếng, thu hút rất nhiều khách du lịch tại tỉnh Thanh Hóa?</p>
+                <div class="mt-3 grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau1" value="A"> <span>A. Bãi biển Cửa Lò.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau1" value="B"> <span>B. Bãi biển Sầm Sơn.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau1" value="C"> <span>C. Bãi biển Mỹ Khê.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau1" value="D"> <span>D. Bãi biển Nha Trang.</span></label>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-yellow-500">
+                <p class="font-bold text-lg text-gray-800">Câu 2 (1đ): Loại đất chính, chiếm diện tích lớn nhất ở vùng Đồng bằng Bắc Bộ là gì?</p>
+                <div class="mt-3 space-y-2">
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau2" value="A"> <span>A. Đất đỏ ba-zan màu mỡ.</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau2" value="B"> <span>B. Đất phèn, đất mặn.</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau2" value="C"> <span>C. Đất phù sa do sông bồi đắp.</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau2" value="D"> <span>D. Đất cát ven biển.</span></label>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-yellow-500">
+                <p class="font-bold text-lg text-gray-800">Câu 3 (1đ): Vị anh hùng dân tộc nào đã lãnh đạo cuộc khởi nghĩa Lam Sơn (tại vùng rừng núi Thanh Hóa) đánh thắng giặc Minh?</p>
+                <div class="mt-3 grid grid-cols-2 gap-3">
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau3" value="A"> <span>A. Ngô Quyền.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau3" value="B"> <span>B. Đinh Bộ Lĩnh.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau3" value="C"> <span>C. Lê Lợi.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau3" value="D"> <span>D. Trần Hưng Đạo.</span></label>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-yellow-500">
+                <p class="font-bold text-lg text-gray-800">Câu 4 (1đ): Vùng nào có mật độ dân số cao nhất (đông dân nhất) ở nước ta hiện nay?</p>
+                <div class="mt-3 space-y-2">
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau4" value="A"> <span>A. Trung du và miền núi Bắc Bộ.</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau4" value="B"> <span>B. Tây Nguyên.</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau4" value="C"> <span>C. Đồng bằng Bắc Bộ.</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau4" value="D"> <span>D. Nam Bộ.</span></label>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-yellow-500">
+                <p class="font-bold text-lg text-gray-800">Câu 5 (1đ): Vùng trung du (nơi chuyển tiếp giữa miền núi và đồng bằng) ở Bắc Bộ có đặc điểm địa hình như thế nào?</p>
+                <div class="mt-3 space-y-2">
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau5" value="A"> <span>A. Là vùng núi cao chót vót.</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau5" value="B"> <span>B. Là vùng đồi có đỉnh tròn, sườn thoải (đồi bát úp).</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau5" value="C"> <span>C. Là vùng đồng bằng phẳng lì.</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau5" value="D"> <span>D. Là vùng trũng ngập nước quanh năm.</span></label>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-yellow-500">
+                <p class="font-bold text-lg text-gray-800">Câu 6 (1đ): Công trình thủy điện lớn nào sau đây nằm trên sông Đà, thuộc vùng Trung du và miền núi Bắc Bộ?</p>
+                <div class="mt-3 grid grid-cols-2 gap-3">
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau6" value="A"> <span>A. Thủy điện Hòa Bình.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau6" value="B"> <span>B. Thủy điện Trị An.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau6" value="C"> <span>C. Thủy điện Y-a-ly.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau6" value="D"> <span>D. Thủy điện Cửa Đạt.</span></label>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-yellow-500">
+                <p class="font-bold text-lg text-gray-800">Câu 7 (0,5đ): Lễ hội Đền Hùng (Phú Thọ) được tổ chức để tưởng nhớ ai?</p>
+                <div class="mt-3 grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau7" value="A"> <span>A. Các vua Hùng có công dựng nước.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau7" value="B"> <span>B. Đức Thánh Gióng.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau7" value="C"> <span>C. Các vị tổ nghề đúc đồng.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau7" value="D"> <span>D. Thần núi Tản Viên.</span></label>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-yellow-500">
+                <p class="font-bold text-lg text-gray-800">Câu 8 (0,5đ): Một loại hình nghệ thuật sân khấu dân gian độc đáo, ra đời từ nền văn minh lúa nước ở Đồng bằng Bắc Bộ là:</p>
+                <div class="mt-3 grid grid-cols-2 gap-3">
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau8" value="A"> <span>A. Cải lương.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau8" value="B"> <span>B. Đờn ca tài tử.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau8" value="C"> <span>C. Múa rối nước.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau8" value="D"> <span>D. Cồng chiêng.</span></label>
+                </div>
+            </div>
+
+            <div class="bg-blue-100 p-3 rounded font-bold text-blue-800 uppercase mt-8">II. Phần Tự Luận (3 điểm)</div>
+
+            <div class="bg-white p-4 rounded-lg border-l-4 border-blue-500 shadow-sm">
+                <p class="font-bold text-lg text-gray-800">Câu 9 (2đ): Hãy mô tả một món ăn đặc sản truyền thống nổi tiếng của Thanh Hoá hoặc ở địa phương em.</p>
+                <textarea id="tu_luan_9" class="w-full mt-2 p-3 border-2 border-blue-200 rounded h-32 focus:border-blue-500 outline-none" placeholder="Con hãy nhập câu trả lời vào đây..."></textarea>
+            </div>
+
+            <div class="bg-white p-4 rounded-lg border-l-4 border-blue-500 shadow-sm">
+                <p class="font-bold text-lg text-gray-800">Câu 10: Em hãy đề xuất những việc làm cần thiết để giữ gìn, phát huy giá trị Di tích lịch sử Quốc gia Đền Bà Triệu:</p>
+                <textarea id="tu_luan_10" class="w-full mt-2 p-3 border-2 border-blue-200 rounded h-32 focus:border-blue-500 outline-none" placeholder="Con hãy nhập câu trả lời vào đây..."></textarea>
+            </div>
+
+        </div>
+
+        <div class="text-center mt-10">
+            <button onclick="nopBai()" class="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-4 px-12 rounded-full shadow-lg text-xl transition transform hover:scale-105 animate-bounce">
+                🚀 NỘP BÀI THI
+            </button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA77lLi_JCLIdR535KEfg3S0_Ge2EorPMo", 
+            authDomain: "baikiemtracuoiki.firebaseapp.com",
+            projectId: "baikiemtracuoiki",
+            storageBucket: "baikiemtracuoiki.appspot.com",
+            messagingSenderId: "953819948776",
+            appId: "1:953819948776:web:15848507d350f37c35e5d3"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const MON_HOC = "Lịch Sử & Địa Lí";
+        const MA_DE = "Đề 2";
+        const THOI_GIAN_LAM_BAI = 35; // Phút
+
+        // --- ĐỒNG HỒ ĐẾM NGƯỢC ---
+        let thoiGian = THOI_GIAN_LAM_BAI * 60;
+        const dongHoDisplay = document.getElementById('dongHo');
+        let daNopBai = false;
+
+        const demNguoc = setInterval(() => {
+            if (daNopBai) { clearInterval(demNguoc); return; }
+            let phut = Math.floor(thoiGian / 60);
+            let giay = thoiGian % 60;
+            dongHoDisplay.innerText = `${phut < 10 ? '0'+phut : phut}:${giay < 10 ? '0'+giay : giay}`;
+            thoiGian--;
+
+            if (thoiGian < 0) {
+                clearInterval(demNguoc);
+                alert("⏰ ĐÃ HẾT GIỜ! Hệ thống sẽ tự động nộp bài.");
+                if(!document.getElementById('hoTen').value) document.getElementById('hoTen').value = "Hết Giờ (Quên Tên)";
+                window.nopBai(true);
+            }
+        }, 1000);
+
+        // --- HÀM CHẤM ĐIỂM ---
+        function check(cau, dapAnDung, diem) {
+            const luaChon = document.querySelector(`input[name="${cau}"]:checked`);
+            return (luaChon && luaChon.value === dapAnDung) ? diem : 0;
+        }
+
+        window.nopBai = async function(isAuto = false) {
+            if (daNopBai) return;
+            
+            const hoTen = document.getElementById('hoTen').value.trim();
+            const lop = document.getElementById('lop').value.trim();
+
+            if (!isAuto && (!hoTen || !lop)) { alert("Con chưa điền Tên hoặc Lớp!"); return; }
+
+            daNopBai = true;
+            const btn = document.querySelector('button');
+            btn.innerText = "Đang chấm điểm..."; btn.disabled = true; btn.classList.add("bg-gray-500");
+
+            // --- CHẤM ĐIỂM TRẮC NGHIỆM ---
+            let diemTN = 0;
+            diemTN += check("cau1", "B", 1.0); // Sầm Sơn
+            diemTN += check("cau2", "C", 1.0); // Đất phù sa
+            diemTN += check("cau3", "C", 1.0); // Lê Lợi
+            diemTN += check("cau4", "C", 1.0); // Đồng bằng Bắc Bộ
+            diemTN += check("cau5", "B", 1.0); // Đồi bát úp
+            diemTN += check("cau6", "A", 1.0); // Hòa Bình
+            diemTN += check("cau7", "A", 0.5); // Vua Hùng
+            diemTN += check("cau8", "C", 0.5); // Múa rối nước
+            // Tổng trắc nghiệm = 7.0 điểm
+
+            // Lấy nội dung tự luận
+            const baiTuLuan = `
+                [Câu 9]: ${document.getElementById('tu_luan_9').value}
+                [Câu 10]: ${document.getElementById('tu_luan_10').value}
+            `;
+
+            try {
+                await addDoc(collection(db, "Baikiemtracuoiki"), {
+                    ho_ten: hoTen, lop: lop, mon_hoc: MON_HOC, ma_de: MA_DE,
+                    diem_trac_nghiem: diemTN, 
+                    diem_tu_luan: 0, // Thầy sẽ chấm tự luận sau
+                    bai_tu_luan: baiTuLuan,
+                    nop_tu_dong: isAuto ? "Có (Hết giờ)" : "Không",
+                    thoi_gian_nop: new Date().toISOString()
+                });
+                alert(`Nộp bài thành công!\nĐiểm trắc nghiệm máy chấm: ${diemTN}/7.0 điểm.\nPhần tự luận Thầy sẽ chấm sau.`);
+                location.href = "../index.html";
+            } catch (e) {
+                alert("Lỗi nộp bài: " + e.message);
+                btn.disabled = false; daNopBai = false;
+            }
+        }
+    </script>
+</body>
+</html>

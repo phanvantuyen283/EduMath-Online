@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thi Khoa Học Lớp 4 - Đề 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Nunito', sans-serif; }
+        input[type="radio"] { width: 1.2rem; height: 1.2rem; margin-top: 0.15rem; flex-shrink: 0; }
+    </style>
+</head>
+<body class="bg-green-50 py-8 min-h-screen">
+
+    <div class="fixed top-4 right-4 bg-red-600 text-white font-bold py-2 px-4 rounded-full shadow-lg z-50 animate-pulse border-2 border-white">
+        ⏳ <span id="dongHo">35:00</span>
+    </div>
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-8 rounded-lg shadow-xl relative z-10">
+        <div class="text-center mb-8 border-b-4 border-green-500 pb-4">
+            <h1 class="text-2xl md:text-3xl font-black text-green-700 uppercase">KIỂM TRA CUỐI HỌC KÌ 1</h1>
+            <p class="text-xl text-gray-600 font-bold mt-2">Môn: KHOA HỌC (Đề số 2)</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 bg-green-50 p-4 rounded-lg border border-green-200">
+            <div>
+                <label class="block font-bold text-gray-700">Họ và tên học sinh:</label>
+                <input type="text" id="hoTen" class="w-full mt-1 p-2 border rounded focus:border-green-500 outline-none font-bold" placeholder="Nhập họ tên đầy đủ...">
+            </div>
+            <div>
+                <label class="block font-bold text-gray-700">Lớp:</label>
+                <input type="text" id="lop" class="w-full mt-1 p-2 border rounded focus:border-green-500 outline-none font-bold text-center" placeholder="Ví dụ: 4A">
+            </div>
+        </div>
+
+        <div class="space-y-6">
+            
+            <div class="bg-green-100 p-3 rounded font-bold text-green-800 uppercase">I. Phần Trắc Nghiệm</div>
+
+            <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-green-500">
+                <p class="font-bold text-lg text-gray-800">Câu 1 (0,5đ): Trong tự nhiên, nước từ mặt đất bốc hơi lên cao, gặp lạnh ngưng tụ thành những giọt nước nhỏ li ti tạo thành vật gì?</p>
+                <div class="mt-3 grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau1" value="A"> <span>A. Những hạt mưa.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau1" value="B"> <span>B. Những đám mây.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau1" value="C"> <span>C. Những dòng suối.</span></label>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-green-500">
+                <p class="font-bold text-lg text-gray-800">Câu 2 (1đ): Động vật cần lấy những gì từ môi trường để duy trì sự sống?</p>
+                <div class="mt-3 space-y-2">
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau2" value="A"> <span>A. Khí ô-xi, thức ăn, nước uống.</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau2" value="B"> <span>B. Khí các-bô-níc, thức ăn, nước uống.</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau2" value="C"> <span>C. Ánh sáng, nhiệt độ, chất khoáng.</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau2" value="D"> <span>D. Khí ô-xi, ánh sáng, đất.</span></label>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-green-500">
+                <p class="font-bold text-lg text-gray-800">Câu 3 (0,5đ): Thành phần nào trong không khí là quan trọng nhất đối với sự thở?</p>
+                <div class="mt-3 grid grid-cols-2 gap-3">
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau3" value="A"> <span>A. Khí ni-tơ.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau3" value="B"> <span>B. Khí các-bô-níc.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau3" value="C"> <span>C. Khí ô-xi.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau3" value="D"> <span>D. Hơi nước.</span></label>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-green-500">
+                <p class="font-bold text-lg text-gray-800">Câu 4 (1đ): Để vật nuôi khỏe mạnh và mau lớn, chúng ta cần chú ý điều gì?</p>
+                <div class="mt-3 space-y-2">
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau4" value="A"> <span>A. Cung cấp đầy đủ thức ăn, nước uống.</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau4" value="B"> <span>B. Giữ ấm khi rét, thoáng mát khi nóng.</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau4" value="C"> <span>C. Tiêm phòng và vệ sinh chuồng trại.</span></label>
+                    <label class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau4" value="D"> <span>D. Tất cả các ý trên đều đúng.</span></label>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-green-500">
+                <p class="font-bold text-lg text-gray-800">Câu 5 (0,5đ): Vật nào sau đây là vật tự phát sáng?</p>
+                <div class="mt-3 grid grid-cols-2 gap-3">
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau5" value="A"> <span>A. Mặt Trăng.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau5" value="B"> <span>B. Tờ giấy trắng.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau5" value="C"> <span>C. Mặt Trời.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau5" value="D"> <span>D. Tấm gương.</span></label>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-green-500">
+                <p class="font-bold text-lg text-gray-800">Câu 6 (0,5đ): Khi đi ra xa nguồn âm thì âm thanh nghe được sẽ như thế nào?</p>
+                <div class="mt-3 grid grid-cols-2 gap-3">
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau6" value="A"> <span>A. To hơn.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau6" value="B"> <span>B. Nhỏ đi.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau6" value="C"> <span>C. Không đổi.</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded"><input type="radio" name="cau6" value="D"> <span>D. Trầm hơn.</span></label>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-green-500">
+                <p class="font-bold text-lg text-gray-800">Câu 7 (1đ): Vì sao các dụng cụ đun nấu (xoong, nồi...) thường làm bằng kim loại?</p>
+                <input type="text" id="cau7_tuluan" class="w-full mt-2 p-2 border rounded" placeholder="Con hãy nhập câu trả lời...">
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-green-500">
+                <p class="font-bold text-lg text-gray-800">Câu 8 (1đ): Hoàn thành sơ đồ trao đổi khí khi Quang hợp:</p>
+                <div class="mt-2 space-y-2">
+                    <div>
+                        <span class="font-bold">Lá cây lấy vào khí:</span>
+                        <input type="text" id="cau8a" class="border p-1 rounded w-48" placeholder="...">
+                    </div>
+                    <div>
+                        <span class="font-bold">Lá cây thải ra khí:</span>
+                        <input type="text" id="cau8b" class="border p-1 rounded w-48" placeholder="...">
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-yellow-100 p-3 rounded font-bold text-yellow-800 uppercase mt-8">II. Phần Tự Luận (4 điểm)</div>
+
+            <div class="bg-white p-4 rounded-lg border-l-4 border-yellow-500 shadow-sm">
+                <p class="font-bold text-lg text-gray-800">Câu 9 (2đ): Nêu 2 việc em đã làm để sử dụng nước tiết kiệm tại gia đình hoặc trường học:</p>
+                <textarea id="tu_luan_9" class="w-full mt-2 p-3 border-2 border-yellow-200 rounded h-24 focus:border-yellow-500 outline-none" placeholder="Con hãy nhập câu trả lời..."></textarea>
+            </div>
+
+            <div class="bg-white p-4 rounded-lg border-l-4 border-yellow-500 shadow-sm">
+                <p class="font-bold text-lg text-gray-800">Câu 10 (2đ): Khi nhận được tin dự báo thời tiết sắp có bão lớn, gia đình em cần làm gì để phòng tránh thiệt hại?</p>
+                <textarea id="tu_luan_10" class="w-full mt-2 p-3 border-2 border-yellow-200 rounded h-24 focus:border-yellow-500 outline-none" placeholder="Con hãy nhập câu trả lời..."></textarea>
+            </div>
+
+        </div>
+
+        <div class="text-center mt-10">
+            <button onclick="nopBai()" class="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-12 rounded-full shadow-lg text-xl transition transform hover:scale-105 animate-bounce">
+                🚀 NỘP BÀI THI
+            </button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA77lLi_JCLIdR535KEfg3S0_Ge2EorPMo", 
+            authDomain: "baikiemtracuoiki.firebaseapp.com",
+            projectId: "baikiemtracuoiki",
+            storageBucket: "baikiemtracuoiki.appspot.com",
+            messagingSenderId: "953819948776",
+            appId: "1:953819948776:web:15848507d350f37c35e5d3"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const MON

@@ -3,16 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đề Toán Số 1 - EduMath</title>
+    <title>Đề Toán Số 1 - Có Lời Giải</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Nunito', sans-serif; }
-        .question-box { background-color: #F9FAFB; border-left: 4px solid #3B82F6; padding: 1rem; margin-bottom: 1.5rem; border-radius: 0.5rem; }
+        .question-box { background-color: #F9FAFB; border-left: 4px solid #3B82F6; padding: 1rem; margin-bottom: 1.5rem; border-radius: 0.5rem; transition: all 0.3s; }
         .question-title { font-weight: 700; color: #1F2937; margin-bottom: 0.5rem; display: block; }
         input[type="radio"] { width: 1.2rem; height: 1.2rem; margin-right: 0.5rem; vertical-align: middle; }
         input[type="text"], input[type="number"] { border: 1px solid #D1D5DB; padding: 0.5rem; border-radius: 0.25rem; width: 100%; max-width: 200px; font-weight: bold; color: #1E40AF; }
         .section-header { background-color: #DBEAFE; color: #1E3A8A; font-weight: 900; padding: 0.75rem; border-radius: 0.5rem; margin-bottom: 1rem; text-transform: uppercase; }
+        
+        /* Style cho kết quả */
+        .correct-answer { background-color: #DCFCE7 !important; border-color: #22C55E !important; } /* Xanh lá */
+        .wrong-answer { background-color: #FEE2E2 !important; border-color: #EF4444 !important; } /* Đỏ */
+        .explanation { display: none; margin-top: 10px; padding: 10px; background-color: #FFF7ED; border: 1px dashed #F97316; border-radius: 5px; color: #9A3412; font-size: 0.9rem; }
     </style>
 </head>
 <body class="bg-blue-50 py-8 min-h-screen">
@@ -24,146 +29,131 @@
     <div class="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-xl">
         
         <div class="text-center mb-8 border-b-2 border-blue-200 pb-4">
-            <h1 class="text-3xl font-black text-blue-800 uppercase">BÀI KIỂM TRA CUỐI HỌC KÌ 1</h1>
-            <p class="text-xl text-gray-600 font-bold mt-2">Môn: TOÁN - Lớp 4 (Đề 1)</p>
-            <p class="text-sm text-gray-500 italic">Thời gian làm bài: 35 phút</p>
+            <h1 class="text-3xl font-black text-blue-800 uppercase">KIỂM TRA CUỐI HỌC KÌ 1</h1>
+            <p class="text-xl text-gray-600 font-bold mt-2">Môn: TOÁN - Lớp 4</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 bg-blue-50 p-4 rounded-lg border border-blue-100">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 bg-blue-50 p-4 rounded-lg">
             <div>
-                <label class="block font-bold text-gray-700">Họ và tên học sinh:</label>
-                <input type="text" id="hoTen" class="w-full mt-1 p-2 border rounded focus:border-blue-500 outline-none" placeholder="Nhập họ tên đầy đủ...">
+                <label class="block font-bold text-gray-700">Họ và tên:</label>
+                <input type="text" id="hoTen" class="w-full mt-1 p-2 border rounded outline-none">
             </div>
             <div>
                 <label class="block font-bold text-gray-700">Lớp:</label>
-                <input type="text" id="lop" class="w-full mt-1 p-2 border rounded focus:border-blue-500 outline-none" placeholder="Ví dụ: 4A">
+                <input type="text" id="lop" class="w-full mt-1 p-2 border rounded outline-none">
             </div>
         </div>
 
-        <div class="section-header">I. Trắc Nghiệm (4 điểm)</div>
+        <div class="section-header">I. Trắc Nghiệm</div>
 
-        <div class="question-box">
-            <label class="question-title">Câu 1 (0.5đ): Điền số thích hợp vào chỗ chấm: 2 175, 2 177, 2 179, ...</label>
-            <input type="number" id="cau1" placeholder="Nhập đáp án...">
+        <div class="question-box" id="box_cau1">
+            <label class="question-title">Câu 1: Điền số thích hợp: 2 175, 2 177, 2 179, ...</label>
+            <input type="number" id="cau1" placeholder="...">
+            <div class="explanation" id="giai_cau1">💡 <b>Giải thích:</b> Dãy số lẻ liên tiếp tăng dần 2 đơn vị. 2179 + 2 = 2181.</div>
         </div>
 
-        <div class="question-box">
-            <label class="question-title">Câu 2 (0.5đ): Hình vẽ sau đây có bao nhiêu góc vuông?</label>
-            <img src="../images/toan/de1/Cau2.jpg" alt="Hinh Cau 2" class="my-3 max-h-40 rounded border shadow-sm block">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                <label class="flex items-center cursor-pointer p-2 hover:bg-white rounded"><input type="radio" name="cau2" value="A"> A. 2 góc vuông</label>
-                <label class="flex items-center cursor-pointer p-2 hover:bg-white rounded"><input type="radio" name="cau2" value="B"> B. 3 góc vuông</label>
-                <label class="flex items-center cursor-pointer p-2 hover:bg-white rounded"><input type="radio" name="cau2" value="C"> C. 4 góc vuông</label>
-                <label class="flex items-center cursor-pointer p-2 hover:bg-white rounded"><input type="radio" name="cau2" value="D"> D. 5 góc vuông</label>
+        <div class="question-box" id="box_cau2">
+            <label class="question-title">Câu 2: Hình vẽ có bao nhiêu góc vuông?</label>
+            <img src="../images/toan/de1/Cau2.jpg" class="my-3 max-h-40 rounded border block">
+            <div class="grid grid-cols-2 gap-2" id="group_cau2">
+                <label class="p-2 rounded border cursor-pointer hover:bg-gray-50"><input type="radio" name="cau2" value="A"> A. 2 góc vuông</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-gray-50"><input type="radio" name="cau2" value="B"> B. 3 góc vuông</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-gray-50"><input type="radio" name="cau2" value="C"> C. 4 góc vuông</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-gray-50"><input type="radio" name="cau2" value="D"> D. 5 góc vuông</label>
+            </div>
+            <div class="explanation" id="giai_cau2">💡 <b>Giải thích:</b> Quan sát hình vẽ ta thấy có 2 góc vuông (đánh dấu vuông góc). Đáp án A.</div>
+        </div>
+
+        <div class="question-box" id="box_cau3">
+            <label class="question-title">Câu 3: Trong số 806 217 435, chữ số 1 thuộc hàng nào, lớp nào?</label>
+            <div class="grid gap-2" id="group_cau3">
+                <label class="p-2 rounded border cursor-pointer hover:bg-gray-50"><input type="radio" name="cau3" value="A"> A. Hàng chục, lớp đơn vị</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-gray-50"><input type="radio" name="cau3" value="B"> B. Hàng chục nghìn, lớp nghìn</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-gray-50"><input type="radio" name="cau3" value="C"> C. Hàng chục triệu, lớp triệu</label>
+            </div>
+            <div class="explanation" id="giai_cau3">💡 <b>Giải thích:</b> Số 1 nằm ở vị trí thứ 5 từ phải sang trái -> Hàng chục nghìn, Lớp nghìn.</div>
+        </div>
+
+        <div class="question-box" id="box_cau4">
+            <label class="question-title">Câu 4: Làm tròn số 28 640 275 đến hàng triệu?</label>
+            <div class="grid grid-cols-2 gap-2" id="group_cau4">
+                <label class="p-2 rounded border cursor-pointer hover:bg-gray-50"><input type="radio" name="cau4" value="A"> A. 28 000 000</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-gray-50"><input type="radio" name="cau4" value="B"> B. 29 000 000</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-gray-50"><input type="radio" name="cau4" value="C"> C. 28 600 000</label>
+            </div>
+            <div class="explanation" id="giai_cau4">💡 <b>Giải thích:</b> Chữ số hàng trăm nghìn là 6 (lớn hơn 5) nên ta làm tròn lên. 28 thành 29 triệu.</div>
+        </div>
+
+        <div class="question-box" id="box_cau5">
+            <label class="question-title">Câu 5: Chữ số thích hợp: 5 183 748 > 5 ...83 748 là:</label>
+            <div class="grid grid-cols-4 gap-2" id="group_cau5">
+                <label class="p-2 rounded border cursor-pointer hover:bg-gray-50"><input type="radio" name="cau5" value="A"> A. 0</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-gray-50"><input type="radio" name="cau5" value="B"> B. 1</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-gray-50"><input type="radio" name="cau5" value="C"> C. 2</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-gray-50"><input type="radio" name="cau5" value="D"> D. 3</label>
+            </div>
+            <div class="explanation" id="giai_cau5">💡 <b>Giải thích:</b> Các hàng khác giống nhau. Để 1 > ..., thì ... phải nhỏ hơn 1. Chỉ có số 0 thỏa mãn.</div>
+        </div>
+
+        <div class="question-box" id="box_cau6">
+            <label class="question-title">Câu 6: 2 tạ 5 kg = ...... kg</label>
+            <input type="number" id="cau6" placeholder="...">
+            <div class="explanation" id="giai_cau6">💡 <b>Giải thích:</b> 2 tạ = 200 kg. Vậy 200 + 5 = 205 kg.</div>
+        </div>
+
+        <div class="question-box" id="box_cau7">
+            <label class="question-title">Câu 7: Cạnh MN vuông góc với những cạnh nào?</label>
+            <img src="../images/toan/de1/Cau7.jpg" class="my-3 max-h-40 rounded border block">
+            <div class="grid gap-2" id="group_cau7">
+                <label class="p-2 rounded border cursor-pointer hover:bg-gray-50"><input type="radio" name="cau7" value="A"> A. PH và QK</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-gray-50"><input type="radio" name="cau7" value="B"> B. PQ và HK</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-gray-50"><input type="radio" name="cau7" value="C"> C. Song song PH, QK</label>
+            </div>
+            <div class="explanation" id="giai_cau7">💡 <b>Giải thích:</b> Trong hình chữ nhật, cạnh chiều dài vuông góc với cạnh chiều rộng. MN vuông góc với cạnh đứng là PH và QK.</div>
+        </div>
+
+        <div class="question-box" id="box_cau8">
+            <label class="question-title">Câu 8: Giá trị biểu thức a x b – c (a=4219, b=6, c=1875):</label>
+            <div class="grid grid-cols-2 gap-2" id="group_cau8">
+                <label class="p-2 rounded border cursor-pointer hover:bg-gray-50"><input type="radio" name="cau8" value="A"> A. 25 314</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-gray-50"><input type="radio" name="cau8" value="B"> B. 27 189</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-gray-50"><input type="radio" name="cau8" value="C"> C. 23 439</label>
+            </div>
+            <div class="explanation" id="giai_cau8">💡 <b>Giải thích:</b> 4219 x 6 = 25314. Sau đó 25314 - 1875 = 23439.</div>
+        </div>
+
+        <div class="section-header border-l-4 border-orange-500 bg-orange-50 text-orange-800">II. Tự Luận (Chỉ điền đáp số)</div>
+
+        <div class="question-box bg-orange-50">
+            <label class="question-title">Câu 9: Tính giá trị:</label>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>a) 25 706 + 92 817 = <input type="number" id="cau9a"> <p class="explanation" id="giai_cau9a">ĐS: 118523</p></div>
+                <div>b) 86 231 – 19 302 = <input type="number" id="cau9b"> <p class="explanation" id="giai_cau9b">ĐS: 66929</p></div>
+                <div>c) 2845 x 6 = <input type="number" id="cau9c"> <p class="explanation" id="giai_cau9c">ĐS: 17070</p></div>
+                <div>d) 2148 : 3 = <input type="number" id="cau9d"> <p class="explanation" id="giai_cau9d">ĐS: 716</p></div>
             </div>
         </div>
 
-        <div class="question-box">
-            <label class="question-title">Câu 3 (0.5đ): Trong số 806 217 435, chữ số 1 thuộc hàng nào, lớp nào?</label>
-            <div class="grid grid-cols-1 gap-2">
-                <label class="flex items-center cursor-pointer p-2 hover:bg-white rounded"><input type="radio" name="cau3" value="A"> A. Hàng chục, lớp đơn vị</label>
-                <label class="flex items-center cursor-pointer p-2 hover:bg-white rounded"><input type="radio" name="cau3" value="B"> B. Hàng chục nghìn, lớp nghìn</label>
-                <label class="flex items-center cursor-pointer p-2 hover:bg-white rounded"><input type="radio" name="cau3" value="C"> C. Hàng chục triệu, lớp triệu</label>
-                <label class="flex items-center cursor-pointer p-2 hover:bg-white rounded"><input type="radio" name="cau3" value="D"> D. Hàng triệu, lớp triệu</label>
-            </div>
+        <div class="question-box bg-orange-50">
+            <label class="question-title">Câu 10: Tính thuận tiện: 4 197 + 2500 + 3 403 = ?</label>
+            <input type="number" id="cau10">
+            <div class="explanation" id="giai_cau10">💡 <b>HD:</b> (4197 + 3403) + 2500 = 7600 + 2500 = 10100.</div>
         </div>
 
-        <div class="question-box">
-            <label class="question-title">Câu 4 (0.5đ): Làm tròn số 28 640 275 đến hàng triệu ta được số nào?</label>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                <label class="flex items-center cursor-pointer p-2 hover:bg-white rounded"><input type="radio" name="cau4" value="A"> A. 28 000 000</label>
-                <label class="flex items-center cursor-pointer p-2 hover:bg-white rounded"><input type="radio" name="cau4" value="B"> B. 29 000 000</label>
-                <label class="flex items-center cursor-pointer p-2 hover:bg-white rounded"><input type="radio" name="cau4" value="C"> C. 28 600 000</label>
-                <label class="flex items-center cursor-pointer p-2 hover:bg-white rounded"><input type="radio" name="cau4" value="D"> D. 30 000 000</label>
-            </div>
+        <div class="question-box bg-orange-50">
+            <label class="question-title">Câu 11: Hình chữ nhật (P=42cm, Dài hơn Rộng 9cm). Tính chiều rộng?</label>
+            <input type="number" id="cau11" style="width: 100px;"> cm
+            <div class="explanation" id="giai_cau11">💡 <b>HD:</b> Nửa chu vi: 42:2=21. Chiều rộng: (21-9):2 = 6 (cm).</div>
         </div>
 
-        <div class="question-box">
-            <label class="question-title">Câu 5 (0.5đ): Chữ số thích hợp điền vào chỗ chấm: 5 183 748 > 5 ...83 748 là:</label>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-2">
-                <label class="flex items-center cursor-pointer p-2 hover:bg-white rounded"><input type="radio" name="cau5" value="A"> A. 0</label>
-                <label class="flex items-center cursor-pointer p-2 hover:bg-white rounded"><input type="radio" name="cau5" value="B"> B. 1</label>
-                <label class="flex items-center cursor-pointer p-2 hover:bg-white rounded"><input type="radio" name="cau5" value="C"> C. 2</label>
-                <label class="flex items-center cursor-pointer p-2 hover:bg-white rounded"><input type="radio" name="cau5" value="D"> D. 3</label>
-            </div>
-        </div>
-
-        <div class="question-box">
-            <label class="question-title">Câu 6 (0.5đ): Điền số thích hợp: 2 tạ 5 kg = ...... kg</label>
-            <input type="number" id="cau6" placeholder="Nhập số...">
-        </div>
-
-        <div class="question-box">
-            <label class="question-title">Câu 7 (0.5đ): Các hình PMNQ, MNKH, PHKQ đều là hình chữ nhật. Hỏi cạnh MN vuông góc với những cạnh nào?</label>
-            <img src="../images/toan/de1/Cau7.jpg" alt="Hinh Cau 7" class="my-3 max-h-40 rounded border shadow-sm block">
-            <div class="grid grid-cols-1 gap-2">
-                <label class="flex items-center cursor-pointer p-2 hover:bg-white rounded"><input type="radio" name="cau7" value="A"> A. MN vuông góc với PH và QK</label>
-                <label class="flex items-center cursor-pointer p-2 hover:bg-white rounded"><input type="radio" name="cau7" value="B"> B. MN vuông góc với PQ và HK</label>
-                <label class="flex items-center cursor-pointer p-2 hover:bg-white rounded"><input type="radio" name="cau7" value="C"> C. MN song song với PH và QK</label>
-            </div>
-        </div>
-
-        <div class="question-box">
-            <label class="question-title">Câu 8 (0.5đ): Giá trị biểu thức a x b – c với a = 4 219, b = 6, c = 1875 là:</label>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
-                <label class="flex items-center cursor-pointer p-2 hover:bg-white rounded"><input type="radio" name="cau8" value="A"> A. 25 314</label>
-                <label class="flex items-center cursor-pointer p-2 hover:bg-white rounded"><input type="radio" name="cau8" value="B"> B. 27 189</label>
-                <label class="flex items-center cursor-pointer p-2 hover:bg-white rounded"><input type="radio" name="cau8" value="C"> C. 23 439</label>
-                <label class="flex items-center cursor-pointer p-2 hover:bg-white rounded"><input type="radio" name="cau8" value="D"> D. 23 449</label>
-            </div>
-        </div>
-
-        <div class="section-header border-l-4 border-orange-500 bg-orange-50 text-orange-800">II. Tự Luận (5.5 điểm)</div>
-        <p class="mb-4 text-sm text-gray-500 italic">* Học sinh làm ra nháp và chỉ điền ĐÁP SỐ cuối cùng vào ô trống.</p>
-
-        <div class="question-box border-orange-200 bg-orange-50">
-            <label class="question-title">Câu 9 (2.0đ): Đặt tính rồi tính (Nhập kết quả):</label>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-                <div>
-                    <span class="text-sm">a) 25 706 + 92 817 =</span>
-                    <input type="number" id="cau9a">
-                </div>
-                <div>
-                    <span class="text-sm">b) 86 231 – 19 302 =</span>
-                    <input type="number" id="cau9b">
-                </div>
-                <div>
-                    <span class="text-sm">c) 2845 x 6 =</span>
-                    <input type="number" id="cau9c">
-                </div>
-                <div>
-                    <span class="text-sm">d) 2148 : 3 =</span>
-                    <input type="number" id="cau9d">
-                </div>
-            </div>
-        </div>
-
-        <div class="question-box border-orange-200 bg-orange-50">
-            <label class="question-title">Câu 10 (0.5đ): Tính bằng cách thuận tiện:</label>
-            <p class="mb-2">4 197 + 2500 + 3 403 = ?</p>
-            <input type="number" id="cau10" placeholder="Nhập kết quả...">
-        </div>
-
-        <div class="question-box border-orange-200 bg-orange-50">
-            <label class="question-title">Câu 11 (1.0đ): Một hình chữ nhật có chu vi là 42 cm, chiều dài hơn chiều rộng 9 cm. Tính chiều rộng?</label>
-            <div class="flex items-center gap-2">
-                <span>Đáp số:</span>
-                <input type="number" id="cau11" style="width: 100px;">
-                <span>cm</span>
-            </div>
-        </div>
-
-        <div class="question-box border-orange-200 bg-orange-50">
-            <label class="question-title">Câu 12 (2.0đ): Một thùng nước có 180 lít. Lần đầu lấy 1/3 số nước. Lần hai lấy nhiều hơn lần đầu 20 lít. Hỏi trong thùng còn lại bao nhiêu lít?</label>
-            <div class="flex items-center gap-2">
-                <span>Đáp số:</span>
-                <input type="number" id="cau12" style="width: 100px;">
-                <span>lít</span>
-            </div>
+        <div class="question-box bg-orange-50">
+            <label class="question-title">Câu 12: Thùng 180L. Lần 1 lấy 1/3. Lần 2 lấy hơn lần đầu 20L. Còn lại?</label>
+            <input type="number" id="cau12" style="width: 100px;"> lít
+            <div class="explanation" id="giai_cau12">💡 <b>HD:</b> Lần 1: 60L. Lần 2: 80L. Tổng lấy: 140L. Còn lại: 180-140 = 40 (lít).</div>
         </div>
 
         <div class="text-center mt-10">
-            <button onclick="nopBai()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-10 rounded-full shadow-lg text-xl transition transform hover:scale-105">
+            <button onclick="nopBai()" id="btnNopBai" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-10 rounded-full shadow-lg text-xl transition transform hover:scale-105">
                 NỘP BÀI THI
             </button>
         </div>
@@ -173,7 +163,6 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-        // Cấu hình Firebase (Giữ nguyên như cũ)
         const firebaseConfig = {
             apiKey: "AIzaSyA77lLi_JCLIdR535KEfg3S0_Ge2EorPMo", 
             authDomain: "baikiemtracuoiki.firebaseapp.com",
@@ -182,96 +171,105 @@
             messagingSenderId: "953819948776",
             appId: "1:953819948776:web:15848507d350f37c35e5d3"
         };
-
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        const MON_HOC = "Toán";
-        const MA_DE = "Đề 01";
-        
-        // Đồng hồ đếm ngược 35 phút
-        let thoiGian = 35 * 60;
-        let daNopBai = false;
-        const dongHoDisplay = document.getElementById('dongHo');
-        
-        const demNguoc = setInterval(() => {
-            if (daNopBai) return;
-            let p = Math.floor(thoiGian / 60);
-            let g = thoiGian % 60;
-            dongHoDisplay.innerText = `${p<10?'0'+p:p}:${g<10?'0'+g:g}`;
-            thoiGian--;
-            if (thoiGian < 0) {
-                clearInterval(demNguoc);
-                alert("⏰ HẾT GIỜ! Hệ thống đang tự động nộp bài.");
-                nopBai(true);
+        // ĐÁP ÁN VÀ THANG ĐIỂM
+        const KEY = {
+            radio: {
+                cau2: "A", cau3: "B", cau4: "B", cau5: "A", cau7: "A", cau8: "C"
+            },
+            input: {
+                cau1: 2181, cau6: 205, 
+                cau9a: 118523, cau9b: 66929, cau9c: 17070, cau9d: 716,
+                cau10: 10100, cau11: 6, cau12: 40
             }
+        };
+
+        let daNop = false;
+        let time = 35 * 60;
+        const dongHo = document.getElementById('dongHo');
+        const timer = setInterval(() => {
+            if(daNop) { clearInterval(timer); return; }
+            let m=Math.floor(time/60), s=time%60;
+            dongHo.innerText = `${m<10?'0'+m:m}:${s<10?'0'+s:s}`;
+            time--;
+            if(time<0) { nopBai(true); }
         }, 1000);
 
-        // Hàm chấm điểm trắc nghiệm (Radio)
-        function checkRadio(cau, dapAn) {
-            const el = document.querySelector(`input[name="${cau}"]:checked`);
-            return (el && el.value === dapAn) ? 0.5 : 0;
-        }
+        window.nopBai = async function(auto=false) {
+            if(daNop) return;
+            const ht = document.getElementById('hoTen').value;
+            const lop = document.getElementById('lop').value;
+            if(!auto && (!ht || !lop)) { alert("Con chưa điền tên/lớp!"); return; }
 
-        // Hàm chấm điểm điền số (Input) - So sánh chính xác
-        function checkInput(id, dapAn, diem) {
-            const el = document.getElementById(id);
-            if (!el) return 0;
-            // Xóa khoảng trắng và dấu phẩy, so sánh số
-            let val = el.value.replace(/,/g, '').replace(/\./g, '').trim(); 
-            return (val == dapAn) ? diem : 0;
-        }
+            daNop = true;
+            document.getElementById('btnNopBai').style.display = 'none';
+            alert("Đang chấm điểm... Con đợi chút nhé!");
 
-        window.nopBai = async function(isAuto = false) {
-            if (daNopBai) return;
+            let diem = 0;
 
-            const hoTen = document.getElementById('hoTen').value.trim();
-            const lop = document.getElementById('lop').value.trim();
-            if (!isAuto && (!hoTen || !lop)) { alert("Con chưa điền Tên hoặc Lớp!"); return; }
+            // 1. CHẤM TRẮC NGHIỆM (RADIO)
+            for (const [id, dapAn] of Object.entries(KEY.radio)) {
+                const grp = document.getElementById(`group_${id}`);
+                const luaChon = document.querySelector(`input[name="${id}"]:checked`);
+                const inputs = document.querySelectorAll(`input[name="${id}"]`);
+                
+                // Khóa input
+                inputs.forEach(i => i.disabled = true);
+                document.getElementById(`giai_${id}`).style.display = 'block';
 
-            daNopBai = true;
-            const btn = document.querySelector('button');
-            btn.innerText = "Đang chấm điểm..."; btn.disabled = true; btn.classList.add("bg-gray-500");
+                if (luaChon && luaChon.value === dapAn) {
+                    diem += 0.5;
+                    luaChon.parentElement.classList.add('correct-answer');
+                } else {
+                    if(luaChon) luaChon.parentElement.classList.add('wrong-answer');
+                    // Tô màu đáp án đúng
+                    const dung = document.querySelector(`input[name="${id}"][value="${dapAn}"]`);
+                    if(dung) dung.parentElement.classList.add('correct-answer', 'ring-2', 'ring-green-500');
+                }
+            }
 
-            // --- CHẤM ĐIỂM ---
-            let diemTN = 0; // Trắc nghiệm (4đ)
-            diemTN += checkInput("cau1", "2181", 0.5);
-            diemTN += checkRadio("cau2", "A");
-            diemTN += checkRadio("cau3", "B");
-            diemTN += checkRadio("cau4", "B");
-            diemTN += checkRadio("cau5", "A");
-            diemTN += checkInput("cau6", "205", 0.5);
-            diemTN += checkRadio("cau7", "A");
-            diemTN += checkRadio("cau8", "C");
+            // 2. CHẤM TỰ LUẬN/ĐIỀN SỐ (INPUT)
+            for (const [id, dapAn] of Object.entries(KEY.input)) {
+                const el = document.getElementById(id);
+                if(!el) continue;
+                el.disabled = true;
+                
+                // Hiển thị giải thích
+                const giai = document.getElementById(`giai_${id}`);
+                if(giai) giai.style.display = 'block';
 
-            let diemTL = 0; // Tự luận máy chấm (5.5đ)
-            diemTL += checkInput("cau9a", "118523", 0.5);
-            diemTL += checkInput("cau9b", "66929", 0.5);
-            diemTL += checkInput("cau9c", "17070", 0.5);
-            diemTL += checkInput("cau9d", "716", 0.5);
-            
-            diemTL += checkInput("cau10", "10100", 0.5);
-            diemTL += checkInput("cau11", "6", 1.0);
-            diemTL += checkInput("cau12", "40", 2.0);
+                let val = parseInt(el.value.replace(/\D/g,'')) || 0;
+                let diemCong = (id.includes('cau9') || id==='cau10' || id==='cau1' || id==='cau6') ? 0.5 : (id==='cau11'?1.0 : 2.0);
 
+                if (val === dapAn) {
+                    diem += diemCong;
+                    el.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                } else {
+                    el.classList.add('bg-red-100', 'border-red-500', 'text-red-700');
+                    // Ghi đáp án đúng vào bên cạnh nếu sai
+                    if(!giai) { // Nếu chưa có box giải thích riêng thì thêm text
+                        let span = document.createElement('span');
+                        span.className = "text-red-600 font-bold ml-2 text-sm";
+                        span.innerText = `(Đúng: ${dapAn})`;
+                        el.parentNode.appendChild(span);
+                    }
+                }
+            }
+
+            // GỬI FIREBASE
             try {
                 await addDoc(collection(db, "Baikiemtracuoiki"), {
-                    ho_ten: hoTen || "Vô danh",
-                    lop: lop || "?",
-                    mon_hoc: MON_HOC,
-                    ma_de: MA_DE,
-                    diem_trac_nghiem: diemTN,
-                    diem_tu_luan: diemTL, // Lưu điểm tự luận máy chấm vào đây
-                    tong_diem: diemTN + diemTL,
-                    thoi_gian_nop: new Date().toISOString(),
-                    nop_tu_dong: isAuto ? "Có" : "Không"
+                    ho_ten: ht||"Ẩn danh", lop: lop||"?", mon_hoc: "Toán",
+                    diem_trac_nghiem: diem, diem_tu_luan: 0, // Gộp hết vào trắc nghiệm cho gọn
+                    tong_diem: diem,
+                    thoi_gian: new Date().toISOString()
                 });
-                
-                alert(`Nộp bài thành công!\nTổng điểm của con: ${diemTN + diemTL} / 9.5 điểm.`);
-                btn.style.display = 'none';
-            } catch (e) {
-                alert("Lỗi: " + e.message);
-                btn.disabled = false; daNopBai = false;
+                alert(`Đã nộp bài! Điểm của con: ${diem} / 9.5`);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } catch(e) {
+                alert("Lỗi nộp: " + e.message);
             }
         }
     </script>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đề Toán Số 1 - Có Lời Giải Chi Tiết</title>
+    <title>Đề Toán Số 1 - Thang điểm 10</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
@@ -128,7 +128,7 @@
             <div class="explanation" id="giai_cau8">💡 <b>Đáp án:</b> C. 23 439<br><i>(4219 x 6 = 25314; 25314 - 1875 = 23439).</i></div>
         </div>
 
-        <div class="section-header border-l-4 border-orange-500 bg-orange-50 text-orange-800">II. Tự Luận (5.5 điểm)</div>
+        <div class="section-header border-l-4 border-orange-500 bg-orange-50 text-orange-800">II. Tự Luận (6 điểm)</div>
         <p class="mb-4 text-sm text-gray-500 italic">* Con hãy trình bày lời giải vào ô trống bên dưới.</p>
 
         <div class="question-box bg-orange-50">
@@ -158,7 +158,7 @@
         </div>
 
         <div class="question-box bg-orange-50">
-            <label class="question-title">Câu 10 (0.5đ): Tính bằng cách thuận tiện: 4 197 + 2500 + 3 403</label>
+            <label class="question-title">Câu 10 (1đ): Tính bằng cách thuận tiện: 4 197 + 2500 + 3 403</label>
             <textarea id="cau10" placeholder="Trình bày các bước tính nhanh..."></textarea>
             <div class="explanation" id="giai_cau10">
                 📝 <b>Hướng dẫn giải chi tiết:</b><br>
@@ -287,13 +287,12 @@
                 const el = document.getElementById(id);
                 if(el) {
                     el.disabled = true; 
-                    el.style.backgroundColor = "#f3f4f6"; // Làm tối màu để biết đã khóa
+                    el.style.backgroundColor = "#f3f4f6"; 
                     const giai = document.getElementById(`giai_${id}`);
-                    if(giai) giai.style.display = 'block'; // Hiện lời giải
+                    if(giai) giai.style.display = 'block'; 
                 }
             });
 
-            // Lấy nội dung học sinh làm để lưu
             const noiDungTuLuan = `
                 [9a] ${document.getElementById('cau9a').value}
                 [9b] ${document.getElementById('cau9b').value}
@@ -312,7 +311,7 @@
                     diem_tu_luan: 0, 
                     bai_tu_luan: noiDungTuLuan,
                     tong_diem: diemTN,
-                    ghi_chu: "Chờ chấm Tự luận",
+                    ghi_chu: "Chờ chấm Tự luận (Thang 10)",
                     thoi_gian_nop: new Date().toISOString(),
                     nop_tu_dong: auto ? "Có" : "Không"
                 });

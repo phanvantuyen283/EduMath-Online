@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sổ Điểm Tổng Hợp - GV Tuyên</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Nunito', sans-serif; }
+        /* Kẻ bảng đẹp */
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #e5e7eb; padding: 10px; text-align: center; }
+        th { background-color: #f3f4f6; color: #1f2937; font-weight: 800; text-transform: uppercase; font-size: 0.85rem; }
+        tr:nth-child(even) { background-color: #f9fafb; }
+        tr:hover { background-color: #eff6ff; }
+        .missing { color: #d1d5db; font-style: italic; font-size: 0.8rem; }
+        .score { font-weight: bold; color: #1e40af; }
+    </style>
+</head>
+<body class="bg-gray-100 p-6 min-h-screen">
+
+    <div class="max-w-7xl mx-auto bg-white p-8 rounded-xl shadow-xl">
+        
+        <div class="flex flex-col md:flex-row justify-between items-center mb-6 border-b pb-4">
+            <div>
+                <h1 class="text-2xl font-black text-blue-800 uppercase">SỔ ĐIỂM TỔNG HỢP</h1>
+                <p class="text-gray-500 text-sm">Hệ thống tự động cập nhật từ bài làm của học sinh</p>
+            </div>
+            <div class="mt-4 md:mt-0 flex gap-2">
+                <button onclick="taiLaiDuLieu()" class="bg-blue-100 text-blue-700 px-4 py-2 rounded hover:bg-blue-200 font-bold transition">
+                    🔄 Cập nhật mới nhất
+                </button>
+                <button onclick="xuatExcel()" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 font-bold shadow transition flex items-center gap-2">
+                    📊 Xuất ra Excel
+                </button>
+            </div>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table id="bangDiem">
+                <thead>
+                    <tr>
+                        <th class="w-10">STT</th>
+                        <th class="text-left w-48">Họ và Tên</th>
+                        <th class="w-16">Lớp</th>
+                        <th class="bg-blue-50">Toán</th>
+                        <th class="bg-red-50">Tiếng Việt<br><span class="text-[10px] font-normal">(TB Đọc+Viết)</span></th>
+                        <th class="bg-purple-50">Công Nghệ</th>
+                        <th class="bg-green-50">Khoa Học</th>
+                        <th class="bg-yellow-50">Sử - Địa</th>
+                        <th>Ghi Chú</th>
+                    </tr>
+                </thead>
+                <tbody id="noiDungBang">
+                    <tr>
+                        <td colspan="9" class="py-10 text-gray-400">Đang tải dữ liệu từ máy chủ...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-4 text-xs text-gray-500 italic text-right">
+            * Điểm Tiếng Việt = (Điểm Đọc + Điểm Viết) / 2
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA77lLi_JCLIdR535KEfg3S0_Ge2EorPMo", 
+            authDomain: "baikiemtracuoiki.firebaseapp.com",
+            projectId: "baikiemtracuoiki",
+            storageBucket: "baikiemtracuoiki.appspot.com",
+            messagingSenderId: "953819948776",
+            appId: "1:953819948776:web:15848507d350f37c35e5d3"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Biến lưu dữ liệu
+        let danhSachHocSinh = {};
+
+        // HÀM TẢI DỮ LIỆU
+        window.taiLaiDuLieu = async function() {
+            const tbody = document.getElementById('noiDungBang');
+            tbody.innerHTML = `<tr><td colspan="9" class="py-10 text-gray-500 animate-pulse">⏳ Đang tổng hợp dữ liệu toàn trường...</td></tr>`;
+            
+            danhSachHocSinh = {}; // Reset
+
+            try {
+                const querySnapshot = await getDocs(collection(db, "Baikiemtracuoiki"));
+                
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    const key = data.ho_ten.trim().toLowerCase(); // Dùng tên thường để gom nhóm
+                    const tenChuan = data.ho_ten.trim(); // Tên hiển thị
+
+                    // Nếu chưa có học sinh này trong danh sách thì tạo mới
+                    if (!danhSachHocSinh[key]) {
+                        danhSachHocSinh[key] = {
+                            ten: tenChuan,
+                            lop: data.lop,
+                            toan: null,
+                            tieng_viet: null,
+                            cong_nghe: null,
+                            khoa_hoc: null,
+                            su_dia: null,
+                            ghi_chu: [] // Lưu các lưu ý nếu có
+                        };
+                    }
+
+                    // XỬ LÝ ĐIỂM TỪNG MÔN
+                    if (data.mon_hoc === "Toán") {
+                        let tong = (parseFloat(data.diem_trac_nghiem)||0) + (parseFloat(data.diem_tu_luan)||0);
+                        danhSachHocSinh[key].toan = tong;
+                    }
+                    else if (data.mon_hoc === "Công Nghệ") {
+                        let tong = (parseFloat(data.diem_trac_nghiem)||0) + (parseFloat(data.diem_tu_luan)||0);
+                        danhSachHocSinh[key].cong_nghe = tong;
+                    }
+                    else if (data.mon_hoc === "Tiếng Việt") {
+                        // Tính điểm trung bình môn TV
+                        let tn = parseFloat(data.diem_trac_nghiem) || 0;
+                        let tl1 = parseFloat(data.diem_tu_luan) || 0;
+                        let doc2 = parseFloat(data.diem_doc_thanh_tieng) || 0;
+                        let viet3 = parseFloat(data.diem_viet) || 0;
+
+                        let diemDoc = tn + tl1 + doc2;
+                        if (diemDoc > 10) diemDoc = 10;
+                        
+                        let diemViet = viet3;
+                        
+                        // Nếu chưa chấm điểm viết hoặc đọc thì ghi nhận tạm
+                        if (data.trang_thai_doc !== "Đã chấm" && doc2 === 0) danhSachHocSinh[key].ghi_chu.push("Chưa chấm Đọc");
+                        if (data.trang_thai_viet !== "Đã chấm" && viet3 === 0) danhSachHocSinh[key].ghi_chu.push("Chưa chấm Viết");
+
+                        let tb = (diemDoc + diemViet) / 2;
+                        danhSachHocSinh[key].tieng_viet = tb;
+                    }
+                    // Thêm các môn khác nếu có...
+                });
+
+                hienThiBang();
+
+            } catch (e) {
+                console.error(e);
+                tbody.innerHTML = `<tr><td colspan="9" class="text-red-500">Lỗi tải dữ liệu: ${e.message}</td></tr>`;
+            }
+        }
+
+        // HÀM HIỂN THỊ RA HTML
+        function hienThiBang() {
+            const tbody = document.getElementById('noiDungBang');
+            tbody.innerHTML = "";
+
+            // Chuyển object thành array và sắp xếp theo tên (Alpha A-Z)
+            let arr = Object.values(danhSachHocSinh);
+            arr.sort((a, b) => a.ten.localeCompare(b.ten));
+
+            if (arr.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="9" class="py-4">Chưa có bài thi nào được nộp.</td></tr>`;
+                return;
+            }
+
+            let stt = 1;
+            arr.forEach(hs => {
+                let row = `
+                    <tr>
+                        <td>${stt++}</td>
+                        <td class="text-left font-bold text-gray-700">${hs.ten}</td>
+                        <td>${hs.lop}</td>
+                        <td class="${hs.toan !== null ? 'score bg-blue-50' : 'missing'}">${hs.toan !== null ? hs.toan : '-'}</td>
+                        <td class="${hs.tieng_viet !== null ? 'score bg-red-50' : 'missing'}">${hs.tieng_viet !== null ? hs.tieng_viet : '-'}</td>
+                        <td class="${hs.cong_nghe !== null ? 'score bg-purple-50' : 'missing'}">${hs.cong_nghe !== null ? hs.cong_nghe : '-'}</td>
+                        <td class="${hs.khoa_hoc !== null ? 'score' : 'missing'}">${hs.khoa_hoc !== null ? hs.khoa_hoc : '-'}</td>
+                        <td class="${hs.su_dia !== null ? 'score' : 'missing'}">${hs.su_dia !== null ? hs.su_dia : '-'}</td>
+                        <td class="text-xs text-red-500">${hs.ghi_chu.join(', ')}</td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        }
+
+        // HÀM XUẤT EXCEL (Đơn giản)
+        window.xuatExcel = function() {
+            let table = document.getElementById("bangDiem");
+            let html = table.outerHTML;
+            let url = 'data:application/vnd.ms-excel,' + encodeURIComponent(html);
+            let downloadLink = document.createElement("a");
+            document.body.appendChild(downloadLink);
+            downloadLink.href = url;
+            downloadLink.download = "Bang_Diem_Tong_Hop.xls";
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+        }
+
+        // Tự động tải khi mở trang
+        window.onload = taiLaiDuLieu;
+    </script>
+</body>
+</html>

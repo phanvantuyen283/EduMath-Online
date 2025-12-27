@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phòng Chấm Thi - Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Nunito', sans-serif; }
+        .card { transition: all 0.3s; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+    <div id="login-screen" class="fixed inset-0 bg-blue-900 z-50 flex items-center justify-center">
+        <div class="bg-white p-8 rounded-xl shadow-2xl w-96 text-center">
+            <h2 class="text-2xl font-black text-blue-800 mb-4">🔐 ĐĂNG NHẬP GIÁO VIÊN</h2>
+            <input type="password" id="matKhau" class="w-full border-2 border-gray-300 p-3 rounded mb-4 focus:border-blue-500 outline-none" placeholder="Nhập mật khẩu quản trị...">
+            <button onclick="dangNhap()" class="w-full bg-blue-600 text-white font-bold py-3 rounded hover:bg-blue-700 transition">VÀO CHẤM THI</button>
+            <p class="text-xs text-gray-400 mt-4 italic">Mật khẩu mặc định: 123456</p>
+        </div>
+    </div>
+
+    <div id="main-app" class="hidden p-6 max-w-7xl mx-auto">
+        
+        <div class="flex flex-col md:flex-row justify-between items-center mb-8 bg-white p-4 rounded-xl shadow-md sticky top-0 z-40 border-b-4 border-blue-500">
+            <div>
+                <h1 class="text-2xl font-black text-blue-800 uppercase">🖊️ PHÒNG CHẤM THI</h1>
+                <p class="text-gray-500 text-sm">Kết nối trực tiếp với Sổ Điểm Tổng Hợp</p>
+            </div>
+            
+            <div class="flex gap-3 mt-4 md:mt-0">
+                <select id="filterMon" onchange="renderDanhSach()" class="border p-2 rounded font-bold text-gray-700">
+                    <option value="all">📚 Tất cả môn</option>
+                    <option value="Toán">Toán</option>
+                    <option value="Tiếng Việt">Tiếng Việt</option>
+                    <option value="Khoa Học">Khoa Học</option>
+                    <option value="Sử - Địa">Sử - Địa</option>
+                    <option value="Công Nghệ">Công Nghệ</option>
+                </select>
+                <button onclick="taiDuLieu()" class="bg-blue-100 text-blue-700 px-4 py-2 rounded font-bold hover:bg-blue-200">🔄 Làm mới</button>
+                <a href="So_diem.html" target="_blank" class="bg-green-100 text-green-700 px-4 py-2 rounded font-bold hover:bg-green-200">📊 Mở Sổ Điểm</a>
+            </div>
+        </div>
+
+        <div id="loading" class="text-center py-10 hidden">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <p class="mt-4 text-gray-500">Đang tải bài làm từ kho dữ liệu...</p>
+        </div>
+
+        <div id="danhSachBaiThi" class="grid grid-cols-1 gap-6">
+            </div>
+
+    </div>
+
+    <script type="module">
+        // --- 1. KẾT NỐI FIREBASE (Giống hệt file Sổ Điểm) ---
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA77lLi_JCLIdR535KEfg3S0_Ge2EorPMo", 
+            authDomain: "baikiemtracuoiki.firebaseapp.com",
+            projectId: "baikiemtracuoiki",
+            storageBucket: "baikiemtracuoiki.appspot.com",
+            messagingSenderId: "953819948776",
+            appId: "1:953819948776:web:15848507d350f37c35e5d3"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Biến toàn cục
+        let tatCaBaiThi = [];
+
+        // --- 2. CHỨC NĂNG ĐĂNG NHẬP ---
+        window.dangNhap = function() {
+            const pass = document.getElementById('matKhau').value;
+            if(pass === "123456") { // Mật khẩu đơn giản
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('main-app').classList.remove('hidden');
+                taiDuLieu();
+            } else {
+                alert("Sai mật khẩu rồi Thầy ơi!");
+            }
+        }
+
+        // --- 3. TẢI DỮ LIỆU TỪ FIREBASE ---
+        window.taiDuLieu = async function() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('danhSachBaiThi').innerHTML = '';
+            
+            try {
+                const querySnapshot = await getDocs(collection(db, "Baikiemtracuoiki"));
+                tatCaBaiThi = [];
+                querySnapshot.forEach((doc) => {
+                    tatCaBaiThi.push({ id: doc.id, ...doc.data() });
+                });
+                
+                // Sắp xếp: Mới nhất lên đầu
+                tatCaBaiThi.sort((a, b) => new Date(b.thoi_gian_nop) - new Date(a.thoi_gian_nop));
+                
+                renderDanhSach();
+            } catch (e) {
+                alert("Lỗi tải: " + e.message);
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        // --- 4. HIỂN THỊ DANH SÁCH ---
+        window.renderDanhSach = function() {
+            const container = document.getElementById('danhSachBaiThi');
+            const filter = document.getElementById('filterMon').value;
+            container.innerHTML = '';
+
+            const dsLoc = filter === 'all' ? tatCaBaiThi : tatCaBaiThi.filter(bai => bai.mon_hoc === filter);
+
+            if(dsLoc.length === 0) {
+                container.innerHTML = '<p class="text-center text-gray-400 italic col-span-1">Không tìm thấy bài thi nào.</p>';
+                return;
+            }
+
+            dsLoc.forEach(bai => {
+                // Xử lý hiển thị tùy môn
+                const isTiengViet = bai.mon_hoc === 'Tiếng Việt';
+                const diemTN = bai.diem_trac_nghiem || 0;
+                
+                // Màu sắc trạng thái
+                const daCham = (bai.diem_tu_luan > 0) || (isTiengViet && bai.diem_doc_thanh_tieng > 0);
+                const borderClass = daCham ? 'border-green-500' : 'border-gray-200';
+                const statusBadge = daCham 
+                    ? '<span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-bold">✅ Đã chấm</span>' 
+                    : '<span class="bg-red-100 text-red-700 px-2 py-1 rounded text-xs font-bold">⏳ Chờ chấm</span>';
+
+                let html = `
+                <div class="bg-white rounded-lg shadow border-l-8 ${borderClass} card p-6">
+                    <div class="flex justify-between items-start mb-4 border-b pb-2">
+                        <div>
+                            <h3 class="text-xl font-black text-gray-800">${bai.ho_ten} <span class="text-sm font-normal text-gray-500">(${bai.lop})</span></h3>
+                            <p class="text-sm text-blue-600 font-bold uppercase">${bai.mon_hoc} - ${bai.ma_de || 'Đề ?'}</p>
+                            <p class="text-xs text-gray-400">${new Date(bai.thoi_gian_nop).toLocaleString()}</p>
+                        </div>
+                        <div class="text-right">
+                            ${statusBadge}
+                            <div class="mt-1 text-2xl font-black text-blue-800">${diemTN} <span class="text-sm text-gray-400">đ (TN)</span></div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-gray-50 p-4 rounded border">
+                            <h4 class="font-bold text-gray-700 mb-2 border-b pb-1">📄 Bài Tự Luận / Ghi chú:</h4>
+                            <div class="whitespace-pre-line text-sm text-gray-800 h-40 overflow-y-auto bg-white p-2 rounded border border-gray-200 font-mono">
+                                ${bai.bai_tu_luan || 'Không có nội dung tự luận.'}
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <h4 class="font-bold text-gray-700 mb-2 border-b pb-1">📝 Giáo viên chấm điểm:</h4>
+                            
+                            ${isTiengViet ? `
+                                <div class="flex items-center gap-2">
+                                    <label class="w-1/2 text-sm font-bold text-green-700">Điểm Đọc thành tiếng:</label>
+                                    <input type="number" id="diemDoc_${bai.id}" value="${bai.diem_doc_thanh_tieng || ''}" class="w-1/2 border p-1 rounded font-bold text-green-700" placeholder="0-10">
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <label class="w-1/2 text-sm font-bold text-purple-700">Điểm Viết (TL):</label>
+                                    <input type="number" id="diemViet_${bai.id}" value="${bai.diem_viet || ''}" class="w-1/2 border p-1 rounded font-bold text-purple-700" placeholder="0-10">
+                                </div>
+                            ` : `
+                                <div class="flex items-center gap-2">
+                                    <label class="w-1/2 text-sm font-bold text-orange-700">Điểm Tự luận:</label>
+                                    <input type="number" id="diemTuLuan_${bai.id}" value="${bai.diem_tu_luan || ''}" class="w-1/2 border p-1 rounded font-bold text-orange-700" placeholder="Nhập điểm...">
+                                </div>
+                            `}
+
+                            <div class="mt-2">
+                                <label class="text-xs font-bold text-gray-500">Lời phê / Nhận xét:</label>
+                                <input type="text" id="loiPhe_${bai.id}" value="${bai.nhan_xet || ''}" class="w-full border p-2 rounded text-sm" placeholder="Nhập lời khen ngợi...">
+                            </div>
+
+                            <button onclick="luuDiem('${bai.id}', '${bai.mon_hoc}')" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded shadow transition mt-2">
+                                💾 LƯU ĐIỂM
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                `;
+                container.innerHTML += html;
+            });
+        }
+
+        // --- 5. LƯU ĐIỂM LÊN FIREBASE ---
+        window.luuDiem = async function(docId, monHoc) {
+            const btn = event.target;
+            const originalText = btn.innerText;
+            btn.innerText = "⏳ Đang lưu...";
+            btn.disabled = true;
+
+            try {
+                let dataUpdate = {};
+                const loiPhe = document.getElementById(`loiPhe_${docId}`).value;
+                dataUpdate['nhan_xet'] = loiPhe;
+
+                if (monHoc === 'Tiếng Việt') {
+                    const dDoc = parseFloat(document.getElementById(`diemDoc_${docId}`).value) || 0;
+                    const dViet = parseFloat(document.getElementById(`diemViet_${docId}`).value) || 0;
+                    dataUpdate['diem_doc_thanh_tieng'] = dDoc;
+                    dataUpdate['diem_viet'] = dViet;
+                    dataUpdate['trang_thai_doc'] = "Đã chấm";
+                    dataUpdate['trang_thai_viet'] = "Đã chấm";
+                } else {
+                    const dTuLuan = parseFloat(document.getElementById(`diemTuLuan_${docId}`).value) || 0;
+                    dataUpdate['diem_tu_luan'] = dTuLuan;
+                }
+
+                // Gửi cập nhật lên Firebase
+                const docRef = doc(db, "Baikiemtracuoiki", docId);
+                await updateDoc(docRef, dataUpdate);
+
+                alert("✅ Đã lưu điểm thành công! Sổ điểm đã được cập nhật.");
+                btn.innerText = "✅ ĐÃ LƯU";
+                btn.classList.replace('bg-blue-600', 'bg-green-600');
+                
+                // Cập nhật lại data cục bộ để không cần load lại trang
+                setTimeout(() => { 
+                    btn.disabled = false; 
+                    btn.innerText = originalText; 
+                    btn.classList.replace('bg-green-600', 'bg-blue-600');
+                    // Cập nhật giao diện thẻ bài thành màu xanh (đã chấm)
+                    btn.closest('.card').classList.remove('border-gray-200');
+                    btn.closest('.card').classList.add('border-green-500');
+                }, 2000);
+
+            } catch (e) {
+                alert("Lỗi lưu điểm: " + e.message);
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>

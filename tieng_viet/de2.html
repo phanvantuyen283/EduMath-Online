@@ -196,7 +196,25 @@
         const db = getFirestore(app);
 
         // --- CẤU HÌNH ---
-        const LIST_BAI_DOC = ["Điều kì diệu", "Thi nhạc", "Vẽ màu", "Thanh âm của núi", "Bầu trời trong quả trứng", "Tiếng nói của cỏ cây", "Cánh chim nhỏ"];
+                // --- DANH SÁCH BÀI ĐỌC (FULL SGK TV4 - TẬP 1 - KẾT NỐI TRI THỨC) ---
+        const LIST_BAI_DOC = [
+            // Chủ điểm 1: Mỗi người một vẻ
+            "Điều kì diệu", "Thi nhạc", "Anh em sinh đôi", "Công chúa và người dẫn chuyện",
+            "Thằn lằn xanh và tắc kè", "Nghệ sĩ trống", "Những bức chân dung", "Đò ngang",
+            
+            // Chủ điểm 2: Trải nghiệm và khám phá
+            "Bầu trời trong quả trứng", "Tiếng nói của cỏ cây", "Tập làm văn", "Nhà phát minh 6 tuổi",
+            "Con vẹt xanh", "Chân trời cuối phố", "Gặt chữ trên non", "Trước ngày xa quê",
+            
+            // Chủ điểm 3: Niềm vui sáng tạo
+            "Vẽ màu", "Đồng cỏ nở hoa", "Thanh âm của núi", "Bầu trời mùa thu",
+            "Làm thỏ con bằng giấy", "Bức tường có nhiều phép lạ", "Bét-tô-ven và bản xô-nát Ánh trăng", "Người tìm đường lên các vì sao",
+            
+            // Chủ điểm 4: Chắp cánh ước mơ
+            "Bay cùng ước mơ", "Con trai người làm vườn", "Nếu em có một khu vườn", "Bốn mùa mơ ước",
+            "Ở Vương quốc Tương Lai", "Cánh chim nhỏ", "Nếu chúng mình có phép lạ", "Anh Ba"
+        ];
+
         const KEY = { cau1: "B", cau2: "C", cau3: "A", cau5: "C", cau6: "B" };
         let baiDocDuocChon = "";
         let daHetGio = false; // Biến kiểm tra trạng thái hết giờ

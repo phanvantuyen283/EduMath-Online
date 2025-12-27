@@ -180,7 +180,7 @@
         </div>
     </div>
 
-    <script type="module">
+        <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
@@ -195,23 +195,11 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // --- DANH SÁCH BÀI ĐỌC (Kết nối tri thức) ---
-        const LIST_BAI_DOC = [
-            "Điều kì diệu", 
-            "Thi nhạc", 
-            "Vẽ màu", 
-            "Thanh âm của núi", 
-            "Bầu trời trong quả trứng", 
-            "Tiếng nói của cỏ cây",
-            "Cánh chim nhỏ"
-        ];
-        
-        // --- CẤU HÌNH ĐÁP ÁN ---
-        const KEY = {
-            cau1: "B", cau2: "C", cau3: "A", cau5: "C", cau6: "B"
-        };
-
+        // --- CẤU HÌNH ---
+        const LIST_BAI_DOC = ["Điều kì diệu", "Thi nhạc", "Vẽ màu", "Thanh âm của núi", "Bầu trời trong quả trứng", "Tiếng nói của cỏ cây", "Cánh chim nhỏ"];
+        const KEY = { cau1: "B", cau2: "C", cau3: "A", cau5: "C", cau6: "B" };
         let baiDocDuocChon = "";
+        let daHetGio = false; // Biến kiểm tra trạng thái hết giờ
 
         window.onload = function() {
             // Random bài đọc
@@ -221,41 +209,86 @@
             // Đồng hồ 35 phút
             let time = 35 * 60;
             const display = document.getElementById('dongHo');
+            
             const timer = setInterval(() => {
                 let m = Math.floor(time / 60); let s = time % 60;
                 display.innerText = `${m<10?'0'+m:m}:${s<10?'0'+s:s}`;
                 time--;
-                if(time < 0) { clearInterval(timer); nopPhan1(); }
+                
+                // --- XỬ LÝ KHI HẾT GIỜ ---
+                if (time < 0) {
+                    clearInterval(timer);
+                    daHetGio = true;
+                    khoaBaiLam(); // Khóa câu hỏi ngay lập tức
+
+                    const hoTen = document.getElementById('hoTen').value.trim();
+                    const lop = document.getElementById('lop').value.trim();
+
+                    if (!hoTen || !lop) {
+                        // Nếu chưa có tên: Nhắc nhở
+                        alert("⏰ ĐÃ HẾT GIỜ LÀM BÀI!\n\nHệ thống đã khóa phần bài làm.\nCon hãy ĐIỀN HỌ TÊN và LỚP rồi bấm nút NỘP BÀI ngay nhé!");
+                        
+                        // Cuộn lên ô nhập tên và đổi màu để gây chú ý
+                        const infoBar = document.getElementById('info-bar');
+                        infoBar.scrollIntoView({behavior: "smooth"});
+                        infoBar.classList.replace('bg-green-100', 'bg-red-100');
+                        document.getElementById('hoTen').focus();
+                    } else {
+                        // Nếu đã đủ tên: Nộp luôn
+                        nopPhan1(true); 
+                    }
+                }
             }, 1000);
         };
 
-        window.nopPhan1 = async function() {
+        // Hàm khóa câu hỏi khi hết giờ (Không cho sửa bài nữa)
+        function khoaBaiLam() {
+            // Khóa tất cả radio và input trong phần câu hỏi
+            const quizPart = document.getElementById('quiz-part');
+            const inputs = quizPart.querySelectorAll('input');
+            inputs.forEach(input => input.disabled = true);
+            
+            // Đổi màu thông báo
+            document.getElementById('dongHo').parentElement.classList.replace('bg-white', 'bg-red-600');
+            document.getElementById('dongHo').parentElement.classList.replace('text-red-600', 'text-white');
+            document.getElementById('dongHo').innerText = "HẾT GIỜ";
+        }
+
+        window.nopPhan1 = async function(isAuto = false) {
             const hoTen = document.getElementById('hoTen').value.trim();
             const lop = document.getElementById('lop').value.trim();
-            if (!hoTen || !lop) { alert("Con chưa điền Tên/Lớp!"); return; }
+
+            // Kiểm tra tên (Bắt buộc)
+            if (!hoTen || !lop) { 
+                alert("❗ Con chưa điền Tên hoặc Lớp!\nHãy điền đầy đủ thông tin rồi bấm nộp lại nhé."); 
+                document.getElementById('hoTen').focus();
+                return; 
+            }
 
             const btn = document.querySelector('#submit-area button');
-            btn.innerText = "Đang chấm..."; btn.disabled = true;
+            if(btn) { btn.innerText = "Đang chấm..."; btn.disabled = true; }
 
             let diem = 0;
-            // Chấm điểm & Hiện giải thích
+            // Chấm điểm
             for (const [id, dapAn] of Object.entries(KEY)) {
                 const box = document.getElementById(`box_${id}`);
                 const luaChon = document.querySelector(`input[name="${id}"]:checked`);
                 const inputs = document.querySelectorAll(`input[name="${id}"]`);
                 
+                // Hiện giải thích
                 if(document.getElementById(`giai_${id}`)) document.getElementById(`giai_${id}`).style.display = 'block';
+                // Khóa lại (nếu chưa khóa)
                 inputs.forEach(i => i.disabled = true);
 
                 if (luaChon && luaChon.value === dapAn) {
-                    diem += 0.5; // Điểm mỗi câu Trắc nghiệm
+                    diem += 0.5;
                     luaChon.parentElement.classList.add('correct-answer');
                 } else {
                     if(luaChon) luaChon.parentElement.classList.add('wrong-answer');
                 }
             }
 
-            // Hiện giải thích câu tự luận
+            // Hiện giải thích tự luận
             ['cau4', 'cau7', 'cau8', 'cau9'].forEach(id => {
                 const el = document.getElementById(`${id}_tuluan`);
                 const giai = document.getElementById(`giai_${id}`);
@@ -265,7 +298,6 @@
                 }
             });
 
-            // Tổng hợp nội dung tự luận
             const tuLuan = `
                 [Câu 4] ${document.getElementById('cau4_tuluan').value}
                 [Câu 7] ${document.getElementById('cau7_tuluan').value}
@@ -273,24 +305,27 @@
                 [Câu 9] ${document.getElementById('cau9_tuluan').value}
             `;
 
-            // Gửi dữ liệu
             try {
                 await addDoc(collection(db, "Baikiemtracuoiki"), {
                     ho_ten: hoTen, lop: lop, mon_hoc: "Tiếng Việt", ma_de: "Đề 02",
                     diem_trac_nghiem: diem, diem_tu_luan: 0, bai_tu_luan: tuLuan,
                     bai_doc_random: baiDocDuocChon,
+                    nop_tu_dong: (isAuto || daHetGio) ? "Có (Hết giờ)" : "Không",
                     thoi_gian_nop: new Date().toISOString()
                 });
 
                 document.getElementById('submit-area').style.display = 'none';
                 document.getElementById('result-screen').classList.remove('hidden');
                 document.getElementById('bottom-pane').scrollTop = document.getElementById('bottom-pane').scrollHeight;
-                alert(`Đã nộp bài! Điểm trắc nghiệm: ${diem} điểm.`);
+                
+                if(!isAuto) alert(`Đã nộp bài thành công!\nĐiểm trắc nghiệm: ${diem} điểm.`);
+
             } catch (e) {
-                alert("Lỗi: " + e.message);
-                btn.disabled = false;
+                alert("Lỗi nộp bài: " + e.message);
+                if(btn) { btn.disabled = false; btn.innerText = "NỘP BÀI PHẦN 1"; }
             }
         }
     </script>
+
 </body>
 </html>

@@ -6,60 +6,48 @@
     <title>Tra Cứu Điểm Thi - EduMath</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
-    <style>body { font-family: 'Nunito', sans-serif; }</style>
+    <style>
+        body { font-family: 'Nunito', sans-serif; }
+        .score-box { background: #F0F9FF; border: 2px solid #BAE6FD; border-radius: 12px; padding: 15px; text-align: center; }
+        .score-val { font-size: 2rem; font-weight: 900; color: #0284C7; }
+        .score-label { font-size: 0.8rem; font-weight: 700; color: #64748B; text-transform: uppercase; }
+    </style>
 </head>
-<body class="bg-yellow-50 min-h-screen flex items-center justify-center p-4">
+<body class="bg-blue-50 min-h-screen py-10 px-4">
 
-    <div class="max-w-2xl w-full bg-white rounded-2xl shadow-2xl overflow-hidden">
-        <div class="bg-blue-600 p-6 text-center text-white">
-            <h1 class="text-2xl font-bold uppercase">TRA CỨU KẾT QUẢ THI</h1>
-            <p class="text-sm opacity-90">Xem điểm và nhận xét của Thầy Tuyên</p>
+    <div class="max-w-xl mx-auto">
+        
+        <div class="text-center mb-10">
+            <h1 class="text-3xl font-black text-blue-800 uppercase">🔍 TRA CỨU KẾT QUẢ THI</h1>
+            <p class="text-gray-600 mt-2 font-bold">Hệ thống tra điểm trực tuyến EduMath</p>
         </div>
 
-        <div class="p-8">
-            <div class="mb-6 space-y-4">
+        <div class="bg-white p-6 rounded-2xl shadow-xl mb-8">
+            <div class="space-y-4">
                 <div>
-                    <label class="block text-gray-700 font-bold mb-2">Họ và tên của con:</label>
-                    <input type="text" id="tim_ten" class="w-full border-2 border-blue-200 p-3 rounded-lg focus:outline-none focus:border-blue-500" placeholder="Nhập chính xác họ tên...">
+                    <label class="block text-sm font-bold text-gray-700 mb-1">Họ và tên học sinh:</label>
+                    <input type="text" id="searchName" class="w-full border-2 border-gray-300 p-3 rounded-xl focus:border-blue-500 outline-none font-bold text-gray-700" placeholder="Ví dụ: Phan Văn Tuyên">
                 </div>
                 <div>
-                    <label class="block text-gray-700 font-bold mb-2">Môn thi:</label>
-                    <select id="tim_mon" class="w-full border-2 border-blue-200 p-3 rounded-lg">
-                        <option value="Tiếng Việt">Tiếng Việt</option>
-                        <option value="Toán">Toán</option>
-                        <option value="Công Nghệ">Công Nghệ</option>
-                        <option value="Khoa Học">Khoa Học</option>
-                        <option value="Lịch Sử & Địa Lí">Lịch Sử & Địa Lí</option>
-                    </select>
+                    <label class="block text-sm font-bold text-gray-700 mb-1">Lớp:</label>
+                    <input type="text" id="searchClass" class="w-full border-2 border-gray-300 p-3 rounded-xl focus:border-blue-500 outline-none font-bold text-gray-700" placeholder="Ví dụ: 4A">
                 </div>
-                <button onclick="traCuu()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg shadow transition">
-                    🔍 XEM KẾT QUẢ NGAY
+                <button onclick="traCuu()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl shadow-lg transition transform active:scale-95 text-lg">
+                    🔎 XEM KẾT QUẢ
                 </button>
             </div>
-
-            <div id="ketQua" class="hidden border-t pt-6">
-                <div class="text-center mb-6">
-                    <h2 class="text-xl font-bold text-gray-800">Kết Quả Của: <span id="kq_ten" class="text-blue-600">...</span></h2>
-                    <p class="text-gray-500">Môn: <span id="kq_mon">...</span></p>
-                </div>
-
-                <div id="bang_diem_container">
-                    </div>
-
-                <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded mt-6">
-                    <h3 class="font-bold text-green-800 mb-1">✍️ Lời nhận xét của Thầy:</h3>
-                    <p id="loi_phe" class="text-gray-700 italic">Thầy chưa nhập nhận xét.</p>
-                </div>
-            </div>
-
-            <p id="baoLoi" class="text-red-500 text-center hidden mt-4 font-bold"></p>
+            <p id="errorMsg" class="text-red-500 text-center mt-4 font-bold text-sm hidden"></p>
         </div>
+
+        <div id="resultArea" class="space-y-6"></div>
+
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+        // CẤU HÌNH FIREBASE (Giữ nguyên)
         const firebaseConfig = {
             apiKey: "AIzaSyA77lLi_JCLIdR535KEfg3S0_Ge2EorPMo", 
             authDomain: "baikiemtracuoiki.firebaseapp.com",
@@ -68,122 +56,144 @@
             messagingSenderId: "953819948776",
             appId: "1:953819948776:web:15848507d350f37c35e5d3"
         };
-
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
         window.traCuu = async function() {
-            const ten = document.getElementById('tim_ten').value.trim();
-            const mon = document.getElementById('tim_mon').value;
-            const divKQ = document.getElementById('ketQua');
-            const containerDiem = document.getElementById('bang_diem_container');
-            const pLoi = document.getElementById('baoLoi');
+            const name = document.getElementById('searchName').value.trim().toLowerCase();
+            const lop = document.getElementById('searchClass').value.trim().toLowerCase();
             const btn = document.querySelector('button');
+            const resultArea = document.getElementById('resultArea');
+            const errorMsg = document.getElementById('errorMsg');
 
-            if (!ten) { alert("Con chưa nhập tên!"); return; }
-
-            // Reset giao diện
-            divKQ.classList.add('hidden');
-            pLoi.classList.add('hidden');
-            containerDiem.innerHTML = ""; 
-            btn.innerText = "Đang tìm kiếm..."; btn.disabled = true;
-
-            try {
-                // Tìm bài thi trên Firebase
-                const q = query(
-                    collection(db, "Baikiemtracuoiki"), 
-                    where("ho_ten", "==", ten),
-                    where("mon_hoc", "==", mon)
-                );
-
-                const querySnapshot = await getDocs(q);
-
-                if (querySnapshot.empty) {
-                    pLoi.innerText = `Không tìm thấy bài thi môn ${mon} của bạn "${ten}". Con kiểm tra lại tên nhé!`;
-                    pLoi.classList.remove('hidden');
-                } else {
-                    // Lấy bài thi mới nhất
-                    let data = null;
-                    querySnapshot.forEach((doc) => { data = doc.data(); }); // Lấy bài cuối cùng
-
-                    // Hiển thị thông tin chung
-                    document.getElementById('kq_ten').innerText = data.ho_ten;
-                    document.getElementById('kq_mon').innerText = data.mon_hoc;
-                    document.getElementById('loi_phe').innerText = data.nhan_xet || "Thầy chưa nhập nhận xét.";
-
-                    // --- XỬ LÝ HIỂN THỊ ĐIỂM THEO MÔN ---
-                    
-                    if (mon === "Tiếng Việt") {
-                        // 1. Logic cho Tiếng Việt (Công thức phức tạp)
-                        // Lấy các đầu điểm từ Firebase (nếu chưa chấm thì coi là 0)
-                        let d_tracNghiem = parseFloat(data.diem_trac_nghiem) || 0; // P1 máy chấm
-                        let d_tuLuanP1 = parseFloat(data.diem_tu_luan) || 0;       // P1 Thầy chấm thêm
-                        let d_docThanhTieng = parseFloat(data.diem_doc_thanh_tieng) || 0; // P2 Thầy chấm
-                        let d_viet = parseFloat(data.diem_viet) || 0;              // P3 Thầy chấm
-                        
-                        // Tính toán
-                        let tong_Doc = d_tracNghiem + d_tuLuanP1 + d_docThanhTieng; // Max 10
-                        if (tong_Doc > 10) tong_Doc = 10; // Chặn nếu cộng lố
-                        
-                        let tong_Viet = d_viet; // Max 10
-                        
-                        // Công thức: (Đọc + Viết) / 2
-                        let diemTB = (tong_Doc + tong_Viet) / 2;
-
-                        // Vẽ bảng điểm Tiếng Việt
-                        containerDiem.innerHTML = `
-                            <div class="grid grid-cols-3 gap-4 text-center">
-                                <div class="bg-blue-50 p-3 rounded-lg border border-blue-200">
-                                    <p class="text-xs text-blue-800 uppercase font-bold">Điểm Đọc</p>
-                                    <p class="text-2xl font-bold text-blue-600">${tong_Doc}</p>
-                                    <p class="text-[10px] text-gray-500">(TN+P1+P2)</p>
-                                </div>
-                                <div class="bg-purple-50 p-3 rounded-lg border border-purple-200">
-                                    <p class="text-xs text-purple-800 uppercase font-bold">Điểm Viết</p>
-                                    <p class="text-2xl font-bold text-purple-600">${tong_Viet}</p>
-                                    <p class="text-[10px] text-gray-500">(Bài văn)</p>
-                                </div>
-                                <div class="bg-yellow-100 p-3 rounded-lg border-2 border-yellow-400">
-                                    <p class="text-xs text-yellow-800 uppercase font-bold">Trung Bình</p>
-                                    <p class="text-3xl font-extrabold text-red-600">${diemTB}</p>
-                                </div>
-                            </div>
-                        `;
-
-                    } else {
-                        // 2. Logic cho Toán và các môn khác (Cộng tổng đơn giản)
-                        let tn = parseFloat(data.diem_trac_nghiem) || 0;
-                        let tl = parseFloat(data.diem_tu_luan) || 0;
-                        let tong = tn + tl;
-
-                        // Vẽ bảng điểm thường
-                        containerDiem.innerHTML = `
-                            <div class="grid grid-cols-3 gap-4 text-center">
-                                <div class="bg-gray-100 p-3 rounded-lg">
-                                    <p class="text-sm text-gray-500">Trắc nghiệm</p>
-                                    <p class="text-xl font-bold text-gray-700">${tn}</p>
-                                </div>
-                                <div class="bg-gray-100 p-3 rounded-lg">
-                                    <p class="text-sm text-gray-500">Tự luận</p>
-                                    <p class="text-xl font-bold text-gray-700">${tl}</p>
-                                </div>
-                                <div class="bg-yellow-100 p-3 rounded-lg border-2 border-yellow-400">
-                                    <p class="text-sm text-yellow-800 font-bold">TỔNG ĐIỂM</p>
-                                    <p class="text-3xl font-extrabold text-red-600">${tong}</p>
-                                </div>
-                            </div>
-                        `;
-                    }
-
-                    divKQ.classList.remove('hidden');
-                }
-            } catch (e) {
-                console.error(e);
-                pLoi.innerText = "Lỗi kết nối hoặc tên trường dữ liệu chưa đúng.";
-                pLoi.classList.remove('hidden');
+            if (!name || !lop) {
+                errorMsg.innerText = "Vui lòng nhập đầy đủ Họ tên và Lớp!";
+                errorMsg.classList.remove('hidden');
+                return;
             }
 
-            btn.innerText = "🔍 XEM KẾT QUẢ NGAY"; btn.disabled = false;
+            // Reset giao diện
+            errorMsg.classList.add('hidden');
+            resultArea.innerHTML = '';
+            btn.innerText = "⏳ Đang tìm kiếm...";
+            btn.disabled = true;
+
+            try {
+                // Tải dữ liệu về để lọc (Vì Firebase bản miễn phí hạn chế query text search)
+                const querySnapshot = await getDocs(collection(db, "Baikiemtracuoiki"));
+                let timThay = false;
+
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    // So sánh tên (viết thường)
+                    if (data.ho_ten.trim().toLowerCase() === name && data.lop.trim().toLowerCase() === lop) {
+                        timThay = true;
+                        hienThiKetQua(data);
+                    }
+                });
+
+                if (!timThay) {
+                    errorMsg.innerHTML = "❌ Không tìm thấy kết quả!<br>Con hãy kiểm tra lại chính tả Họ tên và Lớp nhé.";
+                    errorMsg.classList.remove('hidden');
+                }
+
+            } catch (e) {
+                errorMsg.innerText = "Lỗi hệ thống: " + e.message;
+                errorMsg.classList.remove('hidden');
+            } finally {
+                btn.innerText = "🔎 XEM KẾT QUẢ";
+                btn.disabled = false;
+            }
+        }
+
+        function hienThiKetQua(data) {
+            const container = document.getElementById('resultArea');
+            const isTiengViet = data.mon_hoc === "Tiếng Việt";
+            
+            // 1. Tính toán điểm số hiển thị
+            let diemThanhPhanHTML = '';
+            let diemTongKet = 0;
+
+            if (isTiengViet) {
+                // Logic môn Tiếng Việt
+                const dDoc = parseFloat(data.diem_doc_thanh_tieng) || 0;
+                const dViet = parseFloat(data.diem_viet) || 0;
+                const dTN = parseFloat(data.diem_trac_nghiem) || 0;
+                const dTL = parseFloat(data.diem_tu_luan) || 0; // Thường là 0 ở TV
+
+                // Điểm Đọc = TN + Đọc thành tiếng (Max 10)
+                let tongDoc = dTN + dDoc; if(tongDoc > 10) tongDoc = 10;
+                
+                // Điểm TB
+                diemTongKet = (tongDoc + dViet) / 2;
+
+                diemThanhPhanHTML = `
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div class="score-box bg-green-50 border-green-200">
+                            <div class="score-val text-green-600">${tongDoc}</div>
+                            <div class="score-label text-green-800">Điểm Đọc</div>
+                        </div>
+                        <div class="score-box bg-purple-50 border-purple-200">
+                            <div class="score-val text-purple-600">${dViet}</div>
+                            <div class="score-label text-purple-800">Điểm Viết</div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                // Logic Toán, Khoa, Sử... (TN + TL)
+                const dTN = parseFloat(data.diem_trac_nghiem) || 0;
+                const dTL = parseFloat(data.diem_tu_luan) || 0;
+                diemTongKet = dTN + dTL;
+
+                diemThanhPhanHTML = `
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div class="score-box">
+                            <div class="score-val">${dTN}</div>
+                            <div class="score-label">Trắc nghiệm</div>
+                        </div>
+                        <div class="score-box bg-orange-50 border-orange-200">
+                            <div class="score-val text-orange-600">${dTL}</div>
+                            <div class="score-label text-orange-800">Tự luận</div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // 2. Lấy lời nhận xét (Ưu tiên lời phê mới nhất, nếu không có lấy ghi chú hệ thống)
+            const loiPhe = data.nhan_xet || data.ghi_chu || "Chưa có nhận xét.";
+
+            // 3. Tạo thẻ HTML
+            const html = `
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden border-t-8 border-blue-500 transform transition hover:scale-[1.01]">
+                    <div class="bg-gray-50 p-4 border-b flex justify-between items-center">
+                        <div>
+                            <h2 class="text-xl font-black text-gray-800">${data.mon_hoc}</h2>
+                            <p class="text-xs text-gray-500">Ngày nộp: ${new Date(data.thoi_gian_nop).toLocaleDateString('vi-VN')}</p>
+                        </div>
+                        <div class="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold">
+                            ${data.ma_de || 'Đề thi'}
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        ${diemThanhPhanHTML}
+
+                        <div class="flex items-center justify-between bg-blue-600 text-white p-4 rounded-xl shadow-inner mb-6">
+                            <span class="font-bold text-blue-100 uppercase">Tổng Điểm</span>
+                            <span class="text-3xl font-black">${diemTongKet}</span>
+                        </div>
+
+                        <div class="bg-yellow-50 p-4 rounded-xl border border-yellow-200">
+                            <h3 class="font-bold text-yellow-800 text-sm mb-2 flex items-center gap-2">
+                                💬 NHẬN XÉT CỦA THẦY CÔ:
+                            </h3>
+                            <p class="text-gray-700 italic text-sm">"${loiPhe}"</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            container.innerHTML += html;
         }
     </script>
 </body>

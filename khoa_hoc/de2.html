@@ -137,7 +137,7 @@
         </div>
     </div>
 
-    <script type="module">
+        <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
@@ -153,4 +153,108 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        const MON
+        // Đáp án trắc nghiệm (Thầy có thể sửa đáp án tại đây)
+        const DAP_AN = {
+            cau1: 'B', // Mây (0.5đ)
+            cau2: 'A', // Oxi, thức ăn... (1.0đ)
+            cau3: 'C', // Oxi (0.5đ)
+            cau4: 'D', // Tất cả (1.0đ)
+            cau5: 'C', // Mặt trời (0.5đ)
+            cau6: 'B'  // Nhỏ đi (0.5đ)
+        };
+        
+        const DIEM_SO = {
+            cau1: 0.5, cau2: 1.0, cau3: 0.5, cau4: 1.0, cau5: 0.5, cau6: 0.5
+        };
+
+        // Hàm nộp bài (Đã gắn vào window để nút bấm gọi được)
+        window.nopBai = async function() {
+            const btn = document.querySelector('button[onclick="nopBai()"]');
+            
+            // 1. Kiểm tra nhập tên và lớp
+            const hoTen = document.getElementById('hoTen').value.trim();
+            const lop = document.getElementById('lop').value.trim();
+
+            if (!hoTen || !lop) {
+                alert("❗ Con quên chưa điền Tên hoặc Lớp rồi!");
+                return;
+            }
+
+            // Hiệu ứng đang gửi
+            const oldText = btn.innerText;
+            btn.innerText = "⏳ Đang gửi bài...";
+            btn.disabled = true;
+            btn.classList.add('opacity-50');
+
+            try {
+                // 2. Chấm điểm trắc nghiệm
+                let diemTN = 0;
+                for (let key in DAP_AN) {
+                    const radioCheck = document.querySelector(`input[name="${key}"]:checked`);
+                    if (radioCheck && radioCheck.value === DAP_AN[key]) {
+                        diemTN += DIEM_SO[key];
+                    }
+                }
+
+                // 3. Gom nội dung tự luận (Để hiển thị trong phòng chấm)
+                const c7 = document.getElementById('cau7_tuluan').value;
+                const c8a = document.getElementById('cau8a').value;
+                const c8b = document.getElementById('cau8b').value;
+                const c9 = document.getElementById('tu_luan_9').value;
+                const c10 = document.getElementById('tu_luan_10').value;
+
+                const noiDungTuLuan = `
+--- CÂU 7 (Kim loại): ---
+${c7}
+
+--- CÂU 8 (Quang hợp): ---
+a) Lấy vào: ${c8a}
+b) Thải ra: ${c8b}
+
+--- CÂU 9 (Tiết kiệm nước): ---
+${c9}
+
+--- CÂU 10 (Bão): ---
+${c10}
+                `;
+
+                // 4. Gửi lên Firebase
+                await addDoc(collection(db, "Baikiemtracuoiki"), {
+                    ho_ten: hoTen,
+                    lop: lop,
+                    mon_hoc: "Khoa Học",
+                    thoi_gian_nop: new Date().toISOString(),
+                    diem_trac_nghiem: diemTN,
+                    diem_tu_luan: 0, // Sẽ do giáo viên chấm sau
+                    bai_tu_luan: noiDungTuLuan,
+                    trang_thai_cham: "Chờ chấm"
+                });
+
+                // 5. Thông báo thành công
+                alert(`🎉 Chúc mừng ${hoTen} đã nộp bài thành công!\nĐiểm trắc nghiệm: ${diemTN} điểm.`);
+                location.reload(); // Tải lại trang để làm bài mới
+
+            } catch (error) {
+                console.error("Lỗi:", error);
+                alert("⚠️ Lỗi nộp bài: " + error.message + "\n(Thầy kiểm tra lại Internet hoặc quyền truy cập Firebase nhé!)");
+                btn.innerText = oldText;
+                btn.disabled = false;
+                btn.classList.remove('opacity-50');
+            }
+        }
+
+        // Đồng hồ đếm ngược (Bonus)
+        let thoiGian = 35 * 60; // 35 phút
+        const timer = setInterval(() => {
+            thoiGian--;
+            const phut = Math.floor(thoiGian / 60);
+            const giay = thoiGian % 60;
+            document.getElementById('dongHo').innerText = `${phut}:${giay < 10 ? '0'+giay : giay}`;
+            if (thoiGian <= 0) {
+                clearInterval(timer);
+                alert("⏰ Hết giờ làm bài!");
+                nopBai(); // Tự động nộp khi hết giờ
+            }
+        }, 1000);
+    </script>
+

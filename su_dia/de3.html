@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đề Sử - Địa Lớp 4 (Cuối HK1)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Nunito', sans-serif; }
+        .question-box { background-color: #FFFBEB; border-left: 4px solid #F59E0B; padding: 1rem; margin-bottom: 1.5rem; border-radius: 0.5rem; transition: all 0.3s; }
+        .question-title { font-weight: 700; color: #78350F; margin-bottom: 0.5rem; display: block; }
+        input[type="radio"] { width: 1.2rem; height: 1.2rem; margin-right: 0.5rem; vertical-align: middle; accent-color: #D97706; }
+        
+        .section-header { background-color: #FEF3C7; color: #92400E; font-weight: 900; padding: 0.75rem; border-radius: 0.5rem; margin-bottom: 1rem; text-transform: uppercase; border: 1px solid #FCD34D; }
+        
+        .correct-answer { background-color: #D1FAE5 !important; border-color: #10B981 !important; } 
+        .wrong-answer { background-color: #FEE2E2 !important; border-color: #EF4444 !important; }
+        .explanation { display: none; margin-top: 15px; padding: 15px; background-color: #ECFDF5; border: 1px dashed #059669; border-radius: 8px; color: #065F46; font-size: 0.95rem; line-height: 1.6; }
+    </style>
+</head>
+<body class="bg-yellow-50 py-8 min-h-screen">
+
+    <div class="fixed top-4 right-4 bg-red-600 text-white font-bold py-2 px-4 rounded-full shadow-lg z-50 animate-pulse border-2 border-white">
+        ⏳ <span id="dongHo">35:00</span>
+    </div>
+
+    <div class="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-xl border-t-8 border-yellow-500">
+        
+        <div class="text-center mb-8 border-b-2 border-yellow-200 pb-4">
+            <h1 class="text-3xl font-black text-yellow-800 uppercase">KIỂM TRA CUỐI HỌC KÌ 1</h1>
+            <p class="text-xl text-gray-600 font-bold mt-2">Môn: LỊCH SỬ & ĐỊA LÝ - Lớp 4</p>
+            <p class="text-sm text-gray-500">(Bộ sách: Kết nối tri thức với cuộc sống)</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 bg-yellow-50 p-4 rounded-lg">
+            <div>
+                <label class="block font-bold text-gray-700">Họ và tên:</label>
+                <input type="text" id="hoTen" class="w-full mt-1 p-2 border rounded outline-none border-yellow-300 focus:ring-2 focus:ring-yellow-400" placeholder="Nhập họ tên...">
+            </div>
+            <div>
+                <label class="block font-bold text-gray-700">Lớp:</label>
+                <input type="text" id="lop" class="w-full mt-1 p-2 border rounded outline-none border-yellow-300 focus:ring-2 focus:ring-yellow-400" placeholder="VD: 4A">
+            </div>
+        </div>
+
+        <div class="section-header">I. Mức 1: Nhận biết (4 điểm)</div>
+
+        <div class="question-box" id="box_cau1">
+            <label class="question-title">Câu 1: Địa hình đặc trưng của vùng Trung du và miền núi Bắc Bộ là gì?</label>
+            <div class="grid gap-2" id="group_cau1">
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau1" value="A"> A. Đồng bằng rộng lớn, bằng phẳng.</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau1" value="B"> B. Các vùng đồi với đỉnh tròn, sườn thoải.</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau1" value="C"> C. Nhiều cồn cát và đầm phá ven biển.</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau1" value="D"> D. Cao nguyên xếp tầng đất đỏ bazan.</label>
+            </div>
+            <div class="explanation" id="giai_cau1">💡 <b>Đáp án:</b> B<br><i>(Trung du Bắc Bộ nổi bật với các đồi dạng bát úp, đỉnh tròn, sườn thoải).</i></div>
+        </div>
+
+        <div class="question-box" id="box_cau2">
+            <label class="question-title">Câu 2: Lễ giỗ Tổ Hùng Vương hằng năm được tổ chức vào ngày nào (Âm lịch)?</label>
+            <div class="grid gap-2" id="group_cau2">
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau2" value="A"> A. Ngày 2 tháng 9.</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau2" value="B"> B. Ngày 10 tháng 3.</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau2" value="C"> C. Ngày 30 tháng 4.</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau2" value="D"> D. Ngày 1 tháng 1.</label>
+            </div>
+            <div class="explanation" id="giai_cau2">💡 <b>Đáp án:</b> B<br><i>("Dù ai đi ngược về xuôi / Nhớ ngày Giỗ Tổ mùng mười tháng ba").</i></div>
+        </div>
+
+        <div class="question-box" id="box_cau3">
+            <label class="question-title">Câu 3: Con sông nào đóng vai trò chính trong việc bồi đắp phù sa cho vùng Đồng bằng Bắc Bộ?</label>
+            <div class="grid gap-2" id="group_cau3">
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau3" value="A"> A. Sông Tiền.</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau3" value="B"> B. Sông Mê Kông.</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau3" value="C"> C. Sông Hồng.</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau3" value="D"> D. Sông Đồng Nai.</label>
+            </div>
+            <div class="explanation" id="giai_cau3">💡 <b>Đáp án:</b> C<br><i>(Đồng bằng Bắc Bộ còn được gọi là Đồng bằng sông Hồng).</i></div>
+        </div>
+
+        <div class="question-box" id="box_cau4">
+            <label class="question-title">Câu 4: Công trình kiến trúc nào sau đây là trường đại học đầu tiên của nước ta?</label>
+            <div class="grid gap-2" id="group_cau4">
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau4" value="A"> A. Chùa Một Cột.</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau4" value="B"> B. Hoàng thành Thăng Long.</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau4" value="C"> C. Văn Miếu - Quốc Tử Giám.</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau4" value="D"> D. Thành Cổ Loa.</label>
+            </div>
+            <div class="explanation" id="giai_cau4">💡 <b>Đáp án:</b> C<br><i>(Quốc Tử Giám được xây dựng năm 1076, được coi là trường đại học đầu tiên của Việt Nam).</i></div>
+        </div>
+
+        <div class="section-header border-l-4 border-blue-500 bg-blue-50 text-blue-800">II. Mức 2: Thông hiểu (3 điểm)</div>
+
+        <div class="question-box" id="box_cau5">
+            <label class="question-title">Câu 5: Tại sao người dân ở vùng núi thường làm nhà sàn?</label>
+            <div class="grid gap-2" id="group_cau5">
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau5" value="A"> A. Để tránh thú dữ và ẩm thấp từ mặt đất.</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau5" value="B"> B. Vì thiếu vật liệu xây nhà đất.</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau5" value="C"> C. Để phơi thóc lúa trên mái nhà dễ hơn.</label>
+            </div>
+            <div class="explanation" id="giai_cau5">💡 <b>Đáp án:</b> A<br><i>(Nhà sàn giúp người dân tránh được thú dữ, côn trùng và hơi ẩm bốc lên từ đất).</i></div>
+        </div>
+
+        <div class="question-box" id="box_cau6">
+            <label class="question-title">Câu 6: Năm 1010, vua Lý Thái Tổ quyết định dời đô từ Hoa Lư về Đại La và đổi tên là gì?</label>
+            <div class="grid gap-2" id="group_cau6">
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau6" value="A"> A. Đông Đô.</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau6" value="B"> B. Thăng Long.</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau6" value="C"> C. Hà Nội.</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau6" value="D"> D. Cổ Loa.</label>
+            </div>
+            <div class="explanation" id="giai_cau6">💡 <b>Đáp án:</b> B<br><i>(Vua thấy rồng vàng bay lên nên đặt tên kinh đô mới là Thăng Long).</i></div>
+        </div>
+
+        <div class="question-box" id="box_cau7">
+            <label class="question-title">Câu 7: Đâu là đặc điểm nổi bật của hoạt động sản xuất tại Đồng bằng Bắc Bộ?</label>
+            <div class="grid gap-2" id="group_cau7">
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau7" value="A"> A. Trồng nhiều cây công nghiệp lâu năm (cà phê, cao su).</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau7" value="B"> B. Là vựa lúa lớn thứ hai cả nước, trồng nhiều rau màu vụ đông.</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau7" value="C"> C. Khai thác khoáng sản là ngành chính.</label>
+            </div>
+            <div class="explanation" id="giai_cau7">💡 <b>Đáp án:</b> B<br><i>(Đồng bằng Bắc Bộ có đất phù sa màu mỡ, khí hậu có mùa đông lạnh nên thuận lợi trồng lúa và rau màu vụ đông).</i></div>
+        </div>
+
+        <div class="section-header border-l-4 border-purple-500 bg-purple-50 text-purple-800">III. Mức 3: Vận dụng (3 điểm)</div>
+
+        <div class="question-box" id="box_cau8">
+            <label class="question-title">Câu 8: Tại sao ruộng bậc thang lại phổ biến ở vùng núi phía Bắc?</label>
+            <div class="grid gap-2" id="group_cau8">
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau8" value="A"> A. Vì người dân thích làm ruộng trên cao cho đẹp.</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau8" value="B"> B. Để khắc phục độ dốc của địa hình, giữ nước và chống xói mòn đất.</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau8" value="C"> C. Vì đất ở trên núi tốt hơn đất dưới thung lũng.</label>
+            </div>
+            <div class="explanation" id="giai_cau8">💡 <b>Đáp án:</b> B<br><i>(Địa hình dốc không thể làm ruộng phẳng lớn, nên phải làm bậc thang để giữ nước trồng lúa và hạn chế đất bị rửa trôi).</i></div>
+        </div>
+
+        <div class="question-box" id="box_cau9">
+            <label class="question-title">Câu 9: Hệ thống đê ven sông Hồng có vai trò quan trọng nhất là gì?</label>
+            <div class="grid gap-2" id="group_cau9">
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau9" value="A"> A. Làm đường giao thông cho người dân đi lại.</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau9" value="B"> B. Ngăn lũ lụt, bảo vệ đời sống và sản xuất của người dân.</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau9" value="C"> C. Tạo cảnh quan du lịch.</label>
+            </div>
+            <div class="explanation" id="giai_cau9">💡 <b>Đáp án:</b> B<br><i>(Sông Hồng mùa lũ nước dâng rất cao, hệ thống đê giúp ngăn nước tràn vào đồng bằng gây ngập lụt).</i></div>
+        </div>
+
+        <div class="question-box" id="box_cau10">
+            <label class="question-title">Câu 10: Em cần làm gì để góp phần giữ gìn và bảo vệ các di tích lịch sử như Văn Miếu hay Đền Hùng?</label>
+            <div class="grid gap-2" id="group_cau10">
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau10" value="A"> A. Leo trèo lên bia đá, tượng đài để chụp ảnh.</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau10" value="B"> B. Xả rác bừa bãi vì đã có cô lao công dọn.</label>
+                <label class="p-2 rounded border cursor-pointer hover:bg-white"><input type="radio" name="cau10" value="C"> C. Giữ trật tự, không xả rác, không viết vẽ bậy lên di tích.</label>
+            </div>
+            <div class="explanation" id="giai_cau10">💡 <b>Đáp án:</b> C<br><i>(Hành động nhỏ của mỗi học sinh góp phần bảo vệ di sản văn hóa của dân tộc).</i></div>
+        </div>
+
+        <div class="text-center mt-10 pb-10">
+            <button onclick="nopBai()" id="btnNopBai" class="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-3 px-10 rounded-full shadow-lg text-xl transition transform hover:scale-105">
+                NỘP BÀI THI
+            </button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // CẤU HÌNH FIREBASE (GIỮ NGUYÊN)
+        const firebaseConfig = {
+            apiKey: "AIzaSyA77lLi_JCLIdR535KEfg3S0_Ge2EorPMo", 
+            authDomain: "baikiemtracuoiki.firebaseapp.com",
+            projectId: "baikiemtracuoiki",
+            storageBucket: "baikiemtracuoiki.appspot.com",
+            messagingSenderId: "953819948776",
+            appId: "1:953819948776:web:15848507d350f37c35e5d3"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // ĐÁP ÁN SỬ - ĐỊA 4
+        const KEY_TN = {
+            cau1: "B", cau2: "B", cau3: "C", cau4: "C", cau5: "A",
+            cau6: "B", cau7: "B", cau8: "B", cau9: "B", cau10: "C"
+        };
+
+        let daNop = false;
+        let time = 35 * 60; // 35 phút
+        const dongHo = document.getElementById('dongHo');
+        
+        const timer = setInterval(() => {
+            if(daNop) { clearInterval(timer); return; }
+            let m = Math.floor(time/60), s = time % 60;
+            dongHo.innerText = `${m<10?'0'+m:m}:${s<10?'0'+s:s}`;
+            time--;
+            if(time<0) { nopBai(true); }
+        }, 1000);
+
+        window.nopBai = async function(auto=false) {
+            if(daNop) return;
+            const ht = document.getElementById('hoTen').value.trim();
+            const lop = document.getElementById('lop').value.trim();
+            if(!auto && (!ht || !lop)) { alert("Con chưa điền tên/lớp!"); return; }
+
+            daNop = true;
+            document.getElementById('btnNopBai').style.display = 'none';
+            alert("Đang nộp bài... Con hãy kéo xuống để xem KẾT QUẢ và LỜI GIẢI nhé!");
+
+            let diem = 0;
+            let diemMoiCau = 1; // 10 câu, mỗi câu 1 điểm
+
+            for (const [id, dapAn] of Object.entries(KEY_TN)) {
+                const luaChon = document.querySelector(`input[name="${id}"]:checked`);
+                const inputs = document.querySelectorAll(`input[name="${id}"]`);
+                
+                inputs.forEach(i => i.disabled = true);
+                
+                const divGiai = document.getElementById(`giai_${id}`);
+                if(divGiai) divGiai.style.display = 'block';
+
+                if (luaChon && luaChon.value === dapAn) {
+                    diem += diemMoiCau;
+                    luaChon.parentElement.classList.add('correct-answer');
+                } else {
+                    if(luaChon) luaChon.parentElement.classList.add('wrong-answer');
+                    const dung = document.querySelector(`input[name="${id}"][value="${dapAn}"]`);
+                    if(dung) dung.parentElement.classList.add('correct-answer', 'ring-2', 'ring-green-500');
+                }
+            }
+
+            try {
+                await addDoc(collection(db, "Baikiemtracuoiki"), {
+                    ho_ten: ht, lop: lop, 
+                    mon_hoc: "SuDia", ma_de: "Đề 01",
+                    diem_trac_nghiem: diem, 
+                    tong_diem: diem,
+                    ghi_chu: "Hoàn thành",
+                    thoi_gian_nop: new Date().toISOString(),
+                    nop_tu_dong: auto ? "Có" : "Không"
+                });
+                alert(`Nộp thành công!\nTổng điểm: ${diem}/10 điểm.`);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } catch(e) {
+                alert("Lỗi nộp bài: " + e.message);
+            }
+        }
+    </script>
+</body>
+</html>
